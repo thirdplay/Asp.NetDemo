@@ -48,13 +48,13 @@ namespace CsDemo.Controllers
                 return View(model);
             }
 
-            // ログインユーザのチェック
             try
             {
+                // ログインユーザのチェック
                 USER_INFO condition = new USER_INFO();
                 condition.USER_ID = model.UserId;
                 condition.PASSWORD = model.Password;
-                _service.Exists(condition);
+                this._service.Exists(condition);
             }
             catch (Exception e)
             {
