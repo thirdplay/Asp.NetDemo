@@ -1,7 +1,6 @@
 ﻿using CsDemo.Models;
+using CsDemo.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,6 +11,20 @@ namespace CsDemo.Controllers
     /// </summary>
     public class LoginController : Controller
     {
+        /// <summary>
+        /// ユーザの業務ロジック。
+        /// </summary>
+        private readonly UserService _service;
+
+        /// <summary>
+        /// コンストラクタ。
+        /// </summary>
+        /// <param name="service">ユーザの業務ロジック</param>
+        public LoginController(UserService service)
+        {
+            this._service = service;
+        }
+
         /// <summary>
         /// 初期表示。
         /// </summary>
@@ -36,17 +49,17 @@ namespace CsDemo.Controllers
             }
 
             // ログインユーザのチェック
-            //UserService.Exists(model.UserId, model.Password)
-            using (var db = new CsDemoContext())
+            try
             {
-                var query = from x in db.USER_INFO
-                            where x.USER_ID == model.UserId && x.PASSWORD == model.Password
-                            select x;
-                if (query.Count() != 1)
-                {
-                    ModelState.AddModelError("", "ユーザIDまたはパスワードが不正です。");
-                    return View(model);
-                }
+                USER_INFO condition = new USER_INFO();
+                condition.USER_ID = model.UserId;
+                condition.PASSWORD = model.Password;
+                _service.Exists(condition);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+                return View(model);
             }
 
             // ユーザ情報画面に遷移

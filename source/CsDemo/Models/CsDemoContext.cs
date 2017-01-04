@@ -8,7 +8,7 @@ namespace CsDemo.Models
     public partial class CsDemoContext : DbContext
     {
         public CsDemoContext()
-            : base("name=CsDemoContext1")
+            : base("name=CsDemoContext")
         {
         }
 
