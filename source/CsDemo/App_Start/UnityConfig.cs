@@ -36,8 +36,11 @@ namespace CsDemo.App_Start
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
+            // ContainerControlledLifetimeManager:アプリケーション内で１つのインスタンスが生成
+            // PerRequestLifetimeManager:１リクエスト毎に１インスタンス生成
+            // default:インジェクション毎にインスタンスが生成されます。
             // TODO: Register your types here
-            container.RegisterType<IUserService, UserService>();
+            container.RegisterType<IUserService, UserService>(new PerRequestLifetimeManager());
         }
     }
 }

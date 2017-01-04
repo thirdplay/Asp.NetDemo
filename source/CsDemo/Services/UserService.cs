@@ -37,13 +37,16 @@ namespace CsDemo.Services
         /// </summary>
         /// <param name="condition">検索条件</param>
         /// <returns>ユーザ情報</returns>
-        public USER_INFO Exists(USER_INFO condition)
+        public User Exists(User condition)
         {
             using (var db = new CsDemoContext())
             {
-                var userInfo = (from x in db.USER_INFO
-                                where x.USER_ID == condition.USER_ID && x.PASSWORD == condition.PASSWORD
-                                select x).FirstOrDefault();
+                var userInfo = (
+                    from x in db.Users
+                    where x.UserId == condition.UserId && x.Password == condition.Password
+                    select x
+                ).FirstOrDefault();
+
                 if (userInfo == null)
                 {
                     throw new Exception("ユーザIDまたはパスワードが不正です。");

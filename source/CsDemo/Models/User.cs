@@ -6,32 +6,31 @@ namespace CsDemo.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class USER_INFO
+    public partial class User
     {
-        [Key]
         [StringLength(8)]
-        public string USER_ID { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         [StringLength(10)]
-        public string PASSWORD { get; set; }
+        public string Password { get; set; }
 
         [Required]
         [StringLength(16)]
-        public string FIRST_NAME { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
         [StringLength(16)]
-        public string LAST_NAME { get; set; }
+        public string LastName { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string SEX { get; set; }
+        public string Sex { get; set; }
 
         [StringLength(11)]
-        public string PHONE_NUMBER { get; set; }
+        public string PhoneNumber { get; set; }
 
         [StringLength(64)]
-        public string MAIL_ADDRESS { get; set; }
+        public string MailAddress { get; set; }
     }
 }

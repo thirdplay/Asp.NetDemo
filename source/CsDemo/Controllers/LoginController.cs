@@ -28,7 +28,7 @@ namespace CsDemo.Controllers
         /// <summary>
         /// 初期表示。
         /// </summary>
-        /// <returns>アクションメソッドの結果</returns>
+        /// <returns>アクションの結果</returns>
         public ActionResult Login()
         {
             return View();
@@ -38,7 +38,7 @@ namespace CsDemo.Controllers
         /// ログイン処理。
         /// </summary>
         /// <param name="model">ログイン画面のViewModel</param>
-        /// <returns>アクションメソッドの結果</returns>
+        /// <returns>アクションの結果</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
@@ -51,9 +51,9 @@ namespace CsDemo.Controllers
             try
             {
                 // ログインユーザのチェック
-                USER_INFO condition = new USER_INFO();
-                condition.USER_ID = model.UserId;
-                condition.PASSWORD = model.Password;
+                User condition = new User();
+                condition.UserId = model.UserId;
+                condition.Password = model.Password;
                 this._service.Exists(condition);
             }
             catch (Exception e)

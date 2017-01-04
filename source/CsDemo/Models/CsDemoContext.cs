@@ -12,12 +12,12 @@ namespace CsDemo.Models
         {
         }
 
-        public virtual DbSet<USER_INFO> USER_INFO { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<USER_INFO>()
-                .Property(e => e.SEX)
+            modelBuilder.Entity<User>()
+                .Property(e => e.Sex)
                 .IsFixedLength()
                 .IsUnicode(false);
         }
