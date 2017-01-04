@@ -36,6 +36,18 @@ namespace CsDemo.Controllers
             }
 
             // ログインユーザのチェック
+            //UserService.Exists(model.UserId, model.Password)
+            using (var db = new CsDemoContext())
+            {
+                var query = from x in db.USER_INFO
+                            where x.USER_ID == model.UserId && x.PASSWORD == model.Password
+                            select x;
+                if (query.Count() != 1)
+                {
+                    ModelState.AddModelError("", "ユーザIDまたはパスワードが不正です。");
+                    return View(model);
+                }
+            }
 
             // ユーザ情報画面に遷移
             return RedirectToAction("Index", "Home");
