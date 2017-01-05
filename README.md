@@ -1,2 +1,2 @@
-# AspDotNetDemo
+# ASP.NET Demo
 デモアプリケーション
