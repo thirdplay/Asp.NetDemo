@@ -1,7 +1,8 @@
 using System;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
 using AspDotNetDemo.Services;
+using AspDotNetDemo.Models;
+using AspDotNetDemo.Repositories;
 
 namespace AspDotNetDemo.App_Start
 {
@@ -37,10 +38,10 @@ namespace AspDotNetDemo.App_Start
             // container.LoadConfiguration();
 
             // ContainerControlledLifetimeManager:アプリケーション内で１つのインスタンスが生成
-            // PerRequestLifetimeManager:１リクエスト毎に１インスタンス生成
-            // default:インジェクション毎にインスタンスが生成されます。
             // TODO: Register your types here
+            container.RegisterType<DemoContext>(new PerRequestLifetimeManager());
             container.RegisterType<IUserService, UserService>(new PerRequestLifetimeManager());
+            container.RegisterType<IRepository<User>, Repository<User>>(new PerRequestLifetimeManager());
         }
     }
 }

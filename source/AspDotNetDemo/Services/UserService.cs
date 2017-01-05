@@ -1,6 +1,8 @@
 ﻿using AspDotNetDemo.Models;
+using AspDotNetDemo.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -11,6 +13,12 @@ namespace AspDotNetDemo.Services
     /// </summary>
     public interface IUserService
     {
+        /// <summary>
+        /// ユーザが存在するか判定します。
+        /// </summary>
+        /// <param name="condition">検索条件</param>
+        /// <returns>ユーザ情報</returns>
+        User Exists(User condition);
     }
 
     /// <summary>
@@ -18,11 +26,15 @@ namespace AspDotNetDemo.Services
     /// </summary>
     public class UserService : IUserService, IDisposable
     {
+        private readonly IRepository<User> _userRepository;
+
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public UserService()
+        public UserService(IRepository<User> userRepository)
         {
+            this._userRepository = userRepository;
+            System.Diagnostics.Debug.WriteLine("UserService:Constructor");
         }
 
         /// <summary>
@@ -30,6 +42,7 @@ namespace AspDotNetDemo.Services
         /// </summary>
         public void Dispose()
         {
+            System.Diagnostics.Debug.WriteLine("UserService:Dispose");
         }
 
         /// <summary>
@@ -39,20 +52,12 @@ namespace AspDotNetDemo.Services
         /// <returns>ユーザ情報</returns>
         public User Exists(User condition)
         {
-            using (var db = new DemoContext())
+            var user = this._userRepository.Find(condition.UserId);
+            if (user?.Password != condition.Password)
             {
-                var userInfo = (
-                    from x in db.Users
-                    where x.UserId == condition.UserId && x.Password == condition.Password
-                    select x
-                ).FirstOrDefault();
-
-                if (userInfo == null)
-                {
-                    throw new Exception("ユーザIDまたはパスワードが不正です。");
-                }
-                return userInfo;
+                throw new Exception("ユーザIDまたはパスワードが不正です。");
             }
+            return user;
         }
     }
 }

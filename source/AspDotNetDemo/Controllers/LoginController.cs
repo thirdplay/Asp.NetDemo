@@ -14,7 +14,7 @@ namespace AspDotNetDemo.Controllers
         /// <summary>
         /// ユーザの業務ロジック。
         /// </summary>
-        private readonly UserService _service;
+        private readonly IUserService _service;
 
         /// <summary>
         /// コンストラクタ。
@@ -40,7 +40,6 @@ namespace AspDotNetDemo.Controllers
         /// <param name="model">ログイン画面のViewModel</param>
         /// <returns>アクションの結果</returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -51,9 +50,11 @@ namespace AspDotNetDemo.Controllers
             try
             {
                 // ログインユーザのチェック
-                User condition = new User();
-                condition.UserId = model.UserId;
-                condition.Password = model.Password;
+                User condition = new User()
+                {
+                    UserId = model.UserId,
+                    Password = model.Password
+                };
                 this._service.Exists(condition);
             }
             catch (Exception e)
@@ -63,7 +64,7 @@ namespace AspDotNetDemo.Controllers
             }
 
             // ユーザ情報画面に遷移
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "User");
         }
     }
 }

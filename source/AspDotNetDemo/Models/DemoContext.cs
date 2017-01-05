@@ -10,6 +10,7 @@ namespace AspDotNetDemo.Models
         public DemoContext()
             : base("name=DemoContext")
         {
+            System.Diagnostics.Debug.WriteLine("DemoContext:Constructor");
         }
 
         public virtual DbSet<User> Users { get; set; }
