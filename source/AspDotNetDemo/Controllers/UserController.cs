@@ -33,5 +33,23 @@ namespace AspDotNetDemo.Controllers
         {
             return View(this._service.ListAll());
         }
+
+        /// <summary>
+        /// 新規作成の初期表示。
+        /// </summary>
+        /// <returns>アクションの結果</returns>
+        public ActionResult Create()
+        {
+            return View("Edit");
+        }
+
+        /// <summary>
+        /// 編集の初期表示。
+        /// </summary>
+        /// <returns>アクションの結果</returns>
+        public ActionResult Edit(string userId)
+        {
+            return View(this._service.Find(userId));
+        }
     }
 }

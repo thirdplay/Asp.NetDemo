@@ -21,9 +21,16 @@ namespace AspDotNetDemo.Services
         User Exists(User condition);
 
         /// <summary>
-        /// すべてのユーザを取得します。
+        /// 指定されたユーザIDのユーザ情報を検索します。
         /// </summary>
-        /// <returns>エンティティのリスト</returns>
+        /// <param name="userId">ユーザID</param>
+        /// <returns>ユーザ情報</returns>
+        User Find(string userId);
+
+        /// <summary>
+         /// すべてのユーザを取得します。
+         /// </summary>
+         /// <returns>エンティティのリスト</returns>
         IList<User> ListAll();
     }
 
@@ -64,6 +71,16 @@ namespace AspDotNetDemo.Services
                 throw new Exception("ユーザIDまたはパスワードが不正です。");
             }
             return user;
+        }
+
+        /// <summary>
+        /// 指定されたユーザIDのユーザ情報を検索します。
+        /// </summary>
+        /// <param name="userId">ユーザID</param>
+        /// <returns>ユーザ情報</returns>
+        public User Find(string userId)
+        {
+            return this._userRepository.Find(userId);
         }
 
         /// <summary>

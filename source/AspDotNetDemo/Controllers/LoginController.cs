@@ -29,7 +29,7 @@ namespace AspDotNetDemo.Controllers
         /// 初期表示。
         /// </summary>
         /// <returns>アクションの結果</returns>
-        public ActionResult Login()
+        public ActionResult Index()
         {
             return View();
         }
@@ -41,7 +41,7 @@ namespace AspDotNetDemo.Controllers
         /// <returns>アクションの結果</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        public ActionResult Index(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
