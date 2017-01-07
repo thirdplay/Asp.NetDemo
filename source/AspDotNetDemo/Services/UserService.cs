@@ -19,6 +19,12 @@ namespace AspDotNetDemo.Services
         /// <param name="condition">検索条件</param>
         /// <returns>ユーザ情報</returns>
         User Exists(User condition);
+
+        /// <summary>
+        /// すべてのユーザを取得します。
+        /// </summary>
+        /// <returns>エンティティのリスト</returns>
+        IList<User> ListAll();
     }
 
     /// <summary>
@@ -26,12 +32,12 @@ namespace AspDotNetDemo.Services
     /// </summary>
     public class UserService : IUserService, IDisposable
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly IUserRepository _userRepository;
 
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public UserService(IRepository<User> userRepository)
+        public UserService(IUserRepository userRepository)
         {
             this._userRepository = userRepository;
             System.Diagnostics.Debug.WriteLine("UserService:Constructor");
@@ -58,6 +64,15 @@ namespace AspDotNetDemo.Services
                 throw new Exception("ユーザIDまたはパスワードが不正です。");
             }
             return user;
+        }
+
+        /// <summary>
+        /// すべてのユーザを取得します。
+        /// </summary>
+        /// <returns>エンティティのリスト</returns>
+        public IList<User> ListAll()
+        {
+            return this._userRepository.ListAll();
         }
     }
 }

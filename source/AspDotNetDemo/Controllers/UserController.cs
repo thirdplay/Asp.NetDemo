@@ -31,24 +31,7 @@ namespace AspDotNetDemo.Controllers
         /// <returns>アクションの結果</returns>
         public ActionResult Index()
         {
-            return View();
-        }
-
-        /// <summary>
-        /// 登録処理。
-        /// </summary>
-        /// <param name="model">ログイン画面のViewModel</param>
-        /// <returns>アクションの結果</returns>
-        [HttpPost]
-        public ActionResult Index(LoginViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            ModelState.AddModelError("", "Post");
-            return View(model);
+            return View(this._service.ListAll());
         }
     }
 }

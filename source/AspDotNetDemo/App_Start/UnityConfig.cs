@@ -39,9 +39,9 @@ namespace AspDotNetDemo.App_Start
 
             // ContainerControlledLifetimeManager:アプリケーション内で１つのインスタンスが生成
             // TODO: Register your types here
-            container.RegisterType<DemoContext>(new PerRequestLifetimeManager());
+            container.RegisterType<Models.AppContext>(new PerRequestLifetimeManager());
             container.RegisterType<IUserService, UserService>(new PerRequestLifetimeManager());
-            container.RegisterType<IRepository<User>, Repository<User>>(new PerRequestLifetimeManager());
+            container.RegisterType<IUserRepository, UserRepository>(new PerRequestLifetimeManager());
         }
     }
 }

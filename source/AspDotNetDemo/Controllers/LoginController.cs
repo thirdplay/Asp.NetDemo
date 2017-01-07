@@ -40,6 +40,7 @@ namespace AspDotNetDemo.Controllers
         /// <param name="model">ログイン画面のViewModel</param>
         /// <returns>アクションの結果</returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
