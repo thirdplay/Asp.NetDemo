@@ -29,7 +29,7 @@ namespace AspDotNetDemo.Migrations
                 Password = "test",
                 FirstName = "山田",
                 LastName = "太郎",
-                Sex = "1",
+                Sex = "0",
                 PhoneNumber = "0311111111",
                 MailAddress = "yamada@test.co.jp",
             };

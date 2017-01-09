@@ -7,6 +7,30 @@ using System.Web;
 namespace AspDotNetDemo.Models
 {
     /// <summary>
+    /// 性別を表す列挙体。
+    /// </summary>
+    public enum Sex
+    {
+        /// <summary>
+        /// 男性。
+        /// </summary>
+        [Display(Name = "男性")]
+        Male = 0,
+
+        /// <summary>
+        /// 女性。
+        /// </summary>
+        [Display(Name = "女性")]
+        Female,
+
+        /// <summary>
+        /// その他。
+        /// </summary>
+        [Display(Name = "その他")]
+        Other
+    }
+
+    /// <summary>
     /// ユーザ編集画面のViewModel。
     /// </summary>
     public class UserEditViewModel
@@ -49,8 +73,7 @@ namespace AspDotNetDemo.Models
         /// </summary>
         [Required]
         [Display(Name = "性別")]
-        [StringLength(1)]
-        public string Sex { get; set; }
+        public Sex? Sex { get; set; }
 
         /// <summary>
         /// 電話番号。
@@ -65,10 +88,5 @@ namespace AspDotNetDemo.Models
         [Display(Name = "メールアドレス")]
         [StringLength(64)]
         public string MailAddress { get; set; }
-
-        /// <summary>
-        /// 画面モード。
-        /// </summary>
-        public string Mode { get; set; }
     }
 }

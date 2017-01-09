@@ -89,10 +89,7 @@ namespace AspDotNetDemo.Controllers
             {
                 return HttpNotFound();
             }
-            var model = Mapper.Map<User, UserEditViewModel>(user, opt =>
-            {
-                opt.AfterMap((src, dest) => dest.Mode = mode);
-            });
+            var model = Mapper.Map<User, UserEditViewModel>(user);
 
             return View(model);
         }

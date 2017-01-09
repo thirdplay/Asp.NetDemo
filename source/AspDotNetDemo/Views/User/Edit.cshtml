@@ -3,11 +3,11 @@
 @model UserEditViewModel
 @{
     ViewBag.Title = "ユーザ情報";
-    var mode = Model?.Mode ?? "Create";
-    var isCreate = mode == "Create";
+    var actionName = ViewContext.RouteData.Values["action"].ToString();
+    var isCreate = actionName == "Create";
 }
 <h2>@ViewBag.Title.</h2>
-@using (Html.BeginForm(mode, "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm(actionName, "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <hr />
@@ -50,7 +50,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Sex, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Sex, new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Sex, EnumHelper.GetSelectList(typeof(Sex)), new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Sex, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -82,6 +82,7 @@
             </button>
         </div>
     </div>
+    <p>@Html.ActionLink("Back to list", "Index")</p>
 }
 
 @section Scripts {
