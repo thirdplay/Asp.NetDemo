@@ -2,9 +2,9 @@
 
 @model UserEditViewModel
 @{
-    ViewBag.Title = "ユーザ情報";
     var actionName = ViewContext.RouteData.Values["action"].ToString();
     var isCreate = actionName == "Create";
+    ViewBag.Title = "ユーザ情報" + (isCreate ? "登録" : "編集");
 }
 <h2>@ViewBag.Title.</h2>
 @using (Html.BeginForm(actionName, "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

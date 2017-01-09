@@ -66,7 +66,6 @@ namespace AspDotNetDemo.Services
         public UserService(IUserRepository userRepository)
         {
             this._userRepository = userRepository;
-            System.Diagnostics.Debug.WriteLine("UserService:Constructor");
         }
 
         /// <summary>
@@ -74,7 +73,6 @@ namespace AspDotNetDemo.Services
         /// </summary>
         public void Dispose()
         {
-            System.Diagnostics.Debug.WriteLine("UserService:Dispose");
         }
 
         /// <summary>
@@ -87,7 +85,7 @@ namespace AspDotNetDemo.Services
             var user = this._userRepository.Find(condition.UserId);
             if (user?.Password != condition.Password)
             {
-                throw new Exception("ユーザIDまたはパスワードが不正です。");
+                user = null;
             }
             return user != null;
         }

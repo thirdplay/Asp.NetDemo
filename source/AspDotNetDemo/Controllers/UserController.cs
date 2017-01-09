@@ -12,6 +12,7 @@ namespace AspDotNetDemo.Controllers
     /// <summary>
     /// ユーザ情報画面を制御するクラスです。
     /// </summary>
+    [Authorize]
     public class UserController : Controller
     {
         /// <summary>

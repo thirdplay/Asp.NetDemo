@@ -3,26 +3,28 @@ using AspDotNetDemo.Services;
 using System;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace AspDotNetDemo.Controllers
 {
     /// <summary>
     /// ログイン画面を制御するクラスです。
     /// </summary>
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         /// <summary>
-        /// ユーザの業務ロジック。
+        /// メンバーシッププロバイダー。
         /// </summary>
-        private readonly IUserService _service;
+        private readonly CustomMembershipProvider _membershipProvider;
 
         /// <summary>
         /// コンストラクタ。
         /// </summary>
         /// <param name="service">ユーザの業務ロジック</param>
-        public LoginController(UserService service)
+        public LoginController(CustomMembershipProvider provider)
         {
-            this._service = service;
+            this._membershipProvider = provider;
         }
 
         /// <summary>
@@ -43,29 +45,28 @@ namespace AspDotNetDemo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(LoginViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
-            }
-
-            try
-            {
-                // ログインユーザのチェック
-                User condition = new User()
+                if (this._membershipProvider.ValidateUser(model.UserId, model.Password))
                 {
-                    UserId = model.UserId,
-                    Password = model.Password
-                };
-                this._service.Exists(condition);
+                    string userId = (string)Session["AuthUserId"];
+                    FormsAuthentication.SetAuthCookie(userId, false);
+                    return RedirectToAction("Index", "User");
+                }
             }
-            catch (Exception e)
-            {
-                ModelState.AddModelError("", e.Message);
-                return View(model);
-            }
+            ModelState.AddModelError("", "ユーザIDまたはパスワードが不正です。");
+            return View(model);
+        }
 
-            // ユーザ情報画面に遷移
-            return RedirectToAction("Index", "User");
+        /// <summary>
+        /// ログアウト処理。
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Logout()
+        {
+            Session["AuthUserId"] = null;
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
         }
     }
 }

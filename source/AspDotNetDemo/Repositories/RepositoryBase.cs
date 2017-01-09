@@ -1,5 +1,4 @@
-﻿using AspDotNetDemo.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -29,7 +28,6 @@ namespace AspDotNetDemo.Repositories
         /// <param name="context">データベースコンテキスト</param>
         public RepositoryBase(DbContext context)
         {
-            System.Diagnostics.Debug.WriteLine("RepositoryBase:Constructor");
             this._context = context;
             this._set = _context.Set<TEntity>();
         }
@@ -39,7 +37,6 @@ namespace AspDotNetDemo.Repositories
         /// </summary>
         public void Dispose()
         {
-            System.Diagnostics.Debug.WriteLine("RepositoryBase:Dispose");
         }
 
         #region IRepository members
