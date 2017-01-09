@@ -2,6 +2,7 @@
 using AspDotNetDemo.Services;
 using AutoMapper;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -33,7 +34,8 @@ namespace AspDotNetDemo.Controllers
         /// <returns>アクションの結果</returns>
         public ActionResult Index()
         {
-            return View(this._service.ListAll());
+            var users = this._service.ListAll();
+            return View(Mapper.Map<List<UserIndexViewModel>>(users));
         }
 
         /// <summary>
@@ -48,17 +50,16 @@ namespace AspDotNetDemo.Controllers
         /// <summary>
         /// 新規作成の登録処理。
         /// </summary>
-        /// <param name="model">ユーザ情報</param>
+        /// <param name="user">ユーザ情報</param>
         /// <returns>アクションの結果</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserEditViewModel model)
+        public ActionResult Create(User user)
         {
             if (!ModelState.IsValid)
             {
                 return View("Edit");
             }
-            var user = Mapper.Map<User>(model);
 
             // TODO:登録処理
             if (this._service.Find(user.UserId) != null)
@@ -69,6 +70,7 @@ namespace AspDotNetDemo.Controllers
 
             this._service.Add(user);
             this._service.Save();
+
             return RedirectToAction("Index");
         }
 
@@ -118,6 +120,50 @@ namespace AspDotNetDemo.Controllers
 
             UpdateModel(dbUser);
             this._service.Save();
+
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// 削除の初期表示。
+        /// </summary>
+        /// <returns>アクションの結果</returns>
+        public ActionResult Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = this._service.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var model = Mapper.Map<User, UserDeleteViewModel>(user);
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// 確認後の削除処理。
+        /// </summary>
+        /// <param name="id">ユーザID</param>
+        /// <returns>アクションの結果</returns>
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            // TODO:削除処理
+            var dbUser = this._service.Find(id);
+            if (dbUser == null)
+            {
+                ModelState.AddModelError("", "存在しないユーザIDです。");
+                return View();
+            }
+
+            this._service.Remove(dbUser);
+            this._service.Save();
+
             return RedirectToAction("Index");
         }
     }

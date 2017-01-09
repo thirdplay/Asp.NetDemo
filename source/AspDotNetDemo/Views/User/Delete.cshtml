@@ -1,0 +1,47 @@
+﻿@using AspDotNetDemo.Models
+
+@model UserDeleteViewModel
+@{
+    ViewBag.Title = "ユーザ情報";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>ユーザ情報を削除してもよろしいですか？</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(m => m.UserId)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.UserId)
+            @Html.HiddenFor(m => m.UserId)
+        </dd>
+
+        <dt>@Html.DisplayNameFor(m => m.FirstName)</dt>
+        <dd>@Html.DisplayFor(m => m.FirstName)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.LastName)</dt>
+        <dd>@Html.DisplayFor(m => m.LastName)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.Sex)</dt>
+        <dd>@Html.DisplayFor(m => m.Sex)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.PhoneNumber)</dt>
+        <dd>@Html.DisplayFor(m => m.PhoneNumber)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.MailAddress)</dt>
+        <dd>@Html.DisplayFor(m => m.MailAddress)</dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove"> 削除</span>
+            </button> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

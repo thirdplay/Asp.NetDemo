@@ -41,6 +41,13 @@ namespace AspDotNetDemo.Services
         void Add(User user);
 
         /// <summary>
+        /// 指定されたユーザ情報を Deleted としてマークします。
+        /// Save が呼び出されたときにデータベースから削除されます。
+        /// </summary>
+        /// <param name="user">削除するユーザ情報</param>
+        void Remove(User user);
+
+        /// <summary>
         /// すべての変更をデータベースに保存します。
         /// </summary>
         void Save();
@@ -112,6 +119,16 @@ namespace AspDotNetDemo.Services
         public void Add(User user)
         {
             this._userRepository.Add(user);
+        }
+
+        /// <summary>
+        /// 指定されたユーザ情報を Deleted としてマークします。
+        /// Save が呼び出されたときにデータベースから削除されます。
+        /// </summary>
+        /// <param name="user">削除するユーザ情報</param>
+        public void Remove(User user)
+        {
+            this._userRepository.Remove(user);
         }
 
         /// <summary>
