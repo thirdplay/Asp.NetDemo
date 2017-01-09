@@ -1,5 +1,6 @@
 ﻿using AspDotNetDemo.Models;
 using AspDotNetDemo.Services;
+using AutoMapper;
 using System;
 using System.Net;
 using System.Web;
@@ -47,19 +48,20 @@ namespace AspDotNetDemo.Controllers
         /// <summary>
         /// 新規作成の登録処理。
         /// </summary>
-        /// <param name="user">ユーザ情報</param>
+        /// <param name="model">ユーザ情報</param>
         /// <returns>アクションの結果</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
+        public ActionResult Create(UserEditViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                return View("Edit", user);
+                return View("Edit");
             }
+            var user = Mapper.Map<User>(model);
 
             // TODO:登録処理
-            if (this._service.Exists(user))
+            if (this._service.Find(user.UserId) != null)
             {
                 ModelState.AddModelError("", "既に登録されているユーザIDです。");
                 return View("Edit", user);
@@ -73,8 +75,10 @@ namespace AspDotNetDemo.Controllers
         /// <summary>
         /// 編集の初期表示。
         /// </summary>
+        /// <param name="id">ユーザID</param>
+        /// <param name="mode">画面モード</param>
         /// <returns>アクションの結果</returns>
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id, string mode)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -85,7 +89,12 @@ namespace AspDotNetDemo.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            var model = Mapper.Map<User, UserEditViewModel>(user, opt =>
+            {
+                opt.AfterMap((src, dest) => dest.Mode = mode);
+            });
+
+            return View(model);
         }
 
         /// <summary>

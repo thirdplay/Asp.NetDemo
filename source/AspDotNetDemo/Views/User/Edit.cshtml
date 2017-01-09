@@ -1,13 +1,13 @@
 ﻿@using AspDotNetDemo.Models
 
-@model User
+@model UserEditViewModel
 @{
     ViewBag.Title = "ユーザ情報";
-    var isCreate = string.IsNullOrEmpty(Model?.UserId);
-    var actionName = isCreate ? "Create" : "Edit";
+    var mode = Model?.Mode ?? "Create";
+    var isCreate = mode == "Create";
 }
 <h2>@ViewBag.Title.</h2>
-@using (Html.BeginForm(actionName, "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm(mode, "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <hr />

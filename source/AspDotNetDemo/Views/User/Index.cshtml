@@ -5,7 +5,7 @@
     ViewBag.Title = "ユーザ情報一覧";
 }
 <h2>@ViewBag.Title.</h2>
-<p>@Html.ActionLink("Create New", "Create")</p>
+<p>@Html.ActionLink("Create New", "Create", new { mode = "Create" })</p>
 <table class="table">
     <tr>
         <th>@Html.DisplayNameFor(m => m.UserId)</th>
@@ -27,7 +27,7 @@
             <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
             <td>@Html.DisplayFor(modelItem => item.MailAddress)</td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.UserId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId, mode = "Edit" })
             </td>
         </tr>
     }

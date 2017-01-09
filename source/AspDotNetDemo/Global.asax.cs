@@ -14,6 +14,7 @@ namespace AspDotNetDemo
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfig.RegisterMappings();
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppContext, Configuration>());
         }
