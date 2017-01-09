@@ -17,8 +17,8 @@ namespace AspDotNetDemo.Services
         /// ユーザが存在するか判定します。
         /// </summary>
         /// <param name="condition">検索条件</param>
-        /// <returns>ユーザ情報</returns>
-        User Exists(User condition);
+        /// <returns>存在する場合はtrue、それ以外はfalseを返却します。</returns>
+        bool Exists(User condition);
 
         /// <summary>
         /// 指定されたユーザIDのユーザ情報を検索します。
@@ -32,6 +32,18 @@ namespace AspDotNetDemo.Services
          /// </summary>
          /// <returns>エンティティのリスト</returns>
         IList<User> ListAll();
+
+        /// <summary>
+        /// 指定されたユーザ情報を、セットの基になるコンテキストに Added 状態で追加します。
+        /// Added状態のユーザ情報は、Save が呼び出されたときにデータベースに挿入されます。
+        /// </summary>
+        /// <param name="user">追加するユーザ情報</param>
+        void Add(User user);
+
+        /// <summary>
+        /// すべての変更をデータベースに保存します。
+        /// </summary>
+        void Save();
     }
 
     /// <summary>
@@ -62,15 +74,15 @@ namespace AspDotNetDemo.Services
         /// ユーザが存在するか判定します。
         /// </summary>
         /// <param name="condition">検索条件</param>
-        /// <returns>ユーザ情報</returns>
-        public User Exists(User condition)
+        /// <returns>存在する場合はtrue、それ以外はfalseを返却します。</returns>
+        public bool Exists(User condition)
         {
             var user = this._userRepository.Find(condition.UserId);
             if (user?.Password != condition.Password)
             {
                 throw new Exception("ユーザIDまたはパスワードが不正です。");
             }
-            return user;
+            return user != null;
         }
 
         /// <summary>
@@ -90,6 +102,24 @@ namespace AspDotNetDemo.Services
         public IList<User> ListAll()
         {
             return this._userRepository.ListAll();
+        }
+
+        /// <summary>
+        /// 指定されたユーザ情報を、セットの基になるコンテキストに Added 状態で追加します。
+        /// Added状態のユーザ情報は、Save が呼び出されたときにデータベースに挿入されます。
+        /// </summary>
+        /// <param name="user">追加するユーザ情報</param>
+        public void Add(User user)
+        {
+            this._userRepository.Add(user);
+        }
+
+        /// <summary>
+        /// すべての変更をデータベースに保存します。
+        /// </summary>
+        public void Save()
+        {
+            this._userRepository.Save();
         }
     }
 }

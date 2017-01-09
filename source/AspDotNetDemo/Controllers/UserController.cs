@@ -1,6 +1,7 @@
 ﻿using AspDotNetDemo.Models;
 using AspDotNetDemo.Services;
 using System;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -26,7 +27,7 @@ namespace AspDotNetDemo.Controllers
         }
 
         /// <summary>
-        /// 初期表示。
+        /// 一覧の初期表示。
         /// </summary>
         /// <returns>アクションの結果</returns>
         public ActionResult Index()
@@ -44,12 +45,74 @@ namespace AspDotNetDemo.Controllers
         }
 
         /// <summary>
+        /// 新規作成の登録処理。
+        /// </summary>
+        /// <param name="user">ユーザ情報</param>
+        /// <returns>アクションの結果</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", user);
+            }
+
+            // TODO:登録処理
+            if (this._service.Exists(user))
+            {
+                ModelState.AddModelError("", "既に登録されているユーザIDです。");
+                return View("Edit", user);
+            }
+
+            this._service.Add(user);
+            this._service.Save();
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
         /// 編集の初期表示。
         /// </summary>
         /// <returns>アクションの結果</returns>
-        public ActionResult Edit(string userId)
+        public ActionResult Edit(string id)
         {
-            return View(this._service.Find(userId));
+            if (string.IsNullOrEmpty(id))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = this._service.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        /// <summary>
+        /// 編集の更新処理。
+        /// </summary>
+        /// <param name="user">ユーザ情報</param>
+        /// <returns>アクションの結果</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            // TODO:更新処理
+            var dbUser = this._service.Find(user.UserId);
+            if (dbUser == null)
+            {
+                ModelState.AddModelError("", "存在しないユーザIDです。");
+                return View();
+            }
+
+            UpdateModel(dbUser);
+            this._service.Save();
+            return RedirectToAction("Index");
         }
     }
 }
