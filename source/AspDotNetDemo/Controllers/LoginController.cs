@@ -1,30 +1,27 @@
 ﻿using AspDotNetDemo.Models;
 using AspDotNetDemo.Services;
 using System;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace AspDotNetDemo.Controllers
 {
     /// <summary>
     /// ログイン画面を制御するクラスです。
     /// </summary>
-    [AllowAnonymous]
     public class LoginController : Controller
     {
         /// <summary>
-        /// メンバーシッププロバイダー。
+        /// ユーザの業務ロジック。
         /// </summary>
-        private readonly CustomMembershipProvider _membershipProvider;
+        private readonly IUserService _service;
 
         /// <summary>
         /// コンストラクタ。
         /// </summary>
         /// <param name="service">ユーザの業務ロジック</param>
-        public LoginController(CustomMembershipProvider provider)
+        public LoginController(IUserService service)
         {
-            this._membershipProvider = provider;
+            this._service = service;
         }
 
         /// <summary>
@@ -45,28 +42,29 @@ namespace AspDotNetDemo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(LoginViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                if (this._membershipProvider.ValidateUser(model.UserId, model.Password))
-                {
-                    string userId = (string)Session["AuthUserId"];
-                    FormsAuthentication.SetAuthCookie(userId, false);
-                    return RedirectToAction("Index", "User");
-                }
+                return View();
             }
-            ModelState.AddModelError("", "ユーザIDまたはパスワードが不正です。");
-            return View(model);
-        }
 
-        /// <summary>
-        /// ログアウト処理。
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Logout()
-        {
-            Session["AuthUserId"] = null;
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Index");
+            try
+            {
+                // ログインユーザのチェック
+                User condition = new User()
+                {
+                    UserId = model.UserId,
+                    Password = model.Password
+                };
+                this._service.Exists(condition);
+
+                // 認証OK
+                return RedirectToAction("Index", "User");
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+                return View();
+            }
         }
     }
 }

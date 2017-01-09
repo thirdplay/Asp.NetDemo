@@ -1,10 +1,8 @@
 ﻿using AspDotNetDemo.Models;
 using AspDotNetDemo.Services;
 using AutoMapper;
-using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AspDotNetDemo.Controllers
@@ -12,7 +10,6 @@ namespace AspDotNetDemo.Controllers
     /// <summary>
     /// ユーザ情報画面を制御するクラスです。
     /// </summary>
-    [Authorize]
     public class UserController : Controller
     {
         /// <summary>

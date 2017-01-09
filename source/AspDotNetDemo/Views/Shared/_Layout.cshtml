@@ -1,6 +1,5 @@
 ﻿@{
     var appName = "ASP.NET DEMOアプリケーション";
-    var userId = (string)Session["AuthUserId"];
 }
 <!DOCTYPE html>
 <html>
@@ -13,18 +12,6 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @if (!string.IsNullOrEmpty(userId)) {
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    @Html.ActionLink(appName, "Index", "User", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("ログアウト", "Logout", "Login")</li>
-                </ul>
-            </div>
-        </div>
-    }
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -85,9 +85,9 @@ namespace AspDotNetDemo.Services
             var user = this._userRepository.Find(condition.UserId);
             if (user?.Password != condition.Password)
             {
-                user = null;
+                throw new Exception("ユーザIDまたはパスワードが不正です。");
             }
-            return user != null;
+            return true;
         }
 
         /// <summary>
