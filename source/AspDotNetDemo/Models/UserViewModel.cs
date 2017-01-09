@@ -7,7 +7,7 @@ using System.Web;
 namespace AspDotNetDemo.Models
 {
     /// <summary>
-    /// 性別を表す列挙体。
+    /// 性別を表す列挙型。
     /// </summary>
     public enum Sex
     {
@@ -28,6 +28,22 @@ namespace AspDotNetDemo.Models
         /// </summary>
         [Display(Name = "その他")]
         Other
+    }
+    public static class SexExt
+    {
+        /// <summary>
+        /// 表示名を取得します。
+        /// </summary>
+        /// <param name="value">性別を表す列挙型</param>
+        /// <returns>表示名</returns>
+        public static string GetDisplayName(this Sex value)
+        {
+            var fieldInfo = value.GetType().GetField(value.ToString());
+            var attributes = fieldInfo.GetCustomAttributes(typeof(DisplayAttribute), false) as DisplayAttribute[];
+            return (attributes?.Length > 0)
+                ? attributes[0].Name
+                : value.ToString();
+        }
     }
 
     /// <summary>
