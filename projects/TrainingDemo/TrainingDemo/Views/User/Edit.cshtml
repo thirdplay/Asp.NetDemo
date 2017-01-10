@@ -50,7 +50,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Sex, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Sex, EnumHelper.GetSelectList(typeof(Sex)), new { @class = "form-control" })
+            @Html.EnumDropDownListFor(m => m.Sex, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Sex, "", new { @class = "text-danger" })
         </div>
     </div>

@@ -52,40 +52,42 @@ namespace TrainingDemo.Models
         /// <summary>
         /// ユーザID。
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "{0}を入力してください。")]
         [Display(Name = "ユーザID")]
-        [StringLength(8)]
+        [StringLength(8, ErrorMessage = "{0}は{1}文字以内で入力してください。")]
+        [RegularExpression(@"[a-zA-Z0-9]+", ErrorMessage = "{0}は半角英数字で入力してください。")]
         public string UserId { get; set; }
 
         /// <summary>
         /// パスワード。
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "{0}を入力してください。")]
         [Display(Name = "パスワード")]
         [DataType(DataType.Password)]
-        [StringLength(10)]
+        [StringLength(8, ErrorMessage = "{0}は{1}文字以内で入力してください。")]
+        [RegularExpression(@"[a-zA-Z0-9]+", ErrorMessage = "{0}は半角英数字で入力してください。")]
         public string Password { get; set; }
 
         /// <summary>
         /// 姓。
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "{0}を入力してください。")]
         [Display(Name = "姓")]
-        [StringLength(16)]
+        [StringLength(16, ErrorMessage = "{0}は{1}文字以内で入力してください。")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// 名。
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "{0}を入力してください。")]
         [Display(Name = "名")]
-        [StringLength(16)]
+        [StringLength(16, ErrorMessage = "{0}は{1}文字以内で入力してください。")]
         public string LastName { get; set; }
 
         /// <summary>
         /// 性別。
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "{0}を入力してください。")]
         [Display(Name = "性別")]
         public Sex? Sex { get; set; }
 
@@ -93,14 +95,16 @@ namespace TrainingDemo.Models
         /// 電話番号。
         /// </summary>
         [Display(Name = "電話番号")]
-        [StringLength(11)]
+        [StringLength(11, ErrorMessage = "{0}は{1}文字以内で入力してください。")]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "{0}は数字で入力してください。")]
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// メールアドレス。
         /// </summary>
         [Display(Name = "メールアドレス")]
-        [StringLength(64)]
+        [StringLength(64, ErrorMessage = "{0}は{1}文字以内で入力してください。")]
+        [EmailAddress(ErrorMessage = "{0}は半角数字と@と.で構成してください。")]
         public string MailAddress { get; set; }
     }
 
