@@ -109,14 +109,14 @@ namespace AspDotNetDemo.Controllers
             }
 
             // TODO:更新処理
-            var dbUser = this._service.Find(user.UserId);
-            if (dbUser == null)
+            var entity = this._service.Find(user.UserId);
+            if (entity == null)
             {
                 ModelState.AddModelError("", "存在しないユーザIDです。");
                 return View();
             }
 
-            UpdateModel(dbUser);
+            UpdateModel(entity);
             this._service.Save();
 
             return RedirectToAction("Index");
