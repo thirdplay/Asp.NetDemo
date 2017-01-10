@@ -29,7 +29,7 @@ namespace TrainingDemo.Repositories
         public RepositoryBase(DbContext context)
         {
             this._context = context;
-            this._set = _context.Set<TEntity>();
+            this._set = context.Set<TEntity>();
         }
 
         /// <summary>

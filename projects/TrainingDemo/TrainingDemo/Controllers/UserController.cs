@@ -63,7 +63,7 @@ namespace TrainingDemo.Controllers
             if (this._service.Find(user.UserId) != null)
             {
                 ModelState.AddModelError("", "既に登録されているユーザIDです。");
-                return View("Edit", user);
+                return View("Edit");
             }
 
             this._service.Add(user);

@@ -1,8 +1,7 @@
-using System;
 using Microsoft.Practices.Unity;
-using TrainingDemo.Services;
-using TrainingDemo.Models;
+using System;
 using TrainingDemo.Repositories;
+using TrainingDemo.Services;
 
 namespace TrainingDemo.App_Start
 {
@@ -37,9 +36,17 @@ namespace TrainingDemo.App_Start
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
-            // ContainerControlledLifetimeManager:アプリケーション内で１つのインスタンスが生成
             // TODO: Register your types here
-            container.RegisterType<Models.AppContext>(new PerRequestLifetimeManager());
+            container.RegisterType<Models.AppContext>(new PerRequestLifetimeManager(),
+                new InjectionFactory(_ =>
+                {
+                    var appContext = new Models.AppContext();
+                    appContext.Database.Log = s =>
+                    {
+                        System.Diagnostics.Debug.WriteLine(s);
+                    };
+                    return appContext;
+                }));
             container.RegisterType<IUserService, UserService>(new PerRequestLifetimeManager());
             container.RegisterType<IUserRepository, UserRepository>(new PerRequestLifetimeManager());
         }

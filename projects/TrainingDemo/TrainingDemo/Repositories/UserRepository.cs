@@ -1,8 +1,4 @@
 ﻿using TrainingDemo.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace TrainingDemo.Repositories
 {
@@ -22,7 +18,7 @@ namespace TrainingDemo.Repositories
         /// コンストラクタ。
         /// </summary>
         /// <param name="context">データベースコンテキスト</param>
-        public UserRepository(Models.AppContext context) : base(context)
+        public UserRepository(AppContext context) : base(context)
         {
         }
     }
