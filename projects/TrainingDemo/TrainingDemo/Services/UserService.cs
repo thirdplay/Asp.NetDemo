@@ -31,26 +31,25 @@ namespace TrainingDemo.Services
          /// すべてのユーザを取得します。
          /// </summary>
          /// <returns>エンティティのリスト</returns>
-        IList<User> ListAll();
+        IEnumerable<User> ListAll();
 
         /// <summary>
-        /// 指定されたユーザ情報を、セットの基になるコンテキストに Added 状態で追加します。
-        /// Added状態のユーザ情報は、Save が呼び出されたときにデータベースに挿入されます。
+        /// 指定されたユーザ情報を挿入します。
         /// </summary>
         /// <param name="user">追加するユーザ情報</param>
-        void Add(User user);
+        void Insert(User user);
 
         /// <summary>
-        /// 指定されたユーザ情報を Deleted としてマークします。
-        /// Save が呼び出されたときにデータベースから削除されます。
+        /// 指定されたユーザ情報を更新します。
+        /// </summary>
+        /// <param name="user">追加するユーザ情報</param>
+        void Update(User user);
+
+        /// <summary>
+        /// 指定されたユーザIDのユーザ情報を削除します。
         /// </summary>
         /// <param name="user">削除するユーザ情報</param>
-        void Remove(User user);
-
-        /// <summary>
-        /// すべての変更をデータベースに保存します。
-        /// </summary>
-        void Save();
+        void Delete(string userId);
     }
 
     /// <summary>
@@ -104,37 +103,36 @@ namespace TrainingDemo.Services
         /// すべてのユーザを取得します。
         /// </summary>
         /// <returns>エンティティのリスト</returns>
-        public IList<User> ListAll()
+        public IEnumerable<User> ListAll()
         {
             return this._userRepository.ListAll();
         }
 
         /// <summary>
-        /// 指定されたユーザ情報を、セットの基になるコンテキストに Added 状態で追加します。
-        /// Added状態のユーザ情報は、Save が呼び出されたときにデータベースに挿入されます。
+        /// 指定されたユーザ情報を挿入します。
         /// </summary>
         /// <param name="user">追加するユーザ情報</param>
-        public void Add(User user)
+        public void Insert(User user)
         {
-            this._userRepository.Add(user);
+            this._userRepository.Insert(user);
         }
 
         /// <summary>
-        /// 指定されたユーザ情報を Deleted としてマークします。
-        /// Save が呼び出されたときにデータベースから削除されます。
+        /// 指定されたユーザ情報を更新します。
+        /// </summary>
+        /// <param name="user">追加するユーザ情報</param>
+        public void Update(User user)
+        {
+            this._userRepository.Update(user);
+        }
+
+        /// <summary>
+        /// 指定されたユーザIDのユーザ情報を削除します。
         /// </summary>
         /// <param name="user">削除するユーザ情報</param>
-        public void Remove(User user)
+        public void Delete(string userId)
         {
-            this._userRepository.Remove(user);
-        }
-
-        /// <summary>
-        /// すべての変更をデータベースに保存します。
-        /// </summary>
-        public void Save()
-        {
-            this._userRepository.Save();
+            this._userRepository.Delete(userId);
         }
     }
 }

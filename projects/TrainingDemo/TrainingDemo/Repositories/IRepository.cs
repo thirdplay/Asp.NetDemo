@@ -1,51 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
+using System.Data;
 
 namespace TrainingDemo.Repositories
 {
     /// <summary>
     /// リポジトリーパターンの機能を提供するインターフェイス。
     /// </summary>
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository
     {
         /// <summary>
-        /// 指定された主キー値を持つエンティティを検索します。
+        /// SQLを実行し、<see cref="TEntity"/> ごとに型指定されたデータを返します。
         /// </summary>
-        /// <param name="keyValues">検索するエンティティの主キー値</param>
-        /// <returns>検索されたエンティティ、または null</returns>
-        TEntity Find(params object[] keyValues);
+        /// <typeparam name="TEntity">エンティティクラス</typeparam>
+        /// <param name="sql">実行するSQL</param>
+        /// <param name="param">SQLのパラメータ</param>
+        /// <param name="transaction">トランザクション</param>
+        /// <returns><seealso cref="TEntity"/>のデータのシーケンス。基本型（int、stringなど）が照会された場合は、最初の列のデータを返却します。</returns>
+        IEnumerable<TEntity> Query<TEntity>(string sql, object param, IDbTransaction transaction) where TEntity : class;
 
         /// <summary>
-        /// すべてのエンティティを取得します。
+        /// パラメータ化されたSQLを実行します。
         /// </summary>
-        /// <returns>エンティティのリスト</returns>
-        IList<TEntity> ListAll();
-
-        /// <summary>
-        /// 指定された述語によって定義された条件と一致するすべてのエンティティを取得します
-        /// </summary>
-        /// <param name="predicate">各要素が条件を満たしているかどうかをテストする関数</param>
-        /// <returns>エンティティのリスト</returns>
-        IList<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate);
-
-        /// <summary>
-        /// 指定されたエンティティを、セットの基になるコンテキストに Added 状態で追加します。
-        /// Added状態のエンティティは、Save が呼び出されたときにデータベースに挿入されます。
-        /// </summary>
-        /// <param name="entity">追加するエンティティ</param>
-        void Add(TEntity entity);
-
-        /// <summary>
-        /// 指定されたエンティティを Deleted としてマークします。
-        /// Save が呼び出されたときにデータベースから削除されます。
-        /// </summary>
-        /// <param name="entity">削除するエンティティ</param>
-        void Remove(TEntity entity);
-
-        /// <summary>
-        /// すべての変更を基になるデータベースに保存します。
-        /// </summary>
-        void Save();
+        /// <param name="sql">実行するSQL</param>
+        /// <param name="param">SQLのパラメータ</param>
+        /// <param name="transaction">トランザクション</param>
+        /// <returns>影響を受けた行数</returns>
+        int Execute(string sql, object param, IDbTransaction transaction);
     }
 }

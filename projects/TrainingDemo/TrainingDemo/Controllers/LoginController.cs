@@ -42,6 +42,14 @@ namespace TrainingDemo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(LoginViewModel model)
         {
+            if (string.IsNullOrEmpty(model.UserId))
+            {
+                ModelState.AddModelError("userId", "ユーザIDを入力してください。");
+            }
+            if (string.IsNullOrEmpty(model.Password))
+            {
+                ModelState.AddModelError("password", "パスワードを入力してください。");
+            }
             if (!ModelState.IsValid)
             {
                 return View();

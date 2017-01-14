@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TrainingDemo.App_Start;
 
 namespace TrainingDemo
 {
@@ -15,6 +16,7 @@ namespace TrainingDemo
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfig.RegisterMappings();
+            DapperConfig.RegisterMappings("TrainingDemo.Models");
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppContext, Configuration>());
         }

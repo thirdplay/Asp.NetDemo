@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using Dapper;
+using System.Data;
 
 namespace TrainingDemo.Repositories
 {
     /// <summary>
     /// Repositoryパターンの機能を提供する基底クラス。
     /// </summary>
-    public abstract class RepositoryBase<TEntity> : IRepository<TEntity>, IDisposable
-        where TEntity : class
+    public abstract class RepositoryBase : IDisposable
     {
         /// <summary>
         /// データベースコンテキスト。
@@ -18,9 +20,9 @@ namespace TrainingDemo.Repositories
         private readonly DbContext _context;
 
         /// <summary>
-        /// エンティティのコレクション。
+        /// データベースへの接続を取得します。
         /// </summary>
-        private readonly IDbSet<TEntity> _set;
+        private IDbConnection Connection => this._context.Database.Connection;
 
         /// <summary>
         /// コンストラクタ。
@@ -29,7 +31,6 @@ namespace TrainingDemo.Repositories
         public RepositoryBase(DbContext context)
         {
             this._context = context;
-            this._set = context.Set<TEntity>();
         }
 
         /// <summary>
@@ -39,65 +40,29 @@ namespace TrainingDemo.Repositories
         {
         }
 
-        #region IRepository members
-
         /// <summary>
-        /// 指定された主キー値を持つエンティティを検索します。
+        /// SQLを実行し、<see cref="TEntity"/> ごとに型指定されたデータを返します。
         /// </summary>
-        /// <param name="keyValues">検索するエンティティの主キー値</param>
-        /// <returns>検索されたエンティティ、または null</returns>
-        public TEntity Find(params object[] keyValues)
+        /// <typeparam name="TEntity">エンティティクラス</typeparam>
+        /// <param name="sql">実行するSQL</param>
+        /// <param name="param">SQLのパラメータ</param>
+        /// <param name="transaction">トランザクション</param>
+        /// <returns><seealso cref="TEntity"/>のデータのシーケンス。基本型（int、stringなど）が照会された場合は、最初の列のデータを返却します。</returns>
+        protected IEnumerable<TEntity> Query<TEntity>(string sql, object param = null, IDbTransaction transaction = null) where TEntity : class
         {
-            return this._set.Find(keyValues);
+            return this.Connection.Query<TEntity>(sql, param, transaction);
         }
 
         /// <summary>
-        /// すべてのエンティティを取得します。
+        /// パラメータ化されたSQLを実行します。
         /// </summary>
-        /// <returns>エンティティのリスト</returns>
-        public IList<TEntity> ListAll()
+        /// <param name="sql">実行するSQL</param>
+        /// <param name="param">SQLのパラメータ</param>
+        /// <param name="transaction">トランザクション</param>
+        /// <returns>影響を受けた行数</returns>
+        protected int Execute(string sql, object param = null, IDbTransaction transaction = null)
         {
-            return this._set.ToList();
+            return this.Connection.Execute(sql, param, transaction);
         }
-
-        /// <summary>
-        /// 指定された述語によって定義された条件と一致するすべてのエンティティを取得します
-        /// </summary>
-        /// <param name="predicate">各要素が条件を満たしているかどうかをテストする関数</param>
-        /// <returns>エンティティのリスト</returns>
-        public IList<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate)
-        {
-            return this._set.Where(predicate).ToList();
-        }
-
-        /// <summary>
-        /// 指定されたエンティティを、セットの基になるコンテキストに Added 状態で追加します。
-        /// Added状態のエンティティは、Save が呼び出されたときにデータベースに挿入されます。
-        /// </summary>
-        /// <param name="entity">追加するエンティティ</param>
-        public void Add(TEntity entity)
-        {
-            this._set.Add(entity);
-        }
-
-        /// <summary>
-        /// 指定されたエンティティを Deleted としてマークします。
-        /// Save が呼び出されたときにデータベースから削除されます。
-        /// </summary>
-        /// <param name="entity">削除するエンティティ</param>
-        public void Remove(TEntity entity)
-        {
-            this._set.Remove(entity);
-        }
-
-        /// <summary>
-        /// すべての変更を基になるデータベースに保存します。
-        /// </summary>
-        public void Save()
-        {
-            this._context.SaveChanges();
-        }
-
-        #endregion
     }
 }

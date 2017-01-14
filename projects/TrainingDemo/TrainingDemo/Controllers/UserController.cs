@@ -66,8 +66,7 @@ namespace TrainingDemo.Controllers
                 return View("Edit");
             }
 
-            this._service.Add(user);
-            this._service.Save();
+            this._service.Insert(user);
 
             return RedirectToAction("Index");
         }
@@ -116,8 +115,7 @@ namespace TrainingDemo.Controllers
                 return View();
             }
 
-            UpdateModel(entity);
-            this._service.Save();
+            this._service.Update(user);
 
             return RedirectToAction("Index");
         }
@@ -159,8 +157,7 @@ namespace TrainingDemo.Controllers
                 return View();
             }
 
-            this._service.Remove(dbUser);
-            this._service.Save();
+            this._service.Delete(id);
 
             return RedirectToAction("Index");
         }
