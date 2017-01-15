@@ -84,16 +84,8 @@ namespace TrainingDemo.Repositories
         {
             this.Execute(
                 @"INSERT INTO USER_INFO VALUES(@UserId, @Password, @FirstName, @LastName, @Sex, @PhoneNumber, @MailAddress)",
-                new
-                {
-                    UserId = user.UserId,
-                    Password = user.Password,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Sex = user.Sex,
-                    PhoneNumber = user.PhoneNumber,
-                    MailAddress = user.MailAddress
-                });
+                user
+            );
         }
 
         /// <summary>
@@ -103,25 +95,17 @@ namespace TrainingDemo.Repositories
         public void Update(User user)
         {
             this.Execute(
-                @"UPDATE USER_INFO SET "
-                + "USER_ID = @UserId"
-                + ",PASSWORD = @Password"
-                + ",FIRST_NAME = @FirstName"
-                + ",LAST_NAME = @LastName"
-                + ",SEX = @Sex"
-                + ",PHONE_NUMBER = @PhoneNumber"
-                + ",MAIL_ADDRESS = @MailAddress"
-                + " WHERE USER_ID = @UserId",
-                new
-                {
-                    UserId = user.UserId,
-                    Password = user.Password,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Sex = user.Sex,
-                    PhoneNumber = user.PhoneNumber,
-                    MailAddress = user.MailAddress
-                });
+                @"UPDATE USER_INFO SET
+ USER_ID = @UserId
+,PASSWORD = @Password
+,FIRST_NAME = @FirstName
+,LAST_NAME = @LastName
+,SEX = @Sex
+,PHONE_NUMBER = @PhoneNumber
+,MAIL_ADDRESS = @MailAddress
+ WHERE USER_ID = @UserId",
+                user
+            );
         }
 
         /// <summary>
