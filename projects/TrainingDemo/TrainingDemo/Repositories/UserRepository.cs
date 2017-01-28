@@ -44,6 +44,20 @@ namespace TrainingDemo.Repositories
     /// <summary>
     /// ユーザ情報のリポジトリクラス。
     /// </summary>
+    /// <remarks>
+    /// Select文を発行するには、Queryメソッドを利用します。
+    /// またDMLを発行するには、Executeメソッドを利用します。
+    /// 第二引数のparamは、パラメータとして展開するクラスのインスタンスを指定します。
+    /// 下記の例では、SQLにタグ内の抽出条件が追加されます。
+    /// @…には第二引数のparamで指定したクラスのプロパティ名を指定します。
+    /// </remarks>
+    /// <example>
+    /// ■Insert文の例
+    /// this.Execute(@"INSERT INTO USER_INFO VALUES(@UserId, @Password, …)", user);
+    /// 
+    /// ■Update文の例
+    /// this.Execute(@"UPDATE USER_INFO SET USER_ID = @UserId, PASSWORD = @Password, … WHERE USER_ID = @UserId", user);
+    /// </example>
     public class UserRepository : RepositoryBase, IUserRepository
     {
         /// <summary>
