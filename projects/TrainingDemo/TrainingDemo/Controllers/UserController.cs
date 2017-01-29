@@ -15,7 +15,7 @@ namespace TrainingDemo.Controllers
         /// <summary>
         /// ユーザの業務ロジック。
         /// </summary>
-        private readonly IUserService _service;
+        private readonly IUserService service;
 
         /// <summary>
         /// コンストラクタ。
@@ -23,7 +23,7 @@ namespace TrainingDemo.Controllers
         /// <param name="service">ユーザの業務ロジック</param>
         public UserController(UserService service)
         {
-            this._service = service;
+            this.service = service;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace TrainingDemo.Controllers
         /// <returns>アクションの結果</returns>
         public ActionResult Index()
         {
-            var users = this._service.ListAll();
+            var users = this.service.ListAll();
             return View(Mapper.Map<List<UserIndexViewModel>>(users));
         }
 
@@ -60,13 +60,13 @@ namespace TrainingDemo.Controllers
             }
 
             // TODO:登録処理
-            if (this._service.Find(user.UserId) != null)
+            if (this.service.Find(user.UserId) != null)
             {
                 ModelState.AddModelError("", "既に登録されているユーザIDです。");
                 return View("Edit");
             }
 
-            this._service.Insert(user);
+            this.service.Insert(user);
 
             return RedirectToAction("Index");
         }
@@ -83,7 +83,7 @@ namespace TrainingDemo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = this._service.Find(id);
+            var user = this.service.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -108,14 +108,14 @@ namespace TrainingDemo.Controllers
             }
 
             // TODO:更新処理
-            var entity = this._service.Find(user.UserId);
+            var entity = this.service.Find(user.UserId);
             if (entity == null)
             {
                 ModelState.AddModelError("", "存在しないユーザIDです。");
                 return View();
             }
 
-            this._service.Update(user);
+            this.service.Update(user);
 
             return RedirectToAction("Index");
         }
@@ -130,7 +130,7 @@ namespace TrainingDemo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = this._service.Find(id);
+            var user = this.service.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -150,14 +150,14 @@ namespace TrainingDemo.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             // TODO:削除処理
-            var dbUser = this._service.Find(id);
+            var dbUser = this.service.Find(id);
             if (dbUser == null)
             {
                 ModelState.AddModelError("", "存在しないユーザIDです。");
                 return View();
             }
 
-            this._service.Delete(id);
+            this.service.Delete(id);
 
             return RedirectToAction("Index");
         }

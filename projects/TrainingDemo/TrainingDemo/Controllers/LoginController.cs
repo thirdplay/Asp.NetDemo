@@ -13,7 +13,7 @@ namespace TrainingDemo.Controllers
         /// <summary>
         /// ユーザの業務ロジック。
         /// </summary>
-        private readonly IUserService _service;
+        private readonly IUserService service;
 
         /// <summary>
         /// コンストラクタ。
@@ -21,7 +21,7 @@ namespace TrainingDemo.Controllers
         /// <param name="service">ユーザの業務ロジック</param>
         public LoginController(IUserService service)
         {
-            this._service = service;
+            this.service = service;
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace TrainingDemo.Controllers
                     UserId = model.UserId,
                     Password = model.Password
                 };
-                this._service.Exists(condition);
+                this.service.Exists(condition);
 
                 // 認証OK
                 return RedirectToAction("Index", "User");

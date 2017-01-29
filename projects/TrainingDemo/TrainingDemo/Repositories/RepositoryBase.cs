@@ -17,12 +17,12 @@ namespace TrainingDemo.Repositories
         /// <summary>
         /// データベースコンテキスト。
         /// </summary>
-        private readonly DbContext _context;
+        private readonly DbContext context;
 
         /// <summary>
         /// データベースへの接続を取得します。
         /// </summary>
-        private IDbConnection Connection => this._context.Database.Connection;
+        private IDbConnection Connection => this.context.Database.Connection;
 
         /// <summary>
         /// コンストラクタ。
@@ -30,7 +30,7 @@ namespace TrainingDemo.Repositories
         /// <param name="context">データベースコンテキスト</param>
         public RepositoryBase(DbContext context)
         {
-            this._context = context;
+            this.context = context;
         }
 
         /// <summary>
