@@ -19,8 +19,8 @@ namespace TrainingDemo.Repositories
         /// <summary>
         /// すべてのユーザ情報を取得します。
         /// </summary>
-        /// <returns>ユーザ情報の列挙子</returns>
-        IEnumerable<User> ListAll();
+        /// <returns>ユーザ情報リスト</returns>
+        List<User> ListAll();
 
         /// <summary>
         /// 指定されたユーザ情報を挿入します。
@@ -84,8 +84,8 @@ namespace TrainingDemo.Repositories
         /// <summary>
         /// すべてのユーザ情報を取得します。
         /// </summary>
-        /// <returns>ユーザ情報の列挙子</returns>
-        public IEnumerable<User> ListAll()
+        /// <returns>ユーザ情報リスト</returns>
+        public List<User> ListAll()
         {
             return this.Query<User>(@"SELECT * FROM USER_INFO").ToList();
         }
@@ -96,6 +96,7 @@ namespace TrainingDemo.Repositories
         /// <param name="user">追加するユーザ情報</param>
         public void Insert(User user)
         {
+            // TODO:ユーザ情報の挿入
             this.Execute(
                 @"INSERT INTO USER_INFO VALUES(@UserId, @Password, @FirstName, @LastName, @Sex, @PhoneNumber, @MailAddress)",
                 user
@@ -108,6 +109,7 @@ namespace TrainingDemo.Repositories
         /// <param name="user">追加するユーザ情報</param>
         public void Update(User user)
         {
+            // TODO:ユーザ情報の更新
             this.Execute(
                 @"UPDATE USER_INFO SET
  USER_ID = @UserId
@@ -128,6 +130,7 @@ namespace TrainingDemo.Repositories
         /// <param name="user">削除するユーザ情報</param>
         public void Delete(string userId)
         {
+            // TODO:ユーザ情報の削除
             this.Execute(@"DELETE FROM USER_INFO WHERE USER_ID = @UserId", new { UserId = userId });
         }
     }
