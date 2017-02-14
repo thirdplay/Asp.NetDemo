@@ -73,6 +73,7 @@ namespace OracleDemo.Services
         /// </summary>
         public void Dispose()
         {
+            Debug.WriteLine("UserService:Dispose");
         }
 
         /// <summary>

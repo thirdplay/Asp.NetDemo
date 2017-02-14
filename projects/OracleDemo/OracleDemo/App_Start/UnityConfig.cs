@@ -41,10 +41,10 @@ namespace OracleDemo.App_Start
                 new InjectionFactory(_ =>
                 {
                     var appContext = new Models.AppContext();
-                    appContext.Database.Log = s =>
-                    {
-                        System.Diagnostics.Debug.WriteLine(s);
-                    };
+                    //appContext.Database.Log = s =>
+                    //{
+                    //    System.Diagnostics.Debug.WriteLine(s);
+                    //};
                     return appContext;
                 }));
             container.RegisterType<IUserService, UserService>(new PerRequestLifetimeManager());
