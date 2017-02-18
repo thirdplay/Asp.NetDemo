@@ -2,6 +2,7 @@
 using TrainingDemo.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace TrainingDemo.Services
 {
@@ -31,6 +32,11 @@ namespace TrainingDemo.Services
         List<User> ListAll();
 
         #region 最終課題では削除
+        /// <summary>
+        /// ユーザ情報の入力チェック。
+        /// </summary>
+        /// <param name="user">ユーザ情報</param>
+        void Check(User user);
         
         /// <summary>
         /// 指定されたユーザ情報を挿入します。
@@ -113,6 +119,76 @@ namespace TrainingDemo.Services
         }
 
         #region 最終課題では削除
+
+        /// <summary>
+        /// ユーザ情報の入力チェック。
+        /// </summary>
+        /// <param name="user">ユーザ情報</param>
+        public void Check(User user)
+        {
+            // ユーザID
+            if (string.IsNullOrEmpty(user.UserId))
+            {
+                throw new Exception("ユーザIDを入力してください。");
+            }
+            if (!(Regex.Match(user.UserId, "^[a-zA-Z0-9]+$")).Success)
+            {
+                throw new Exception("ユーザIDは半角英数字で入力してください。");
+            }
+            if (user.UserId.Length > 8)
+            {
+                throw new Exception("ユーザIDは8文字以内で入力してください。");
+            }
+            // パスワード
+            if (string.IsNullOrEmpty(user.Password))
+            {
+                throw new Exception("パスワードを入力してください。");
+            }
+            if (!(Regex.Match(user.Password, "^[a-zA-Z0-9]+$")).Success)
+            {
+                throw new Exception("パスワードは半角英数字で入力してください。");
+            }
+            if (user.Password.Length > 8)
+            {
+                throw new Exception("パスワードは8文字以内で入力してください。");
+            }
+            // 名
+            if (string.IsNullOrEmpty(user.LastName))
+            {
+                throw new Exception("名を入力してください。");
+            }
+            if (user.LastName.Length > 16)
+            {
+                throw new Exception("名は16文字以内で入力してください。");
+            }
+            // 姓
+            if (string.IsNullOrEmpty(user.FirstName))
+            {
+                throw new Exception("姓を入力してください。");
+            }
+            if (user.FirstName.Length > 16)
+            {
+                throw new Exception("姓は16文字以内で入力してください。");
+            }
+            // 電話番号
+            if (!(Regex.Match(user.PhoneNumber, "^[0-9]+$")).Success)
+            {
+                throw new Exception("電話番号は数字で入力してください。");
+            }
+            if (user.PhoneNumber.Length > 11)
+            {
+                throw new Exception("電話番号は11文字以内で入力してください。");
+            }
+            // メールアドレス
+            if (!(Regex.Match(user.MailAddress, @"^[a-zA-Z0-9\.@]+$")).Success)
+            {
+                throw new Exception("メールアドレスは半角数字と@と.で構成してください。");
+            }
+            if (user.MailAddress.Length > 64)
+            {
+                throw new Exception("メールアドレスは64文字以内で入力してください。");
+            }
+        }
 
         /// <summary>
         /// 指定されたユーザ情報を挿入します。

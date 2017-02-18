@@ -59,7 +59,6 @@ namespace TrainingDemo.Models
         /// パスワード。
         /// </summary>
         [Display(Name = "パスワード")]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         /// <summary>

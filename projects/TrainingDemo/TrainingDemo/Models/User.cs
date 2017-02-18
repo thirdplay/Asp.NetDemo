@@ -13,7 +13,6 @@ namespace TrainingDemo.Models
         /// ユーザID。
         /// </summary>
         [Key]
-        [Required]
         [StringLength(8)]
         [Display(Name = "ユーザID")]
         [Column("USER_ID")]
@@ -22,7 +21,6 @@ namespace TrainingDemo.Models
         /// <summary>
         /// パスワード。
         /// </summary>
-        [Required]
         [StringLength(10)]
         [Display(Name = "パスワード")]
         [Column("PASSWORD")]
@@ -31,7 +29,6 @@ namespace TrainingDemo.Models
         /// <summary>
         /// 姓。
         /// </summary>
-        [Required]
         [StringLength(16)]
         [Display(Name = "姓")]
         [Column("FIRST_NAME")]
@@ -40,7 +37,6 @@ namespace TrainingDemo.Models
         /// <summary>
         /// 名。
         /// </summary>
-        [Required]
         [StringLength(16)]
         [Display(Name = "名")]
         [Column("LAST_NAME")]
@@ -49,7 +45,6 @@ namespace TrainingDemo.Models
         /// <summary>
         /// 性別。
         /// </summary>
-        [Required]
         [StringLength(1)]
         [Display(Name = "性別")]
         [Column("SEX", TypeName = "char")]
