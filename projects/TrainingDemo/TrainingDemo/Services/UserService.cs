@@ -2,9 +2,6 @@
 using TrainingDemo.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
 
 namespace TrainingDemo.Services
 {
@@ -28,11 +25,13 @@ namespace TrainingDemo.Services
         User Find(string userId);
 
         /// <summary>
-         /// すべてのユーザを取得します。
-         /// </summary>
-         /// <returns>エンティティのリスト</returns>
-        IEnumerable<User> ListAll();
+        /// すべてのユーザを取得します。
+        /// </summary>
+        /// <returns>エンティティのリスト</returns>
+        List<User> ListAll();
 
+        #region 最終課題では削除
+        
         /// <summary>
         /// 指定されたユーザ情報を挿入します。
         /// </summary>
@@ -50,6 +49,8 @@ namespace TrainingDemo.Services
         /// </summary>
         /// <param name="user">削除するユーザ情報</param>
         void Delete(string userId);
+
+        #endregion
     }
 
     /// <summary>
@@ -96,17 +97,22 @@ namespace TrainingDemo.Services
         /// <returns>ユーザ情報</returns>
         public User Find(string userId)
         {
+            // TODO:ユーザ情報の検索
+            #region 最終課題では削除
             return this._userRepository.Find(userId);
+            #endregion
         }
 
         /// <summary>
         /// すべてのユーザを取得します。
         /// </summary>
         /// <returns>エンティティのリスト</returns>
-        public IEnumerable<User> ListAll()
+        public List<User> ListAll()
         {
             return this._userRepository.ListAll();
         }
+
+        #region 最終課題では削除
 
         /// <summary>
         /// 指定されたユーザ情報を挿入します。
@@ -134,5 +140,7 @@ namespace TrainingDemo.Services
         {
             this._userRepository.Delete(userId);
         }
+        
+        #endregion
     }
 }

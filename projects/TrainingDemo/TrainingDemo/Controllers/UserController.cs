@@ -65,7 +65,6 @@ namespace TrainingDemo.Controllers
                 ModelState.AddModelError("", "既に登録されているユーザIDです。");
                 return View("Edit");
             }
-
             this.service.Insert(user);
 
             return RedirectToAction("Index");
@@ -114,7 +113,6 @@ namespace TrainingDemo.Controllers
                 ModelState.AddModelError("", "存在しないユーザIDです。");
                 return View();
             }
-
             this.service.Update(user);
 
             return RedirectToAction("Index");
@@ -156,7 +154,6 @@ namespace TrainingDemo.Controllers
                 ModelState.AddModelError("", "存在しないユーザIDです。");
                 return View();
             }
-
             this.service.Delete(id);
 
             return RedirectToAction("Index");
