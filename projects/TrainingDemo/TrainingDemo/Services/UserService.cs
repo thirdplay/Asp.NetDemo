@@ -171,22 +171,28 @@ namespace TrainingDemo.Services
                 throw new Exception("姓は16文字以内で入力してください。");
             }
             // 電話番号
-            if (!(Regex.Match(user.PhoneNumber, "^[0-9]+$")).Success)
+            if (!string.IsNullOrEmpty(user.PhoneNumber))
             {
-                throw new Exception("電話番号は数字で入力してください。");
-            }
-            if (user.PhoneNumber.Length > 11)
-            {
-                throw new Exception("電話番号は11文字以内で入力してください。");
+                if (!(Regex.Match(user.PhoneNumber, "^[0-9]+$")).Success)
+                {
+                    throw new Exception("電話番号は数字で入力してください。");
+                }
+                if (user.PhoneNumber.Length > 11)
+                {
+                    throw new Exception("電話番号は11文字以内で入力してください。");
+                }
             }
             // メールアドレス
-            if (!(Regex.Match(user.MailAddress, @"^[a-zA-Z0-9\.@]+$")).Success)
+            if (!string.IsNullOrEmpty(user.MailAddress))
             {
-                throw new Exception("メールアドレスは半角数字と@と.で構成してください。");
-            }
-            if (user.MailAddress.Length > 64)
-            {
-                throw new Exception("メールアドレスは64文字以内で入力してください。");
+                if (!(Regex.Match(user.MailAddress, @"^[a-zA-Z0-9\.@]+$")).Success)
+                {
+                    throw new Exception("メールアドレスは半角数字と@と.で構成してください。");
+                }
+                if (user.MailAddress.Length > 64)
+                {
+                    throw new Exception("メールアドレスは64文字以内で入力してください。");
+                }
             }
         }
 

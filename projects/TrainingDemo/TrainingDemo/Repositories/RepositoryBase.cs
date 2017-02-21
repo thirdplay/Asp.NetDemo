@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using Dapper;
 using System.Data;
+using System.Data.Common;
 
 namespace TrainingDemo.Repositories
 {
@@ -12,22 +12,22 @@ namespace TrainingDemo.Repositories
     public abstract class RepositoryBase : IDisposable
     {
         /// <summary>
-        /// データベースコンテキスト。
+        /// データベースへの接続。
         /// </summary>
-        private readonly DbContext context;
+        private readonly DbConnection dbConnection;
 
         /// <summary>
         /// データベースへの接続を取得します。
         /// </summary>
-        private IDbConnection Connection => this.context.Database.Connection;
+        private IDbConnection Connection => this.dbConnection;
 
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        /// <param name="context">データベースコンテキスト</param>
-        public RepositoryBase(DbContext context)
+        /// <param name="dbConnection">データベースへの接続</param>
+        public RepositoryBase(DbConnection dbConnection)
         {
-            this.context = context;
+            this.dbConnection = dbConnection;
         }
 
         /// <summary>

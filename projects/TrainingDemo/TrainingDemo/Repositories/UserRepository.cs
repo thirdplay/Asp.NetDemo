@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using TrainingDemo.Models;
 
@@ -22,6 +23,7 @@ namespace TrainingDemo.Repositories
         /// <returns>ユーザ情報リスト</returns>
         List<User> ListAll();
 
+        #region 最終課題では削除
         /// <summary>
         /// 指定されたユーザ情報を挿入します。
         /// </summary>
@@ -39,6 +41,7 @@ namespace TrainingDemo.Repositories
         /// </summary>
         /// <param name="user">削除するユーザ情報</param>
         void Delete(string userId);
+        #endregion
     }
 
     /// <summary>
@@ -49,22 +52,22 @@ namespace TrainingDemo.Repositories
     /// またDMLを発行するには、Executeメソッドを利用します。
     /// 第二引数のparamは、パラメータとして展開するクラスのインスタンスを指定します。
     /// 下記の例では、SQLにタグ内の抽出条件が追加されます。
-    /// @…には第二引数のparamで指定したクラスのプロパティ名を指定します。
+    /// :…には第二引数のparamで指定したクラスのプロパティ名を指定します。
     /// </remarks>
     /// <example>
     /// ■Insert文の例
-    /// this.Execute(@"INSERT INTO USER_INFO VALUES(@UserId, @Password, …)", user);
+    /// this.Execute(@"INSERT INTO USER_INFO VALUES(:UserId, :Password, …)", user);
     /// 
     /// ■Update文の例
-    /// this.Execute(@"UPDATE USER_INFO SET USER_ID = @UserId, PASSWORD = @Password, … WHERE USER_ID = @UserId", user);
+    /// this.Execute(@"UPDATE USER_INFO SET USER_ID = :UserId, PASSWORD = :Password, … WHERE USER_ID = :UserId", user);
     /// </example>
     public class UserRepository : RepositoryBase, IUserRepository
     {
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        /// <param name="context">データベースコンテキスト</param>
-        public UserRepository(AppContext context) : base(context)
+        /// <param name="dbConnection">データベースへの接続</param>
+        public UserRepository(DbConnection dbConnection) : base(dbConnection)
         {
         }
 
@@ -75,10 +78,12 @@ namespace TrainingDemo.Repositories
         /// <returns>ユーザ情報</returns>
         public User Find(string userId)
         {
+            #region 最終課題では削除
             return this.Query<User>(
-                @"SELECT * FROM USER_INFO WHERE USER_ID = @UserId",
-                new { @UserId = userId }
+                @"SELECT * FROM USER_INFO WHERE USER_ID = :UserId",
+                new { UserId = userId }
             ).FirstOrDefault();
+            #endregion
         }
 
         /// <summary>
@@ -90,6 +95,7 @@ namespace TrainingDemo.Repositories
             return this.Query<User>(@"SELECT * FROM USER_INFO").ToList();
         }
 
+        #region 最終課題では削除
         /// <summary>
         /// 指定されたユーザ情報を挿入します。
         /// </summary>
@@ -98,7 +104,7 @@ namespace TrainingDemo.Repositories
         {
             // TODO:ユーザ情報の挿入
             this.Execute(
-                @"INSERT INTO USER_INFO VALUES(@UserId, @Password, @FirstName, @LastName, @Sex, @PhoneNumber, @MailAddress)",
+                @"INSERT INTO USER_INFO VALUES(:UserId, :Password, :FirstName, :LastName, :Sex, :PhoneNumber, :MailAddress)",
                 user
             );
         }
@@ -112,14 +118,13 @@ namespace TrainingDemo.Repositories
             // TODO:ユーザ情報の更新
             this.Execute(
                 @"UPDATE USER_INFO SET
- USER_ID = @UserId
-,PASSWORD = @Password
-,FIRST_NAME = @FirstName
-,LAST_NAME = @LastName
-,SEX = @Sex
-,PHONE_NUMBER = @PhoneNumber
-,MAIL_ADDRESS = @MailAddress
- WHERE USER_ID = @UserId",
+ PASSWORD = :Password
+,FIRST_NAME = :FirstName
+,LAST_NAME = :LastName
+,SEX = :Sex
+,PHONE_NUMBER = :PhoneNumber
+,MAIL_ADDRESS = :MailAddress
+ WHERE USER_ID = :UserId",
                 user
             );
         }
@@ -131,7 +136,8 @@ namespace TrainingDemo.Repositories
         public void Delete(string userId)
         {
             // TODO:ユーザ情報の削除
-            this.Execute(@"DELETE FROM USER_INFO WHERE USER_ID = @UserId", new { UserId = userId });
+            this.Execute(@"DELETE FROM USER_INFO WHERE USER_ID = :UserId", new { UserId = userId });
         }
+        #endregion
     }
 }

@@ -1,5 +1,8 @@
 using Microsoft.Practices.Unity;
+using Oracle.ManagedDataAccess.Client;
 using System;
+using System.Configuration;
+using System.Data.Common;
 using TrainingDemo.Repositories;
 using TrainingDemo.Services;
 
@@ -37,15 +40,13 @@ namespace TrainingDemo.App_Start
             // container.LoadConfiguration();
 
             // TODO: Register your types here
-            container.RegisterType<Models.AppContext>(new PerRequestLifetimeManager(),
+            container.RegisterType<DbConnection>(new PerRequestLifetimeManager(),
                 new InjectionFactory(_ =>
                 {
-                    var appContext = new Models.AppContext();
-                    appContext.Database.Log = s =>
-                    {
-                        System.Diagnostics.Debug.WriteLine(s);
-                    };
-                    return appContext;
+                    var connectionString = ConfigurationManager.ConnectionStrings["TrainingDemo"].ConnectionString;
+                    var dbConnection = new OracleConnection(connectionString);
+                    dbConnection.Open();
+                    return dbConnection;
                 }));
             container.RegisterType<IUserService, UserService>(new PerRequestLifetimeManager());
             container.RegisterType<IUserRepository, UserRepository>(new PerRequestLifetimeManager());
