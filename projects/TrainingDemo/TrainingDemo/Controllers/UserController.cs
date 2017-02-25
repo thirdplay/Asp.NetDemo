@@ -61,23 +61,6 @@ namespace TrainingDemo.Controllers
             }
 
             // TODO:登録処理
-            #region 最終課題では削除
-            try
-            {
-                this.service.Check(user);
-                if (this.service.Find(user.UserId) != null)
-                {
-                    ModelState.AddModelError("", "既に登録されているユーザIDです。");
-                    return View("Edit");
-                }
-                this.service.Insert(user);
-            }
-            catch(Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View("Edit");
-            }
-            #endregion
 
             return RedirectToAction("Index");
         }
@@ -114,24 +97,6 @@ namespace TrainingDemo.Controllers
         public ActionResult Edit(User user)
         {
             // TODO:更新処理
-            #region 最終課題では削除
-            try
-            {
-                this.service.Check(user);
-                var entity = this.service.Find(user.UserId);
-                if (entity == null)
-                {
-                    ModelState.AddModelError("", "存在しないユーザIDです。");
-                    return View();
-                }
-                this.service.Update(user);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View("Edit");
-            }
-            #endregion
 
             return RedirectToAction("Index");
         }
@@ -166,15 +131,6 @@ namespace TrainingDemo.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             // TODO:削除処理
-            #region 最終課題では削除
-            var dbUser = this.service.Find(id);
-            if (dbUser == null)
-            {
-                ModelState.AddModelError("", "存在しないユーザIDです。");
-                return View();
-            }
-            this.service.Delete(id);
-            #endregion
 
             return RedirectToAction("Index");
         }
