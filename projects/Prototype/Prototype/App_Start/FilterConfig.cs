@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using Prototype.Attributes;
 using System.Web.Mvc;
 
 namespace Prototype
@@ -7,7 +7,7 @@ namespace Prototype
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new GlobalHandleErrorAttribute());
         }
     }
 }

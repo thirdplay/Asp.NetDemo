@@ -9,7 +9,7 @@ namespace Prototype.Controllers
     public class ErrorController : Controller
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
@@ -20,7 +20,7 @@ namespace Prototype.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public ActionResult NotFound()
