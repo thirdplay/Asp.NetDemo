@@ -1,10 +1,21 @@
-﻿using System;
+﻿using log4net;
+using Prototype.Services;
+using System;
+using System.Reflection;
 using System.Web.Mvc;
 
 namespace Prototype.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly TestService testService;
+        private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        public HomeController(TestService testService)
+        {
+            this.testService = testService;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -20,8 +31,7 @@ namespace Prototype.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-            throw new Exception("TestError!!");
-            //return View();
+            return View();
         }
     }
 }

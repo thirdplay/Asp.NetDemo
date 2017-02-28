@@ -1,5 +1,7 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Net;
+using System.Reflection;
 using System.Web.Mvc;
 
 namespace Prototype.Attributes
@@ -9,6 +11,8 @@ namespace Prototype.Attributes
     /// </summary>
     public class GlobalHandleErrorAttribute : HandleErrorAttribute
     {
+        private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// 例外が発生したときに呼び出されます。
         /// </summary>
@@ -22,7 +26,7 @@ namespace Prototype.Attributes
 
             // 例外発生時は常にログを取っておく
             //LogUtil.LogControllerError(filterContext);
-            System.Diagnostics.Debug.WriteLine(filterContext.Exception.ToString());
+            logger.Error(filterContext.Exception.ToString());
 
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {

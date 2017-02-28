@@ -1,4 +1,5 @@
 using Microsoft.Practices.Unity;
+using Prototype.Services;
 using System;
 
 namespace Prototype.App_Start
@@ -36,8 +37,14 @@ namespace Prototype.App_Start
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
+            //ContainerControlledLifetimeManager :コンテナ単位
+            //PerRequestLifetimeManager          :リクエスト単位
+            //PerResolveLifetimeManager          :生成単位
+            //PerThreadLifetimeManager           :スレッド単位
+
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<TestService>(new PerRequestLifetimeManager());
         }
     }
 }
