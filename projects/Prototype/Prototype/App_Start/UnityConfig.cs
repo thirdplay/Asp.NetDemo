@@ -1,3 +1,4 @@
+using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Prototype.Services;
 using System;
@@ -45,6 +46,10 @@ namespace Prototype.App_Start
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<TestService>(new PerRequestLifetimeManager());
+
+            // IServiceLocator DI
+            IServiceLocator serviceLocator = new UnityServiceLocator(container);
+            ServiceLocator.SetLocatorProvider(() => serviceLocator);
         }
     }
 }

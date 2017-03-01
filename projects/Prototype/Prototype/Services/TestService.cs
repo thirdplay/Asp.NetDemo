@@ -12,15 +12,21 @@ namespace Prototype.Services
     /// </summary>
     public class TestService : IDisposable
     {
+        /// <summary>
+        /// ログインターフェース。
+        /// </summary>
         private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        /// <summary>
+        /// コンストラクタ。
+        /// </summary>
         public TestService()
         {
             logger.Debug("TestService:Constructor");
         }
 
         /// <summary>
-        ///
+        /// このインスタンスによって使用されているリソースを全て破棄します。
         /// </summary>
         public void Dispose()
         {

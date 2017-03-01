@@ -8,14 +8,6 @@ namespace Prototype.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly TestService testService;
-        private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-        public HomeController(TestService testService)
-        {
-            this.testService = testService;
-        }
-
         public ActionResult Index()
         {
             return View();

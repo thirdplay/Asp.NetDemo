@@ -11,6 +11,9 @@ namespace Prototype.Attributes
     /// </summary>
     public class GlobalHandleErrorAttribute : HandleErrorAttribute
     {
+        /// <summary>
+        /// ログインターフェース。
+        /// </summary>
         private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
