@@ -1,4 +1,6 @@
 ﻿using log4net;
+using Microsoft.Practices.ServiceLocation;
+using Prototype.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +14,28 @@ namespace Prototype.Services
     /// </summary>
     public class TestService : IDisposable
     {
+        private IServiceLocator serviceLocator;
+
         /// <summary>
         /// ログインターフェース。
         /// </summary>
         private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        public TestComponent TestComponent
+        {
+            get
+            {
+                return this.serviceLocator.GetInstance<TestComponent>();
+            }
+        }
+
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public TestService()
+        public TestService(IServiceLocator serviceLocator)
         {
-            logger.Debug("TestService:Constructor");
+            this.serviceLocator = serviceLocator;
+            logger.Debug($"TestService:Constructor");
         }
 
         /// <summary>

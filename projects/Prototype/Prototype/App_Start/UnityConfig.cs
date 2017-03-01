@@ -1,7 +1,11 @@
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
+using Prototype.Factories;
+using Prototype.Models;
 using Prototype.Services;
 using System;
+using System.Configuration;
+using System.Data.Common;
 
 namespace Prototype.App_Start
 {
@@ -38,14 +42,24 @@ namespace Prototype.App_Start
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
-            //ContainerControlledLifetimeManager :コンテナ単位
-            //PerRequestLifetimeManager          :リクエスト単位
-            //PerResolveLifetimeManager          :生成単位
-            //PerThreadLifetimeManager           :スレッド単位
+            /// TODO:Lifetime
+            /// ContainerControlledLifetimeManager :コンテナ単位
+            /// PerRequestLifetimeManager          :リクエスト単位
+            /// PerResolveLifetimeManager          :生成単位
+            /// PerThreadLifetimeManager           :スレッド単位
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<TestService>(new PerRequestLifetimeManager());
+            container.RegisterType<DbConnection>(
+                new PerRequestLifetimeManager(),
+                new InjectionFactory(_ =>
+                {
+                    return OracleConnectionFactory.CreateConnection(
+                        ConfigurationManager.ConnectionStrings["Prototype"].ConnectionString);
+                })
+            );
+            container.RegisterType<TestService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<TestComponent>(new PerRequestLifetimeManager());
 
             // IServiceLocator DI
             IServiceLocator serviceLocator = new UnityServiceLocator(container);

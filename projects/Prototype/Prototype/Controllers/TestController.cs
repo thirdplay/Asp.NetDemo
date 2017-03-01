@@ -22,13 +22,14 @@ namespace Prototype.Controllers
         /// コンストラクタ。
         /// </summary>
         /// <param name="testService">テストサービス</param>
-        public TestController(Microsoft.Practices.ServiceLocation.IServiceLocator serviceLocator)
+        public TestController(TestService testService, System.Data.Common.DbConnection connection)
         {
-            this.testService = serviceLocator.GetInstance<TestService>();
+            this.testService = testService;
         }
 
         public ActionResult Index()
         {
+            logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             return View();
         }
     }
