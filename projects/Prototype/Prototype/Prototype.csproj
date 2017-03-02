@@ -162,7 +162,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Attributes\RepositoryAttribute.cs" />
+    <Compile Include="Attributes\ServiceAttribute.cs" />
+    <Compile Include="Attributes\ComponentAttribute.cs" />
     <Compile Include="Attributes\GlobalHandleErrorAttribute.cs" />
+    <Compile Include="Constants\Lifetime.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -238,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Constants\" />
     <Folder Include="Repositories\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>

@@ -15,7 +15,7 @@ namespace Prototype.App_Start
         /// </summary>
         public static void RegisterMappings()
         {
-            RegisterMappings("Prototype.Data.Entities");
+            RegisterMappings("Prototype.Entities");
         }
 
         /// <summary>

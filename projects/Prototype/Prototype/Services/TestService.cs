@@ -1,5 +1,7 @@
 ﻿using log4net;
 using Microsoft.Practices.ServiceLocation;
+using Prototype.Attributes;
+using Prototype.Constants;
 using Prototype.Models;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,17 @@ using System.Web;
 namespace Prototype.Services
 {
     /// <summary>
-    /// テスト用サービス。
+    /// テストサービスのインターフェース。
     /// </summary>
-    public class TestService : IDisposable
+    [Service(typeof(TestService))]
+    public interface ITestService
+    {
+    }
+
+    /// <summary>
+    /// テストサービス。
+    /// </summary>
+    public class TestService : ITestService, IDisposable
     {
         private IServiceLocator serviceLocator;
 

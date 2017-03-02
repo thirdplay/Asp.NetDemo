@@ -1,11 +1,16 @@
+using log4net;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
+using Prototype.Attributes;
+using Prototype.Constants;
 using Prototype.Factories;
 using Prototype.Models;
 using Prototype.Services;
 using System;
 using System.Configuration;
 using System.Data.Common;
+using System.Linq;
+using System.Reflection;
 
 namespace Prototype.App_Start
 {
@@ -48,8 +53,15 @@ namespace Prototype.App_Start
             /// PerResolveLifetimeManager          :生成単位
             /// PerThreadLifetimeManager           :スレッド単位
 
+            //Lifetime.Singleton:初回のみ生成（シングルトン）
+            //Lifetime.Prototype:常に生成
+            //Lifetime.Request  :リクエスト毎に生成
+            //Lifetime.Thread   :スレッド枚に生成
+
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
+
+            // DbConnection 
             container.RegisterType<DbConnection>(
                 new PerRequestLifetimeManager(),
                 new InjectionFactory(_ =>
@@ -58,13 +70,28 @@ namespace Prototype.App_Start
                         ConfigurationManager.ConnectionStrings["Prototype"].ConnectionString);
                 })
             );
-            container.RegisterType<TestService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ITestComponent, TestComponent>(new PerRequestLifetimeManager());
-            //container.RegisterType<ITestComponent, TestComponent2>(new PerRequestLifetimeManager());
+
+            // コンポーネント属性の型を登録
+            RegisterTypesOfComponent(container);
 
             // IServiceLocator DI
             IServiceLocator serviceLocator = new UnityServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => serviceLocator);
+        }
+
+        /// <summary>
+        /// Unityコンテナにコンポーネント属性の型を登録します。
+        /// </summary>
+        /// <param name="container">Unityコンテナ</param>
+        private static void RegisterTypesOfComponent(IUnityContainer container)
+        {
+            var types = Assembly.GetExecutingAssembly().GetTypes()
+                .Where(x => x.IsInterface && x.GetCustomAttribute(typeof(ComponentAttribute)) != null);
+            foreach (var type in types)
+            {
+                var attr = type.GetCustomAttribute(typeof(ComponentAttribute)) as ComponentAttribute;
+                container.RegisterType(type, attr.TargetType, attr.Lifetime.CreateLifetimeManager());
+            }
         }
     }
 }
