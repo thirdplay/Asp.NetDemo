@@ -21,11 +21,11 @@ namespace Prototype.Services
         /// </summary>
         private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public TestComponent TestComponent
+        public ITestComponent TestComponent
         {
             get
             {
-                return this.serviceLocator.GetInstance<TestComponent>();
+                return this.serviceLocator.GetInstance<ITestComponent>();
             }
         }
 

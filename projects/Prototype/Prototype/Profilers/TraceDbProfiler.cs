@@ -54,8 +54,8 @@ namespace Prototype.Profilers
             if (executeType != SqlExecuteType.Reader)
             {
                 stopwatch.Stop();
-                logger.Debug($"SqlExecute:{commandText}");
-                logger.Debug($"SqlParameters:{parameters}");
+                logger.Info($"SqlExecute:{commandText}");
+                logger.Info($"SqlParameters:{parameters}");
             }
         }
 
@@ -77,8 +77,8 @@ namespace Prototype.Profilers
         /// <param name="exception">発生した例外</param>
         public void OnError(IDbCommand profiledDbCommand, SqlExecuteType sqlExecuteType, Exception exception)
         {
-            logger.Debug($"SqlError:{profiledDbCommand.CommandText}");
-            logger.Debug(exception);
+            logger.Info($"SqlError:{profiledDbCommand.CommandText}");
+            logger.Info(exception);
         }
 
         /// <summary>
@@ -88,8 +88,8 @@ namespace Prototype.Profilers
         public void ReaderFinish(IDataReader reader)
         {
             stopwatch.Stop();
-            logger.Debug($"SqlExecute:{commandText}");
-            logger.Debug($"SqlParameters:{parameters}");
+            logger.Info($"SqlExecute:{commandText}");
+            logger.Info($"SqlParameters:{parameters}");
         }
 
         #endregion IDbProfiler members

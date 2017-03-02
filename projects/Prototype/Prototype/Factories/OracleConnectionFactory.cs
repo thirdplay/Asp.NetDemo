@@ -16,7 +16,7 @@ namespace Prototype.Factories
         /// <summary>
         /// ログインターフェース。
         /// </summary>
-        private static readonly ILog logger = LogManager.GetLogger(@"SqlLogger"); //MethodBase.GetCurrentMethod().DeclaringType
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// 新しいOracleデータベースへの接続を作成します。
@@ -25,7 +25,6 @@ namespace Prototype.Factories
         /// <returns>接続インスタンス</returns>
         public static DbConnection CreateConnection(string connectionString)
         {
-            logger.Debug("OracleConnectionFactory:CreateConnection");
             return new ProfiledDbConnection(new OracleConnection(connectionString),
                 new CompositeDbProfiler(MiniProfiler.Current, new TraceDbProfiler()));
         }

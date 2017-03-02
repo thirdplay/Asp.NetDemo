@@ -59,7 +59,8 @@ namespace Prototype.App_Start
                 })
             );
             container.RegisterType<TestService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<TestComponent>(new PerRequestLifetimeManager());
+            container.RegisterType<ITestComponent, TestComponent>(new PerRequestLifetimeManager());
+            //container.RegisterType<ITestComponent, TestComponent2>(new PerRequestLifetimeManager());
 
             // IServiceLocator DI
             IServiceLocator serviceLocator = new UnityServiceLocator(container);
