@@ -1,10 +1,12 @@
 ﻿using log4net;
 using Microsoft.Practices.ServiceLocation;
+using OfficeOpenXml;
 using Prototype.Attributes;
 using Prototype.Constants;
 using Prototype.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -31,6 +33,9 @@ namespace Prototype.Services
         /// </summary>
         private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        /// <summary>
+        /// テストコンポーネントを取得します。
+        /// </summary>
         public ITestComponent TestComponent
         {
             get
@@ -48,6 +53,8 @@ namespace Prototype.Services
             logger.Debug($"TestService:Constructor");
         }
 
+        #region IDispose members
+
         /// <summary>
         /// このインスタンスによって使用されているリソースを全て破棄します。
         /// </summary>
@@ -55,5 +62,7 @@ namespace Prototype.Services
         {
             logger.Debug("TestService:Dispose");
         }
+
+        #endregion
     }
 }

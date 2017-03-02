@@ -1,11 +1,26 @@
 ﻿@{
     ViewBag.Title = "Test Page";
 }
-
 <div class="row">
     <div class="col-md-4">
         <h2>Test!!</h2>
-        <p>
-        </p>
+        @{ 
+            var ajaxOptions = new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "onSuccess"
+            };
+        }
+        @using (Ajax.BeginForm("AjaxTest", "Test", ajaxOptions))
+        {
+            <button class="btn btn-default">Download</button>
+        }
     </div>
 </div>
+@section scripts {
+<script type="text/javascript">
+    function onSuccess(data) {
+        window.open("/Excel/Download?fileName=" + data.FileName);
+    }
+</script>
+}
