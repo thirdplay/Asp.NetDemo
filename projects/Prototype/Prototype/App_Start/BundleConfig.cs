@@ -1,4 +1,7 @@
-﻿using System.Web.Optimization;
+﻿using System.IO;
+using System.Linq;
+using System.Web.Hosting;
+using System.Web.Optimization;
 
 namespace Prototype
 {
@@ -30,6 +33,27 @@ namespace Prototype
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            // 画面固有スクリプトの登録
+            //RegisterBundlesViewScripts(bundles);
+        }
+
+        /// <summary>
+        /// バンドルに画面固有スクリプトを登録します。
+        /// </summary>
+        /// <param name="bundles">バンドルの格納先</param>
+        private static void RegisterBundlesViewScripts(BundleCollection bundles)
+        {
+            var files = Directory.GetDirectories(HostingEnvironment.MapPath("~/Scripts"))
+                .SelectMany(x => Directory.GetFiles(x))
+                .Select(x => new FileInfo(x));
+            foreach (var file in files)
+            {
+                var dirName = file.Directory.Name;
+                var baseName = Path.GetFileNameWithoutExtension(file.Name);
+                bundles.Add(new ScriptBundle($"~/bundles/{dirName}/{baseName}").Include(
+                    $"~/Scripts/{dirName}/{file.Name}"));
+            }
         }
     }
 }

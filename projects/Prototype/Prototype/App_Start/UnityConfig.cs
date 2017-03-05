@@ -47,17 +47,6 @@ namespace Prototype.App_Start
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
-            /// TODO:Lifetime
-            /// ContainerControlledLifetimeManager :コンテナ単位
-            /// PerRequestLifetimeManager          :リクエスト単位
-            /// PerResolveLifetimeManager          :生成単位
-            /// PerThreadLifetimeManager           :スレッド単位
-
-            //Lifetime.Singleton:初回のみ生成（シングルトン）
-            //Lifetime.Prototype:常に生成
-            //Lifetime.Request  :リクエスト毎に生成
-            //Lifetime.Thread   :スレッド枚に生成
-
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
 
