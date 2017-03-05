@@ -32,6 +32,7 @@ namespace Prototype.Controllers
         public ActionResult Index()
         {
             //logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
+            this.testService.TestClobTable();
             return View();
         }
 

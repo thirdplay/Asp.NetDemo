@@ -1,11 +1,11 @@
-using log4net;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
+using Oracle.ManagedDataAccess.Client;
 using Prototype.Attributes;
 using Prototype.Constants;
-using Prototype.Factories;
-using Prototype.Models;
-using Prototype.Services;
+using Prototype.Profilers;
+using StackExchange.Profiling;
+using StackExchange.Profiling.Data;
 using System;
 using System.Configuration;
 using System.Data.Common;
@@ -55,7 +55,7 @@ namespace Prototype.App_Start
                 new PerRequestLifetimeManager(),
                 new InjectionFactory(_ =>
                 {
-                    return OracleConnectionFactory.CreateConnection(
+                    return CreateConnection(
                         ConfigurationManager.ConnectionStrings["Prototype"].ConnectionString);
                 })
             );
@@ -63,7 +63,7 @@ namespace Prototype.App_Start
             // コンポーネント属性の型を登録
             RegisterTypesOfComponent(container);
 
-            // IServiceLocator DI
+            // ServiceLocatorの作成、登録
             IServiceLocator serviceLocator = new UnityServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => serviceLocator);
         }
@@ -81,6 +81,17 @@ namespace Prototype.App_Start
                 var attr = type.GetCustomAttribute(typeof(ComponentAttribute)) as ComponentAttribute;
                 container.RegisterType(type, attr.TargetType, attr.Lifetime.CreateLifetimeManager());
             }
+        }
+
+        /// <summary>
+        /// 新しいOracleデータベースへの接続を作成します。
+        /// </summary>
+        /// <param name="connectionString">接続文字列</param>
+        /// <returns>接続インスタンス</returns>
+        private static DbConnection CreateConnection(string connectionString)
+        {
+            return new ProfiledDbConnection(new OracleConnection(connectionString),
+                new CompositeDbProfiler(MiniProfiler.Current, new TraceDbProfiler()));
         }
     }
 }

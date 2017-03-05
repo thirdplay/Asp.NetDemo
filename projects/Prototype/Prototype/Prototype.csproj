@@ -175,8 +175,8 @@
     <Compile Include="Controllers\ExcelController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Entities\ClobTable01.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Factories\OracleConnectionFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +184,8 @@
     <Compile Include="Profilers\CompositeDbProfiler.cs" />
     <Compile Include="Profilers\TraceDbProfiler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ClobTable01Repository.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Services\TestService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,7 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="Factories\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>

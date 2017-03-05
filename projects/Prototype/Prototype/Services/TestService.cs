@@ -3,7 +3,9 @@ using Microsoft.Practices.ServiceLocation;
 using OfficeOpenXml;
 using Prototype.Attributes;
 using Prototype.Constants;
+using Prototype.Entities;
 using Prototype.Models;
+using Prototype.Repositories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,6 +21,7 @@ namespace Prototype.Services
     [Service(typeof(TestService))]
     public interface ITestService
     {
+        void TestClobTable();
     }
 
     /// <summary>
@@ -26,7 +29,7 @@ namespace Prototype.Services
     /// </summary>
     public class TestService : ITestService, IDisposable
     {
-        private IServiceLocator serviceLocator;
+        private IClobTable01Repository clobTableRepository;
 
         /// <summary>
         /// ログインターフェース。
@@ -34,23 +37,18 @@ namespace Prototype.Services
         private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// テストコンポーネントを取得します。
-        /// </summary>
-        public ITestComponent TestComponent
-        {
-            get
-            {
-                return this.serviceLocator.GetInstance<ITestComponent>();
-            }
-        }
-
-        /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public TestService(IServiceLocator serviceLocator)
+        public TestService(IClobTable01Repository clobTableRepository)
         {
-            this.serviceLocator = serviceLocator;
+            this.clobTableRepository = clobTableRepository;
             logger.Debug($"TestService:Constructor");
+        }
+
+        public void TestClobTable()
+        {
+            ClobTable01 entity =  this.clobTableRepository.Find("1");
+            logger.Debug("Data:" + entity.Data);
         }
 
         #region IDispose members
