@@ -1,9 +1,11 @@
 ﻿using log4net;
+using log4net.Ext.Trace;
 using Oracle.ManagedDataAccess.Client;
 using StackExchange.Profiling.Data;
 using System;
 using System.Data;
 using System.Diagnostics;
+using System.Reflection;
 using System.Text;
 
 namespace Prototype.Profilers
@@ -20,7 +22,7 @@ namespace Prototype.Profilers
         /// <summary>
         /// ログインターフェース。
         /// </summary>
-        private readonly ILog logger = LogManager.GetLogger(@"Prototype.Profilers.TraceDbProfiler");
+        private readonly ITraceLog logger = TraceLogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// SQL文のカテゴリ。
@@ -53,8 +55,8 @@ namespace Prototype.Profilers
             if (executeType != SqlExecuteType.Reader)
             {
                 stopwatch.Stop();
-                logger.Info($"SqlExecute:{commandText}");
-                logger.Info($"SqlParameters:{parameters}");
+                logger.Trace($"SqlExecute:{commandText}");
+                logger.Trace($"SqlParameters:{parameters}");
             }
         }
 
@@ -76,8 +78,8 @@ namespace Prototype.Profilers
         /// <param name="exception">発生した例外</param>
         public void OnError(IDbCommand profiledDbCommand, SqlExecuteType sqlExecuteType, Exception exception)
         {
-            logger.Info($"SqlError:{profiledDbCommand.CommandText}");
-            logger.Info(exception);
+            logger.Trace($"SqlError:{profiledDbCommand.CommandText}");
+            logger.Trace(exception);
         }
 
         /// <summary>
@@ -87,8 +89,8 @@ namespace Prototype.Profilers
         public void ReaderFinish(IDataReader reader)
         {
             stopwatch.Stop();
-            logger.Info($"SqlExecute:{commandText}");
-            logger.Info($"SqlParameters:{parameters}");
+            logger.Trace($"SqlExecute:{commandText}");
+            logger.Trace($"SqlParameters:{parameters}");
         }
 
         #endregion IDbProfiler members
