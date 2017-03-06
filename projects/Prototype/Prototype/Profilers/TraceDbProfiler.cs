@@ -4,7 +4,6 @@ using StackExchange.Profiling.Data;
 using System;
 using System.Data;
 using System.Diagnostics;
-using System.Reflection;
 using System.Text;
 
 namespace Prototype.Profilers
@@ -21,7 +20,7 @@ namespace Prototype.Profilers
         /// <summary>
         /// ログインターフェース。
         /// </summary>
-        private readonly ILog logger = LogManager.GetLogger(@"SqlLogger");
+        private readonly ILog logger = LogManager.GetLogger(@"Prototype.Profilers.TraceDbProfiler");
 
         /// <summary>
         /// SQL文のカテゴリ。

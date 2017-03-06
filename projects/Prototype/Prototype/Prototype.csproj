@@ -173,6 +173,7 @@
     <Compile Include="Constants\Lifetime.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExcelController.cs" />
+    <Compile Include="Controllers\ValidationTestController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entities\Clob01.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Repositories\Clob01Repository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Services\TestService.cs" />
+    <Compile Include="ViewModels\ValidationTestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -254,11 +256,11 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\ValidationTest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Factories\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

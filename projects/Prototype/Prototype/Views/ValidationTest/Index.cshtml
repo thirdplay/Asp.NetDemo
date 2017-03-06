@@ -1,0 +1,44 @@
+﻿@model ValidationTestViewModel
+@{
+    ViewBag.Title = "入力検証テスト";
+}
+<div class="row">
+    <h2>@ViewBag.Title.</h2>
+    @{ 
+        var ajaxOptions = new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "onSuccess",
+            OnFailure = "onFailure"
+        };
+    }
+    @using (Ajax.BeginForm("Save", "ValidationTest", ajaxOptions, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Id, new { @class = "col-xs-2 control-label" })
+            <div class="col-xs-10">
+                @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button class="btn btn-default"><span class="glyphicon glyphicon-saved"> 登録</span></button>
+            </div>
+        </div>
+    }
+</div>
+@section scripts {
+<script>
+    function onSuccess(data) {
+        alert('onSuccess:' + data.Result);
+    }
+    function onFailure(data) {
+        console.log(data);
+        alert('onFailure:' + data.Result);
+    }
+</script>
+}
