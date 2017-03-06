@@ -21,7 +21,7 @@ namespace Prototype.Services
     [Service(typeof(TestService))]
     public interface ITestService
     {
-        void TestClobTable();
+        void TestClob01();
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ namespace Prototype.Services
     /// </summary>
     public class TestService : ITestService, IDisposable
     {
-        private IClobTable01Repository clobTableRepository;
+        private IClob01Repository clob01Repository;
 
         /// <summary>
         /// ログインターフェース。
@@ -39,15 +39,15 @@ namespace Prototype.Services
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public TestService(IClobTable01Repository clobTableRepository)
+        public TestService(IClob01Repository clob01Repository)
         {
-            this.clobTableRepository = clobTableRepository;
+            this.clob01Repository = clob01Repository;
             logger.Debug($"TestService:Constructor");
         }
 
-        public void TestClobTable()
+        public void TestClob01()
         {
-            ClobTable01 entity =  this.clobTableRepository.Find("1");
+            Clob01 entity =  this.clob01Repository.Find("1");
             logger.Debug("Data:" + entity.Data);
         }
 

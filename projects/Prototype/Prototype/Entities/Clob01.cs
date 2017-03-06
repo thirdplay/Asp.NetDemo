@@ -10,9 +10,9 @@
 namespace Prototype.Entities
 {
     /// <summary>
-    /// CLOB_TABLE_01
+    /// CLOB_01
     /// </summary>
-    public class ClobTable01
+    public class Clob01
     {
         /// <summary>
         /// ID

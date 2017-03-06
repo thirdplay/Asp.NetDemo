@@ -12,27 +12,27 @@ namespace Prototype.Repositories
     /// <summary>
     /// CLOBテーブルのリポジトリインターフェース。
     /// </summary>
-    [Repository(typeof(ClobTable01Repository))]
-    public interface IClobTable01Repository
+    [Repository(typeof(Clob01Repository))]
+    public interface IClob01Repository
     {
         /// <summary>
         /// CLOBテーブルのデータを取得します。
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns>CLOBテーブルのデータ</returns>
-        ClobTable01 Find(string id);
+        Clob01 Find(string id);
     }
 
     /// <summary>
     /// CLOBテーブルのリポジトリ。
     /// </summary>
-    public class ClobTable01Repository : RepositoryBase, IClobTable01Repository
+    public class Clob01Repository : RepositoryBase, IClob01Repository
     {
         /// <summary>
         /// コンストラクタ。
         /// </summary>
         /// <param name="serviceLocator">サービスロケーター</param>
-        public ClobTable01Repository(IServiceLocator serviceLocator)
+        public Clob01Repository(IServiceLocator serviceLocator)
             : base(serviceLocator)
         {
         }
@@ -42,10 +42,10 @@ namespace Prototype.Repositories
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns>CLOBテーブルのデータ</returns>
-        public ClobTable01 Find(string id)
+        public Clob01 Find(string id)
         {
-            return this.Connection.Query<ClobTable01>(
-                "select * from CLOB_TABLE_01 where id = :Id",
+            return this.Connection.Query<Clob01>(
+                "select * from CLOB_01 where id = :Id",
                 new { Id = id }
             ).FirstOrDefault();
         }
