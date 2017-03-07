@@ -33,12 +33,53 @@
 </div>
 @section scripts {
 <script>
+    //common.js
+    //var str = '& < > ` " ' + "'";
+    var escapeHtml = (function (String) {
+        var escapeMap = {
+            '&': '&amp;',
+            "'": '&#x27;',
+            '`': '&#x60;',
+            '"': '&quot;',
+            '<': '&lt;',
+            '>': '&gt;'
+        };
+        var escapeReg = '[';
+        var reg;
+        for (var p in escapeMap) {
+            if (escapeMap.hasOwnProperty(p)) {
+                escapeReg += p;
+            }
+        }
+        escapeReg += ']';
+        reg = new RegExp(escapeReg, 'g');
+
+        return function escapeHtml(str) {
+            str = (str === null || str === undefined) ? '' : '' + str;
+            return str.replace(reg, function (match) {
+                return escapeMap[match];
+            });
+        };
+    }(String));
     function onSuccess(data) {
-        alert('onSuccess:' + data.Result);
+        console.log(data);
+        if (data.Result) {
+            alert('Success!!');
+        } else {
+            // displayValidationErrors(data.Errors)
+            var modelStateErrors = data.Errors;
+            for (var i = 0; i < modelStateErrors.length; i++) {
+                var errorModel = modelStateErrors[i];
+                var errorMsg = '';
+                for (var j = 0; j < errorModel.errors.length; j++) {
+                    errorMsg += escapeHtml(errorModel.errors[j]) + '<br />';
+                }
+                $('span[data-valmsg-for="' + errorModel.key + '"]').html(errorMsg);
+            }
+        }
     }
     function onFailure(data) {
-        console.log(data);
-        alert('onFailure:' + data.Result);
+        alert('Failure!!');
     }
 </script>
 }

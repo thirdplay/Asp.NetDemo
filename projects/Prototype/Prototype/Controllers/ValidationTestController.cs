@@ -1,5 +1,6 @@
 ﻿using log4net;
 using OfficeOpenXml;
+using Prototype.Attributes;
 using Prototype.Services;
 using Prototype.ViewModels;
 using System;
@@ -12,7 +13,7 @@ namespace Prototype.Controllers
     /// <summary>
     /// 入力検証テストコントローラ。
     /// </summary>
-    public class ValidationTestController : Controller
+    public class ValidationTestController : ControllerBase
     {
         /// <summary>
         /// ログインターフェース。
@@ -45,19 +46,13 @@ namespace Prototype.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult Save(ValidationTestViewModel model)
         {
-            if (this.Request.IsAjaxRequest())
+            if (!this.ModelState.IsValid)
             {
-                if (!this.ModelState.IsValid)
-                {
-                    //this.Response.Clear();
-                    //this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
-                    //this.Response.TrySkipIisCustomErrors = true;
-                    return new JsonResult()
-                    {
-                        Data = new { Result = false }
-                    };
-                }
+                return this.GetJsonResultOfAjaxError();
             }
+
+            // TODO:保存処理
+
             return new JsonResult()
             {
                 Data = new { Result = true }
