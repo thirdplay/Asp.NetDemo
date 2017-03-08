@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Web.Mvc;
+using Prototype.Extensions;
 
 namespace Prototype.Controllers
 {
@@ -48,7 +49,7 @@ namespace Prototype.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.GetJsonResultOfAjaxError();
+                return GetErrorResult();
             }
 
             // TODO:保存処理

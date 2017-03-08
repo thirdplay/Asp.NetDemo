@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Prototype.Extensions
 {
+    /// <summary>
+    /// 文字列の拡張機能を提供します。
+    /// </summary>
     public static class StringExtensions
     {
         /// <summary>

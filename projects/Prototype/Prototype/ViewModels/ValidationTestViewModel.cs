@@ -13,10 +13,10 @@ namespace Prototype.ViewModels
     public class ValidationTestViewModel
     {
         /// <summary>
-        /// ID
+        /// 必須項目
         /// </summary>
         [Required]
-        [DisplayName("ID")]
-        public string Id { get; set; }
+        [DisplayName("Required")]
+        public string RequiredItem { get; set; }
     }
 }

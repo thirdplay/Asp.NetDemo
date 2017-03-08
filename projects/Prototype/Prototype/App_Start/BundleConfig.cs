@@ -34,6 +34,9 @@ namespace Prototype
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/prototype").Include(
+                      "~/Scripts/common.js"));
+
             // 画面固有スクリプトの登録
             //RegisterBundlesViewScripts(bundles);
         }

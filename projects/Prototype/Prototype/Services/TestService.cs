@@ -42,13 +42,13 @@ namespace Prototype.Services
         public TestService(IClob01Repository clob01Repository)
         {
             this.clob01Repository = clob01Repository;
-            logger.Debug($"TestService:Constructor");
+            this.logger.Debug($"TestService:Constructor");
         }
 
         public void TestClob01()
         {
             Clob01 entity =  this.clob01Repository.Find("1");
-            logger.Debug("Data:" + entity.Data);
+            this.logger.Debug("Data:" + entity.Data);
         }
 
         #region IDispose members
@@ -58,7 +58,7 @@ namespace Prototype.Services
         /// </summary>
         public void Dispose()
         {
-            logger.Debug("TestService:Dispose");
+            this.logger.Debug("TestService:Dispose");
         }
 
         #endregion
