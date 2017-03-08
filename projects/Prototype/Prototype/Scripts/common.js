@@ -42,9 +42,9 @@ PROTOTYPE.common = (function () {
     /**
      * バリデーションエラーを表示します。
      *
-     * @param {Object} errors モデルバインディング状態エラー
+     * @param {Array} errors バリデーションエラー情報を格納する配列
      */
-    var displayValidationErrors = function (errors) {
+    var showValidationErrors = function (errors) {
         var modelStateErrors = errors;
         for (var i = 0; i < modelStateErrors.length; i++) {
             var errorModel = modelStateErrors[i],
@@ -53,12 +53,47 @@ PROTOTYPE.common = (function () {
             for (var j = 0; j < errorModel.errors.length; j++) {
                 errorMsg += this.escapeHtml(errorModel.errors[j]) + '<br />';
             }
-            $('span[data-valmsg-for="' + errorModel.key + '"]').html(errorMsg);
+            $("span[data-valmsg-for='" + errorModel.key + "']")
+                .html(errorMsg)
+                .addClass('text-danger');
         }
     };
 
+    /**
+     * バリデーションエラーを非表示にします。
+     */
+    var hideValidationErrors = function () {
+        $('span.field-validation-valid').empty();
+    };
+
+    /**
+     * メッセージ領域にメッセージを表示します。
+     *
+     * @param {String} message 表示するメッセージ
+     */
+    var showMessage = function (message) {
+        if ($('#messageArea').length > 0) {
+            $('#messageArea').text(message)
+                .wrapInner("<strong />")
+                .show();
+        }
+    };
+
+    /**
+     * メッセージ領域のメッセージを非表示にします。
+     */
+    var hideMessage = function () {
+        if ($('#messageArea').length > 0) {
+            $('#messageArea').empty().hide();
+        }
+    };
+
+    // Public API
     return {
         escapeHtml: escapeHtml,
-        displayValidationErrors: displayValidationErrors
+        showValidationErrors: showValidationErrors,
+        hideValidationErrors: hideValidationErrors,
+        showMessage: showMessage,
+        hideMessage: hideMessage
     };
 }());

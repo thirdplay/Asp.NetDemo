@@ -1,12 +1,16 @@
-﻿@model ValidationTestViewModel
+﻿@using Prototype.Extensions
+
+@model ValidationTestViewModel
 @{
     ViewBag.Title = "入力検証テスト";
 }
 <h2>@ViewBag.Title.</h2>
-@{ 
+@{
+    // TODO:WebViewPageの拡張で共通のAjaxOptionsを生成するようにする。
     var ajaxOptions = new AjaxOptions
     {
         HttpMethod = "POST",
+        OnBegin = "onBegin",
         OnSuccess = "onSuccess",
         OnFailure = "onFailure"
     };
@@ -15,12 +19,13 @@
 {
     @Html.AntiForgeryToken()
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.MessageArea()
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
     <div class="form-group">
         @Html.LabelFor(m => m.RequiredItem, new { @class = "col-xs-2 control-label" })
         <div class="col-xs-10">
             @Html.TextBoxFor(m => m.RequiredItem, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.RequiredItem, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.RequiredItem)
         </div>
     </div>
     <div class="form-group">
@@ -31,24 +36,21 @@
 }
 @section scripts {
 <script>
-    function onSuccess(data) {
+    function onBegin(xhr) {
+        PROTOTYPE.common.hideMessage();
+        PROTOTYPE.common.hideValidationErrors();
+    }
+    function onSuccess(data, status, xhr) {
         if (data.Result) {
-            alert('Success!!');
+            alert('Success!!' + arguments.length);
         } else {
-            PROTOTYPE.common.displayValidationErrors(data.Errors);
-            //var modelStateErrors = data.Errors;
-            //for (var i = 0; i < modelStateErrors.length; i++) {
-            //    var errorModel = modelStateErrors[i];
-            //    var errorMsg = '';
-            //    for (var j = 0; j < errorModel.errors.length; j++) {
-            //        errorMsg += escapeHtml(errorModel.errors[j]) + '<br />';
-            //    }
-            //    $('span[data-valmsg-for="' + errorModel.key + '"]').html(errorMsg);
-            //}
+            PROTOTYPE.common.showMessage(data.Message);
+            PROTOTYPE.common.showValidationErrors(data.Errors);
         }
     }
-    function onFailure(data) {
-        alert('Failure!!');
+    //OnComplete – xhr, status
+    function onFailure(xhr, status, error) {
+        alert('Failure!!:' + arguments.length); //通信エラー
     }
 </script>
 }
