@@ -20,12 +20,18 @@
     @Html.AntiForgeryToken()
     <hr />
     @Html.MessageArea()
-    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
     <div class="form-group">
         @Html.LabelFor(m => m.RequiredItem, new { @class = "col-xs-2 control-label" })
         <div class="col-xs-10">
             @Html.TextBoxFor(m => m.RequiredItem, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.RequiredItem)
+            @Html.ValidationFieldFor(m => m.RequiredItem)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MaxLengthItem, new { @class = "col-xs-2 control-label" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(m => m.MaxLengthItem, new { @class = "form-control" })
+            @Html.ValidationFieldFor(m => m.MaxLengthItem)
         </div>
     </div>
     <div class="form-group">

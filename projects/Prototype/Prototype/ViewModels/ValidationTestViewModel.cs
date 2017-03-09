@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -15,8 +14,14 @@ namespace Prototype.ViewModels
         /// <summary>
         /// 必須項目
         /// </summary>
-        [Required]
+        [System.ComponentModel.DataAnnotations.Required]
         [DisplayName("Required")]
         public string RequiredItem { get; set; }
+
+        /// <summary>
+        /// 文字数項目
+        /// </summary>
+        [DisplayName("MaxLength")]
+        public string MaxLengthItem { get; set; }
     }
 }

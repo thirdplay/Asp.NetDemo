@@ -54,8 +54,7 @@ PROTOTYPE.common = (function () {
                 errorMsg += this.escapeHtml(errorModel.errors[j]) + '<br />';
             }
             $("span[data-valmsg-for='" + errorModel.key + "']")
-                .html(errorMsg)
-                .addClass('text-danger');
+                .html(errorMsg);
         }
     };
 

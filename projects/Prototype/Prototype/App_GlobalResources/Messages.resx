@@ -117,10 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MS001" xml:space="preserve">
+    <value>{0}は必須です。</value>
+  </data>
+  <data name="MS002" xml:space="preserve">
+    <value>{0}は{1}文字以上で入力してください。</value>
+  </data>
+  <data name="MS003" xml:space="preserve">
+    <value>{0}は{1}文字以下で入力してください。</value>
+  </data>
+  <data name="MS004" xml:space="preserve">
+    <value>{0}は{1}byte以上で入力してください。</value>
+  </data>
+  <data name="MS005" xml:space="preserve">
+    <value>{0}は{1}byte以下で入力してください。</value>
+  </data>
+  <data name="MS006" xml:space="preserve">
+    <value>{0}は半角英語で入力してください。</value>
+  </data>
+  <data name="MS007" xml:space="preserve">
+    <value>{0}は半角英数で入力してください。</value>
+  </data>
+  <data name="MS008" xml:space="preserve">
+    <value>{0}はyyyy/MM/dd形式の正しい日付で入力してください。</value>
+  </data>
+  <data name="MS009" xml:space="preserve">
+    <value>{0}は数値形式で入力してください。</value>
+  </data>
+  <data name="MS010" xml:space="preserve">
+    <value>{0}は{1}以下で入力してください。</value>
+  </data>
+  <data name="MS011" xml:space="preserve">
+    <value>{0}は{1}以上で入力してください。</value>
+  </data>
   <data name="MS012" xml:space="preserve">
     <value>入力に誤りがあります。</value>
-  </data>
-  <data name="PropertyValueRequired" xml:space="preserve">
-    <value>{0}を入力してください。</value>
   </data>
 </root>

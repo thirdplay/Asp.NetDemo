@@ -61,20 +61,110 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   {0}は必須です。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS001 {
+            get {
+                return ResourceManager.GetString("MS001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}は{1}文字以上で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS002 {
+            get {
+                return ResourceManager.GetString("MS002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}は{1}文字以下で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS003 {
+            get {
+                return ResourceManager.GetString("MS003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}は{1}byte以上で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS004 {
+            get {
+                return ResourceManager.GetString("MS004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}は{1}byte以下で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS005 {
+            get {
+                return ResourceManager.GetString("MS005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}は半角英語で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS006 {
+            get {
+                return ResourceManager.GetString("MS006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}は半角英数で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS007 {
+            get {
+                return ResourceManager.GetString("MS007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}はyyyy/MM/dd形式の正しい日付で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS008 {
+            get {
+                return ResourceManager.GetString("MS008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}は数値形式で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS009 {
+            get {
+                return ResourceManager.GetString("MS009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}は{1}以下で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS010 {
+            get {
+                return ResourceManager.GetString("MS010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0}は{1}以上で入力してください。 に類似したローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MS011 {
+            get {
+                return ResourceManager.GetString("MS011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   入力に誤りがあります。 に類似したローカライズされた文字列を検索します。
         /// </summary>
         internal static string MS012 {
             get {
                 return ResourceManager.GetString("MS012", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   {0}を入力してください。 に類似したローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string PropertyValueRequired {
-            get {
-                return ResourceManager.GetString("PropertyValueRequired", resourceCulture);
             }
         }
     }
