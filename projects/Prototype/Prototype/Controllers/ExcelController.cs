@@ -32,7 +32,7 @@ namespace Prototype.Controllers
             }
 
             // 出力
-            var dirPath = Server.MapPath("~/App_Data/Excel");
+            var dirPath = this.Server.MapPath("~/App_Data/Excel");
             using (var excel = new ExcelPackage(new FileInfo(Path.Combine(dirPath, fileName))))
             using (var ms = new MemoryStream())
             {
