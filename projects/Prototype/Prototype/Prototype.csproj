@@ -175,10 +175,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
-    <Compile Include="Attributes\RepositoryAttribute.cs" />
-    <Compile Include="Attributes\ServiceAttribute.cs" />
-    <Compile Include="Attributes\ComponentAttribute.cs" />
-    <Compile Include="Attributes\GlobalHandleErrorAttribute.cs" />
+    <Compile Include="App_Start\ValidationConfig.cs" />
+    <Compile Include="DIAnnotations\RepositoryAttribute.cs" />
+    <Compile Include="DIAnnotations\ServiceAttribute.cs" />
+    <Compile Include="DIAnnotations\ComponentAttribute.cs" />
+    <Compile Include="Filters\GlobalHandleErrorAttribute.cs" />
     <Compile Include="Constants\Lifetime.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExcelController.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Repositories\Clob01Repository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Services\TestService.cs" />
+    <Compile Include="Validations\DataAnnotations\RequiredAttribute.cs" />
     <Compile Include="ViewModels\ValidationTestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

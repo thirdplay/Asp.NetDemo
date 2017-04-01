@@ -1,6 +1,6 @@
 ﻿using log4net;
-using Prototype.Attributes;
 using Prototype.Constants;
+using Prototype.DIAnnotations;
 using System;
 using System.Reflection;
 
@@ -30,12 +30,12 @@ namespace Prototype.Models
         public TestComponent()
         {
             this.Id = DateTime.Now.Ticks.ToString();
-            logger.Debug($"TestComponent:Constructor({this.Id})");
+            this.logger.Debug($"TestComponent:Constructor({this.Id})");
         }
 
         public void Dispose()
         {
-            logger.Debug("TestComponent:Dispose");
+            this.logger.Debug("TestComponent:Dispose");
         }
     }
 }

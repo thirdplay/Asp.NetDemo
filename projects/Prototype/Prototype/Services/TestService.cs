@@ -1,8 +1,8 @@
 ﻿using log4net;
 using Microsoft.Practices.ServiceLocation;
 using OfficeOpenXml;
-using Prototype.Attributes;
 using Prototype.Constants;
+using Prototype.DIAnnotations;
 using Prototype.Entities;
 using Prototype.Models;
 using Prototype.Repositories;

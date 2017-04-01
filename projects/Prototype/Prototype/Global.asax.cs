@@ -1,8 +1,5 @@
 ﻿using log4net;
-using System;
-using System.Net;
 using System.Reflection;
-using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -20,6 +17,7 @@ namespace Prototype
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ValidationConfig.RegisterAdapter();
 
             // ビューエンジンをRazorViewEngineのみを有効化
             ViewEngines.Engines.Clear();

@@ -3,7 +3,7 @@ using Prototype.Extensions;
 using System.Linq;
 using System.Reflection;
 
-namespace Prototype.App_Start
+namespace Prototype
 {
     /// <summary>
     /// Dapperの設定クラス。

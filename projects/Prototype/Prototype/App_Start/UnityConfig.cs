@@ -1,8 +1,8 @@
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Oracle.ManagedDataAccess.Client;
-using Prototype.Attributes;
 using Prototype.Constants;
+using Prototype.DIAnnotations;
 using Prototype.Profilers;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
@@ -12,7 +12,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 
-namespace Prototype.App_Start
+namespace Prototype
 {
     /// <summary>
     /// Specifies the Unity configuration for the main container.

@@ -4,7 +4,7 @@ using System.Net;
 using System.Reflection;
 using System.Web.Mvc;
 
-namespace Prototype.Attributes
+namespace Prototype.Filters
 {
     /// <summary>
     /// 全てのアクションメソッドがスローした例外の処理に使用される属性を表します。
@@ -29,7 +29,7 @@ namespace Prototype.Attributes
 
             // 例外発生時は常にログを取っておく
             //LogUtil.LogControllerError(filterContext);
-            logger.Error(filterContext.Exception.ToString());
+            this.logger.Error(filterContext.Exception.ToString());
 
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {

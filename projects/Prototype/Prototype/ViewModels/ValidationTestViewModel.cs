@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prototype.Validations.DataAnnotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Prototype.ViewModels
         /// <summary>
         /// 必須項目
         /// </summary>
-        [System.ComponentModel.DataAnnotations.Required]
+        [Required]
         [DisplayName("Required")]
         public string RequiredItem { get; set; }
 
