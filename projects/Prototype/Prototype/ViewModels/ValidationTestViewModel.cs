@@ -32,5 +32,13 @@ namespace Prototype.ViewModels
         [MaxLength(4)]
         [DisplayName("MAXLENGTH")]
         public string MaxLengthItem { get; set; }
+
+        /// <summary>
+        /// 最小最大文字数項目
+        /// </summary>
+        [MinLength(2)]
+        [MaxLength(4)]
+        [DisplayName("RANGE")]
+        public string RangeItem { get; set; }
     }
 }

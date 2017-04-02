@@ -42,6 +42,13 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.RangeItem, new { @class = "col-xs-2 control-label" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(m => m.RangeItem, new { @class = "form-control" })
+            @Html.ValidationFieldFor(m => m.RangeItem)
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-xs-offset-2 col-xs-10">
             <button class="btn btn-default"><span class="glyphicon glyphicon-saved"> 登録</span></button>
         </div>
