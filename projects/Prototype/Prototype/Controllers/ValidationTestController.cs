@@ -31,7 +31,12 @@ namespace Prototype.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var model = new ValidationTestViewModel()
+            {
+                MinLengthItem = "A",
+                MaxLengthItem = "AAAAA"
+            };
+            return View(model);
         }
 
         /// <summary>

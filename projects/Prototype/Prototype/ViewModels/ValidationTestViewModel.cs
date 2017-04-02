@@ -16,13 +16,21 @@ namespace Prototype.ViewModels
         /// 必須項目
         /// </summary>
         [Required]
-        [DisplayName("Required")]
+        [DisplayName("REQUIRED")]
         public string RequiredItem { get; set; }
 
         /// <summary>
-        /// 文字数項目
+        /// 最小文字数項目
         /// </summary>
-        [DisplayName("MaxLength")]
+        [MinLength(2)]
+        [DisplayName("MINLENGTH")]
+        public string MinLengthItem { get; set; }
+
+        /// <summary>
+        /// 最大文字数項目
+        /// </summary>
+        [MaxLength(4)]
+        [DisplayName("MAXLENGTH")]
         public string MaxLengthItem { get; set; }
     }
 }

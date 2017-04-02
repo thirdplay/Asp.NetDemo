@@ -1,8 +1,5 @@
 ﻿using Prototype.Validations.DataAnnotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using DataAnnotationsModelValidatorProvider = System.Web.Mvc.DataAnnotationsModelValidatorProvider;
 
 namespace Prototype
 {
@@ -16,7 +13,9 @@ namespace Prototype
         /// </summary>
         public static void RegisterAdapter()
         {
-            System.Web.Mvc.DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(RequiredAttribute), typeof(RequiredAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(RequiredAttribute), typeof(RequiredAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MinLengthAttribute), typeof(MinLengthAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MaxLengthAttribute), typeof(MaxLengthAttributeAdapter));
         }
     }
 }

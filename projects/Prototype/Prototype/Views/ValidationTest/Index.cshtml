@@ -28,6 +28,13 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.MinLengthItem, new { @class = "col-xs-2 control-label" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(m => m.MinLengthItem, new { @class = "form-control" })
+            @Html.ValidationFieldFor(m => m.MinLengthItem)
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.MaxLengthItem, new { @class = "col-xs-2 control-label" })
         <div class="col-xs-10">
             @Html.TextBoxFor(m => m.MaxLengthItem, new { @class = "form-control" })

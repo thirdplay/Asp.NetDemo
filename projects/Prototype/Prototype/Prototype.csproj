@@ -201,6 +201,8 @@
     <Compile Include="Repositories\Clob01Repository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Services\TestService.cs" />
+    <Compile Include="Validations\DataAnnotations\MaxLengthAttribute.cs" />
+    <Compile Include="Validations\DataAnnotations\MinLengthAttribute.cs" />
     <Compile Include="Validations\DataAnnotations\RequiredAttribute.cs" />
     <Compile Include="ViewModels\ValidationTestViewModel.cs" />
   </ItemGroup>
