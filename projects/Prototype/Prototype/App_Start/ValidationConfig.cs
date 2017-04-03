@@ -17,6 +17,7 @@ namespace Prototype
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MinLengthAttribute), typeof(MinLengthAttributeAdapter));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MaxLengthAttribute), typeof(MaxLengthAttributeAdapter));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MinByteAttribute), typeof(MinByteAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MaxByteAttribute), typeof(MaxByteAttributeAdapter));
         }
     }
 }

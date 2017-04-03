@@ -47,5 +47,12 @@ namespace Prototype.ViewModels
         [MinByte(4)]
         [DisplayName("MINBYTE")]
         public string MinByteItem { get; set; }
+
+        /// <summary>
+        /// 最大byte数項目
+        /// </summary>
+        [MaxByte(2)]
+        [DisplayName("MAXBYTE")]
+        public string MaxByteItem { get; set; }
     }
 }
