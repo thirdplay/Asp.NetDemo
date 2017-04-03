@@ -34,7 +34,8 @@ namespace Prototype.Controllers
             var model = new ValidationTestViewModel()
             {
                 MinLengthItem = "A",
-                MaxLengthItem = "AAAAA"
+                MaxLengthItem = "AAAAA",
+                MinByteItem = "あ"
             };
             return View(model);
         }

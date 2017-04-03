@@ -40,5 +40,12 @@ namespace Prototype.ViewModels
         [MaxLength(4)]
         [DisplayName("RANGE")]
         public string RangeItem { get; set; }
+
+        /// <summary>
+        /// 最小byte数項目
+        /// </summary>
+        [MinByte(4)]
+        [DisplayName("MINBYTE")]
+        public string MinByteItem { get; set; }
     }
 }

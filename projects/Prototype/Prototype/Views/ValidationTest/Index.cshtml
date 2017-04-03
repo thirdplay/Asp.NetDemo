@@ -49,6 +49,13 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.MinByteItem, new { @class = "col-xs-2 control-label" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(m => m.MinByteItem, new { @class = "form-control" })
+            @Html.ValidationFieldFor(m => m.MinByteItem)
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-xs-offset-2 col-xs-10">
             <button class="btn btn-default"><span class="glyphicon glyphicon-saved"> 登録</span></button>
         </div>
