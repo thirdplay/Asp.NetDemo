@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Prototype.Controllers
@@ -32,8 +33,12 @@ namespace Prototype.Controllers
 
         public ActionResult Index()
         {
+            var scheme = this.HttpContext.Request.Url.Scheme;
+            var authority = this.HttpContext.Request.Url.Authority;
+            var path = HttpRuntime.AppDomainAppVirtualPath;
+            this.logger.Debug($"{scheme}://{authority}{path}");
             //logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
-            this.testService.TestClob01();
+            //this.testService.TestClob01();
             return View();
         }
 
