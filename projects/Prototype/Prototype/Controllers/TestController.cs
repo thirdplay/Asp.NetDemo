@@ -33,10 +33,6 @@ namespace Prototype.Controllers
 
         public ActionResult Index()
         {
-            var scheme = this.HttpContext.Request.Url.Scheme;
-            var authority = this.HttpContext.Request.Url.Authority;
-            var path = HttpRuntime.AppDomainAppVirtualPath;
-            this.logger.Debug($"{scheme}://{authority}{path}");
             //logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             //this.testService.TestClob01();
             return View();
@@ -60,11 +56,7 @@ namespace Prototype.Controllers
         {
             return Task.Run(() =>
             {
-                string dirPath = this.Server.MapPath("~/App_Data/Excel");
-                if (!Directory.Exists(dirPath))
-                {
-                    Directory.CreateDirectory(dirPath);
-                }
+                var dirPath = this.Server.MapPath("/Common/Result");
                 using (var excel = new ExcelPackage())
                 using (var worksheet = excel.Workbook.Worksheets.Add("Prototype"))
                 {

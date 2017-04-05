@@ -20,7 +20,7 @@
 @section scripts {
 <script>
     function onSuccess(data) {
-        window.open('@Url.Action("Download", "Excel")?fileName=' + data.FileName);
+        window.open('/Common/Result/' + data.FileName);
     }
 </script>
 }

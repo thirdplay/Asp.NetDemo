@@ -13,6 +13,7 @@ namespace Prototype.Controllers
     /// </summary>
     public class ExcelController : Controller
     {
+#if false
         /// <summary>
         /// ログインターフェース。
         /// </summary>
@@ -40,5 +41,6 @@ namespace Prototype.Controllers
                 return File(ms.ToArray(), "application/msexcel", fileName);
             }
         }
+#endif
     }
 }
