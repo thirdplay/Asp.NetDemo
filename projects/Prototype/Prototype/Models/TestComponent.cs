@@ -35,7 +35,7 @@ namespace Prototype.Models
 
         public void Dispose()
         {
-            this.logger.Debug("TestComponent:Dispose");
+            this.logger.Debug($"TestComponent:Dispose({this.Id})");
         }
     }
 }

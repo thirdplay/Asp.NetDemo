@@ -33,7 +33,8 @@ namespace Prototype.Controllers
 
         public ActionResult Index()
         {
-            //logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
+            this.logger.Debug("TestController:Index");
+            this.logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             //this.testService.TestClob01();
             return View();
         }

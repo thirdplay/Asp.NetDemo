@@ -21,7 +21,6 @@ namespace Prototype.Services
     [Service(typeof(TestService))]
     public interface ITestService
     {
-        void TestClob01();
     }
 
     /// <summary>
@@ -29,7 +28,15 @@ namespace Prototype.Services
     /// </summary>
     public class TestService : ITestService, IDisposable
     {
-        private IClob01Repository clob01Repository;
+        /// <summary>
+        /// サービスロケーター。
+        /// </summary>
+        private readonly IServiceLocator serviceLocator;
+
+        /// <summary>
+        /// テストコンポーネント
+        /// </summary>
+        public ITestComponent TestComponent => this.serviceLocator.GetInstance<ITestComponent>();
 
         /// <summary>
         /// ログインターフェース。
@@ -39,16 +46,10 @@ namespace Prototype.Services
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public TestService(IClob01Repository clob01Repository)
+        public TestService(IServiceLocator serviceLocator)
         {
-            this.clob01Repository = clob01Repository;
+            this.serviceLocator = serviceLocator;
             this.logger.Debug($"TestService:Constructor");
-        }
-
-        public void TestClob01()
-        {
-            Clob01 entity =  this.clob01Repository.Find("1");
-            this.logger.Debug("Data:" + entity.Data);
         }
 
         #region IDispose members

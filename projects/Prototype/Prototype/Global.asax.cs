@@ -9,14 +9,13 @@ namespace Prototype
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            LoggerConfig.RegisterLoggers();
             ValidationConfig.RegisterAdapter();
 
             // ビューエンジンをRazorViewEngineのみを有効化
