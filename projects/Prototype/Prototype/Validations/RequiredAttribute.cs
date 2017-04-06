@@ -2,7 +2,7 @@
 using System;
 using System.Web.Mvc;
 
-namespace Prototype.Validations.DataAnnotations
+namespace Prototype.Validations
 {
     /// <summary>
     /// プロパティの値が必須であることを指定します。

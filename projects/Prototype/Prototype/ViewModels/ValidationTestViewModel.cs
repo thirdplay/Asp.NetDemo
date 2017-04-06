@@ -1,9 +1,5 @@
-﻿using Prototype.Validations.DataAnnotations;
-using System;
-using System.Collections.Generic;
+﻿using Prototype.Validations;
 using System.ComponentModel;
-using System.Linq;
-using System.Web;
 
 namespace Prototype.ViewModels
 {
@@ -16,43 +12,42 @@ namespace Prototype.ViewModels
         /// 必須項目
         /// </summary>
         [Required]
-        [DisplayName("REQUIRED")]
+        [DisplayName("必須項目")]
         public string RequiredItem { get; set; }
 
         /// <summary>
         /// 最小文字数項目
         /// </summary>
         [MinLength(2)]
-        [DisplayName("MINLENGTH")]
+        [DisplayName("最小文字数項目")]
         public string MinLengthItem { get; set; }
 
         /// <summary>
         /// 最大文字数項目
         /// </summary>
         [MaxLength(4)]
-        [DisplayName("MAXLENGTH")]
+        [DisplayName("最大文字数項目")]
         public string MaxLengthItem { get; set; }
-
-        /// <summary>
-        /// 最小最大文字数項目
-        /// </summary>
-        [MinLength(2)]
-        [MaxLength(4)]
-        [DisplayName("RANGE")]
-        public string RangeItem { get; set; }
 
         /// <summary>
         /// 最小byte数項目
         /// </summary>
         [MinByte(4)]
-        [DisplayName("MINBYTE")]
+        [DisplayName("最小byte数項目")]
         public string MinByteItem { get; set; }
 
         /// <summary>
         /// 最大byte数項目
         /// </summary>
         [MaxByte(2)]
-        [DisplayName("MAXBYTE")]
+        [DisplayName("最大byte数項目")]
         public string MaxByteItem { get; set; }
+
+        /// <summary>
+        /// 半角英語項目
+        /// </summary>
+        [Alphabet]
+        [DisplayName("半角英語項目")]
+        public string AlphabetItem { get; set; }
     }
 }

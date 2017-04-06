@@ -2,7 +2,7 @@
 using System;
 using System.Web.Mvc;
 
-namespace Prototype.Validations.DataAnnotations
+namespace Prototype.Validations
 {
     /// <summary>
     /// プロパティで許容される最大文字数を指定します。

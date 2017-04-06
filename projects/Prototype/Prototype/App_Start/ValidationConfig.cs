@@ -1,4 +1,4 @@
-﻿using Prototype.Validations.DataAnnotations;
+﻿using Prototype.Validations;
 using DataAnnotationsModelValidatorProvider = System.Web.Mvc.DataAnnotationsModelValidatorProvider;
 
 namespace Prototype
@@ -18,6 +18,7 @@ namespace Prototype
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MaxLengthAttribute), typeof(MaxLengthAttributeAdapter));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MinByteAttribute), typeof(MinByteAttributeAdapter));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MaxByteAttribute), typeof(MaxByteAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AlphabetAttribute), typeof(AlphabetAttributeAdapter));
         }
     }
 }

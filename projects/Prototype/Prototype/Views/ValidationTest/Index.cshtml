@@ -42,13 +42,6 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.RangeItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.RangeItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.RangeItem)
-        </div>
-    </div>
-    <div class="form-group">
         @Html.LabelFor(m => m.MinByteItem, new { @class = "col-xs-2 control-label" })
         <div class="col-xs-10">
             @Html.TextBoxFor(m => m.MinByteItem, new { @class = "form-control" })
@@ -60,6 +53,13 @@
         <div class="col-xs-10">
             @Html.TextBoxFor(m => m.MaxByteItem, new { @class = "form-control" })
             @Html.ValidationFieldFor(m => m.MaxByteItem)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.AlphabetItem, new { @class = "col-xs-2 control-label" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(m => m.AlphabetItem, new { @class = "form-control" })
+            @Html.ValidationFieldFor(m => m.AlphabetItem)
         </div>
     </div>
     <div class="form-group">

@@ -202,11 +202,12 @@
     <Compile Include="Repositories\Clob01Repository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Services\TestService.cs" />
-    <Compile Include="Validations\DataAnnotations\MaxLengthAttribute.cs" />
-    <Compile Include="Validations\DataAnnotations\MaxByteAttribute.cs" />
-    <Compile Include="Validations\DataAnnotations\MinByteAttribute.cs" />
-    <Compile Include="Validations\DataAnnotations\MinLengthAttribute.cs" />
-    <Compile Include="Validations\DataAnnotations\RequiredAttribute.cs" />
+    <Compile Include="Validations\MaxLengthAttribute.cs" />
+    <Compile Include="Validations\MaxByteAttribute.cs" />
+    <Compile Include="Validations\MinByteAttribute.cs" />
+    <Compile Include="Validations\MinLengthAttribute.cs" />
+    <Compile Include="Validations\AlphabetAttribute.cs" />
+    <Compile Include="Validations\RequiredAttribute.cs" />
     <Compile Include="ViewModels\ValidationTestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

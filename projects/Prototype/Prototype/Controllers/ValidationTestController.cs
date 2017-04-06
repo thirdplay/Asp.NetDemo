@@ -36,7 +36,8 @@ namespace Prototype.Controllers
                 MinLengthItem = "A",
                 MaxLengthItem = "AAAAA",
                 MinByteItem = "あ",
-                MaxByteItem = "い"
+                MaxByteItem = "い",
+                AlphabetItem = "あ"
             };
             return View(model);
         }
