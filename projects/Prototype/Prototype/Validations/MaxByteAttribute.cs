@@ -1,4 +1,4 @@
-﻿using Resources;
+﻿using Prototype.Resources;
 using System;
 using System.Text;
 using System.Web.Mvc;

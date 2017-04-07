@@ -1,5 +1,5 @@
 ﻿using Prototype.Extensions;
-using Resources;
+using Prototype.Resources;
 using System.Web.Mvc;
 
 namespace Prototype.Controllers

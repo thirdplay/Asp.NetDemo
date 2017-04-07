@@ -49,5 +49,15 @@ namespace Prototype.ViewModels
         [Alphabet]
         [DisplayName("半角英語項目")]
         public string AlphabetItem { get; set; }
+
+        /// <summary>
+        /// ラジオ項目1
+        /// </summary>
+        [DisplayName("ラジオ項目1")]
+        public string RadioItem1 { get; set; }
+        [DisplayName("ラジオ項目2")]
+        public string RadioItem2{ get; set; }
+        [DisplayName("ラジオ項目3")]
+        public string RadioItem3 { get; set; }
     }
 }

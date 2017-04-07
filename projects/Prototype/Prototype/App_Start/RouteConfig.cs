@@ -9,7 +9,7 @@ namespace Prototype
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.LowercaseUrls = true;
+            //routes.LowercaseUrls = true;
 
             routes.MapRoute(
                 name: "Default",
