@@ -4,9 +4,11 @@ using Prototype.Services;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Prototype.Controllers
 {
@@ -33,6 +35,12 @@ namespace Prototype.Controllers
 
         public ActionResult Index()
         {
+            var process = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("cmd.exe", @"/c echo foo > C:\Users\DefaultAppPool\sample.log")
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false
+            });
+            process.WaitForExit();
             this.logger.Debug("TestController:Index");
             this.logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             //this.testService.TestClob01();
@@ -57,6 +65,54 @@ namespace Prototype.Controllers
         {
             return Task.Run(() =>
             {
+#if false
+                // Microsoft.Office.Interop.Excel
+                var dirPath = this.Server.MapPath("/Common/Result");
+
+                Excel.Application app = null;
+                Excel.Workbooks workbooks = null;
+                Excel.Workbook workbook = null;
+                Excel.Sheets sheets = null;
+                Excel.Worksheet sheet = null;
+                Excel.Range cells = null;
+                Excel.Range cell = null;
+                try
+                {
+                    app = new Excel.Application();
+                    app.DisplayAlerts = false;
+
+                    // ブック作成
+                    workbooks = app.Workbooks;
+                    workbook = workbooks.Add();
+
+                    // シート作成
+                    sheets = workbook.Worksheets;
+                    sheet = sheets.Add();
+
+                    // セル設定
+                    cells = sheet.Cells;
+                    cell = cells[1, 1];
+                    cell.Value = "Test!!";
+
+                    // 出力
+                    var fileName = "prototype_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+                    workbook.SaveAs(Path.Combine(dirPath, fileName));
+
+                    return fileName;
+                }
+                finally
+                {
+                    app.Quit();
+                    Marshal.FinalReleaseComObject(cell);
+                    Marshal.FinalReleaseComObject(cells);
+                    Marshal.FinalReleaseComObject(sheet);
+                    Marshal.FinalReleaseComObject(sheets);
+                    Marshal.FinalReleaseComObject(workbook);
+                    Marshal.FinalReleaseComObject(workbooks);
+                    Marshal.FinalReleaseComObject(app);
+                }
+#else
+                // EEPlus
                 var dirPath = this.Server.MapPath("/Common/Result");
                 using (var excel = new ExcelPackage())
                 using (var worksheet = excel.Workbook.Worksheets.Add("Prototype"))
@@ -181,6 +237,7 @@ namespace Prototype.Controllers
                     //}
                     return fileName;
                 }
+#endif
             });
         }
     }

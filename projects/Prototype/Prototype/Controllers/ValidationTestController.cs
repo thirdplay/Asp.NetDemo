@@ -31,7 +31,6 @@ namespace Prototype.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            //
             var model = new ValidationTestViewModel()
             {
                 MinLengthItem = "A",
