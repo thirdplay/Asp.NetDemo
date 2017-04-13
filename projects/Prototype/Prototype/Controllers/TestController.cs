@@ -35,12 +35,6 @@ namespace Prototype.Controllers
 
         public ActionResult Index()
         {
-            var process = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("cmd.exe", @"/c echo foo > C:\Users\DefaultAppPool\sample.log")
-            {
-                CreateNoWindow = true,
-                UseShellExecute = false
-            });
-            process.WaitForExit();
             this.logger.Debug("TestController:Index");
             this.logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             //this.testService.TestClob01();
@@ -84,6 +78,7 @@ namespace Prototype.Controllers
                     // ブック作成
                     workbooks = app.Workbooks;
                     workbook = workbooks.Add();
+                    //workbook = workbooks.Open(@"C:\Users\DefaultAppPool\test.xlsx");
 
                     // シート作成
                     sheets = workbook.Worksheets;
