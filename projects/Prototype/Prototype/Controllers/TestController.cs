@@ -35,6 +35,20 @@ namespace Prototype.Controllers
 
         public ActionResult Index()
         {
+            System.Diagnostics.Debug.WriteLine("UserName:" + System.Security.Principal.WindowsIdentity.GetCurrent().Name);
+#if true
+            var identity = System.Security.Principal.WindowsIdentity.GetCurrent();
+            using (identity.Impersonate())
+            {
+                var process = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("cmd.exe", @"/c echo foo > D:\thirdplay\Downloads\sample.log")
+                {
+                    CreateNoWindow = true,
+                    UseShellExecute = false
+                });
+                process.WaitForExit();
+            }
+#endif
+
             this.logger.Debug("TestController:Index");
             this.logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             //this.testService.TestClob01();
@@ -57,9 +71,10 @@ namespace Prototype.Controllers
         }
         private Task<string> ExecuteAnalyze()
         {
+            //System.Diagnostics.Debug.WriteLine("Name:" + this.HttpContext.User.Identity.Name);
             return Task.Run(() =>
             {
-#if false
+#if true
                 // Microsoft.Office.Interop.Excel
                 var dirPath = this.Server.MapPath("/Common/Result");
 
