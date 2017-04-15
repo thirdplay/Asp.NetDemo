@@ -36,7 +36,7 @@ namespace Prototype.Controllers
         public ActionResult Index()
         {
             System.Diagnostics.Debug.WriteLine("UserName:" + System.Security.Principal.WindowsIdentity.GetCurrent().Name);
-#if true
+#if false
             var identity = System.Security.Principal.WindowsIdentity.GetCurrent();
             using (identity.Impersonate())
             {
@@ -48,7 +48,6 @@ namespace Prototype.Controllers
                 process.WaitForExit();
             }
 #endif
-
             this.logger.Debug("TestController:Index");
             this.logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             //this.testService.TestClob01();
@@ -76,7 +75,8 @@ namespace Prototype.Controllers
             {
 #if true
                 // Microsoft.Office.Interop.Excel
-                var dirPath = this.Server.MapPath("/Common/Result");
+                var resultDir = this.Server.MapPath("/Common/Result");
+                var tempDir = this.Server.MapPath("/Common/Template");
 
                 Excel.Application app = null;
                 Excel.Workbooks workbooks = null;
@@ -92,8 +92,9 @@ namespace Prototype.Controllers
 
                     // ブック作成
                     workbooks = app.Workbooks;
-                    workbook = workbooks.Add();
-                    //workbook = workbooks.Open(@"C:\Users\DefaultAppPool\test.xlsx");
+                    //workbook = workbooks.Add();
+                    //workbook = workbooks.Add(Excel.XlWBATemplate.xlWBATWorksheet);
+                    workbook = workbooks.Open(Path.Combine(tempDir, "prototype.xltx"));
 
                     // シート作成
                     sheets = workbook.Worksheets;
@@ -106,20 +107,21 @@ namespace Prototype.Controllers
 
                     // 出力
                     var fileName = "prototype_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
-                    workbook.SaveAs(Path.Combine(dirPath, fileName));
+                    workbook.SaveAs(Path.Combine(resultDir, fileName));
 
                     return fileName;
                 }
                 finally
                 {
-                    app.Quit();
-                    Marshal.FinalReleaseComObject(cell);
-                    Marshal.FinalReleaseComObject(cells);
-                    Marshal.FinalReleaseComObject(sheet);
-                    Marshal.FinalReleaseComObject(sheets);
-                    Marshal.FinalReleaseComObject(workbook);
-                    Marshal.FinalReleaseComObject(workbooks);
-                    Marshal.FinalReleaseComObject(app);
+                    if (workbook != null) workbook.Close();
+                    if (app != null) app.Quit();
+                    if (cell != null) Marshal.FinalReleaseComObject(cell);
+                    if (cells != null) Marshal.FinalReleaseComObject(cells);
+                    if (sheet != null) Marshal.FinalReleaseComObject(sheet);
+                    if (sheets != null) Marshal.FinalReleaseComObject(sheets);
+                    if (workbook != null) Marshal.FinalReleaseComObject(workbook);
+                    if (workbooks != null) Marshal.FinalReleaseComObject(workbooks);
+                    if (app != null) Marshal.FinalReleaseComObject(app);
                 }
 #else
                 // EEPlus
