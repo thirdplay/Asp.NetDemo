@@ -1,10 +1,13 @@
 ﻿using log4net;
 using OfficeOpenXml;
+using Prototype.Interop;
 using Prototype.Services;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -19,6 +22,8 @@ namespace Prototype.Controllers
         /// </summary>
         private readonly TestService testService;
 
+        private readonly ITestAnalyzableService testAnalyzableService;
+
         /// <summary>
         /// ログインターフェース。
         /// </summary>
@@ -28,15 +33,16 @@ namespace Prototype.Controllers
         /// コンストラクタ。
         /// </summary>
         /// <param name="testService">テストサービス</param>
-        public TestController(TestService testService, System.Data.Common.DbConnection connection)
+        public TestController(TestService testService, ITestAnalyzableService testAnalyzableService)
         {
             this.testService = testService;
+            this.testAnalyzableService = testAnalyzableService;
         }
 
         public ActionResult Index()
         {
-            System.Diagnostics.Debug.WriteLine("UserName:" + System.Security.Principal.WindowsIdentity.GetCurrent().Name);
 #if false
+            System.Diagnostics.Debug.WriteLine("UserName:" + System.Security.Principal.WindowsIdentity.GetCurrent().Name);
             var identity = System.Security.Principal.WindowsIdentity.GetCurrent();
             using (identity.Impersonate())
             {
@@ -48,32 +54,69 @@ namespace Prototype.Controllers
                 process.WaitForExit();
             }
 #endif
+            this.HttpContext.Session["UserId"] = "TestUser";
             this.logger.Debug("TestController:Index");
             this.logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             //this.testService.TestClob01();
             return View();
         }
 
+        [HttpPost]
+        public JsonResult AjaxTest()
+        {
+            Debug.WriteLine("AjaxTest:Start");
+            Thread.Sleep(1000 * 10);
+            Debug.WriteLine("AjaxTest:End");
+            return new JsonResult()
+            {
+                Data = new { FileName = "" }
+            };
+        }
+
         /// <summary>
         /// Excelを作成します。
         /// </summary>
-        [HttpPost]
-        public async Task<JsonResult> AjaxTest()
-        {
-            if (!this.Request.IsAjaxRequest()) throw new Exception();
+        //        [HttpPost]
+        //        public async Task<JsonResult> AjaxTest()
+        //        {
+        //#if true
+        //            if (!this.Request.IsAjaxRequest()) throw new Exception();
 
-            var fileName = await ExecuteAnalyze();
-            return new JsonResult()
-            {
-                Data = new { FileName = fileName }
-            };
-        }
+        //            var fileName = await testAnalyzableService.Analyze(this.HttpContext);
+        //            return new JsonResult()
+        //            {
+        //                Data = new { FileName = fileName }
+        //            };
+        //#elif true
+        //            if (!this.Request.IsAjaxRequest()) throw new Exception();
+
+        //            var fileName = await ExecuteAnalyze();
+        //            return new JsonResult()
+        //            {
+        //                Data = new { FileName = fileName }
+        //            };
+        //#endif
+        //        }
         private Task<string> ExecuteAnalyze()
         {
             //System.Diagnostics.Debug.WriteLine("Name:" + this.HttpContext.User.Identity.Name);
             return Task.Run(() =>
             {
 #if true
+                // InteropExcel
+                var resultDir = this.Server.MapPath("/Common/Result");
+                var tempDir = this.Server.MapPath("/Common/Template");
+                using (var excel = new InteropExcel(Path.Combine(tempDir, "prototype.xlsm")))
+                {
+                    excel.Run("ThisWorkbook.TestMacro4", "a1", "a2");
+
+                    // 出力
+                    var fileName = "prototype_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsm";
+                    excel.SaveAs(Path.Combine(resultDir, fileName));
+
+                    return fileName;
+                }
+#elif true
                 // Microsoft.Office.Interop.Excel
                 var resultDir = this.Server.MapPath("/Common/Result");
                 var tempDir = this.Server.MapPath("/Common/Template");
@@ -94,7 +137,7 @@ namespace Prototype.Controllers
                     workbooks = app.Workbooks;
                     //workbook = workbooks.Add();
                     //workbook = workbooks.Add(Excel.XlWBATemplate.xlWBATWorksheet);
-                    workbook = workbooks.Open(Path.Combine(tempDir, "prototype.xltx"));
+                    workbook = workbooks.Open(Path.Combine(tempDir, "prototype.xlsx"));
 
                     // シート作成
                     sheets = workbook.Worksheets;
@@ -123,7 +166,7 @@ namespace Prototype.Controllers
                     if (workbooks != null) Marshal.FinalReleaseComObject(workbooks);
                     if (app != null) Marshal.FinalReleaseComObject(app);
                 }
-#else
+#elif false
                 // EEPlus
                 var dirPath = this.Server.MapPath("/Common/Result");
                 using (var excel = new ExcelPackage())
@@ -251,6 +294,26 @@ namespace Prototype.Controllers
                 }
 #endif
             });
+        }
+
+        /// <summary>
+        /// キャンセル要求。
+        /// </summary>
+        [HttpPost]
+        public JsonResult Cancel()
+        {
+            Debug.WriteLine("ThreadId:" + Thread.CurrentThread.ManagedThreadId);
+            Debug.WriteLine("SessionId:" + this.HttpContext.Session.SessionID);
+            Debug.WriteLine("SessionCount:" + this.HttpContext.Session.Count);
+            Debug.WriteLine("CancelBefore:" + this.HttpContext.Session["CancelToken"]);
+            var tokenSource = this.HttpContext.Session["CancelToken"] as CancellationTokenSource;
+            if (tokenSource != null)
+            {
+                tokenSource.Cancel();
+            }
+            Debug.WriteLine("CancelAfter:" + this.HttpContext.Session["CancelToken"]);
+
+            return new JsonResult();
         }
     }
 }

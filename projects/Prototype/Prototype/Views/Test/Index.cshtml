@@ -1,22 +1,23 @@
 ﻿@{
     ViewBag.Title = "Test Page";
 }
-<div class="row">
-    <div class="col-md-4">
-        <h2>Test!!</h2>
-        @{ 
-            var ajaxOptions = new AjaxOptions
-            {
-                HttpMethod = "POST",
-                OnSuccess = "onSuccess"
-            };
-        }
-        @using (Ajax.BeginForm("AjaxTest", "Test", ajaxOptions))
-        {
+<h2>Test!!</h2>
+@{ 
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "onSuccess"
+    };
+}
+@using (Ajax.BeginForm("AjaxTest", "Test", ajaxOptions))
+{
+    <div class="form-group">
+        @Html.Label("", "Analyze", new { @class = "col-xs-2 control-label" })                
+        <div class="col-xs-10">
             <button class="btn btn-default">Download</button>
-        }
+        </div>
     </div>
-</div>
+}
 @section scripts {
 <script>
     function onSuccess(data) {
