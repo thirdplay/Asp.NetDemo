@@ -27,13 +27,13 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/prototype")
     @RenderSection("scripts", required: false)
-    <script>
+    @*<script>
         $(window).on('beforeunload', function () {
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("Cancel", "Test")'
             });
         });
-    </script>
+    </script>*@
 </body>
 </html>

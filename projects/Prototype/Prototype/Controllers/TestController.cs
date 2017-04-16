@@ -61,48 +61,48 @@ namespace Prototype.Controllers
             return View();
         }
 
-        [HttpPost]
-        public JsonResult AjaxTest()
-        {
-            Debug.WriteLine("AjaxTest:Start");
-            Thread.Sleep(1000 * 10);
-            Debug.WriteLine("AjaxTest:End");
-            return new JsonResult()
-            {
-                Data = new { FileName = "" }
-            };
-        }
+        //[HttpPost]
+        //public JsonResult AjaxTest()
+        //{
+        //    Debug.WriteLine("AjaxTest:Start");
+        //    Thread.Sleep(1000 * 10);
+        //    Debug.WriteLine("AjaxTest:End");
+        //    return new JsonResult()
+        //    {
+        //        Data = new { FileName = "" }
+        //    };
+        //}
 
         /// <summary>
         /// Excelを作成します。
         /// </summary>
-        //        [HttpPost]
-        //        public async Task<JsonResult> AjaxTest()
-        //        {
-        //#if true
-        //            if (!this.Request.IsAjaxRequest()) throw new Exception();
+        [HttpPost]
+        public async Task<JsonResult> AjaxTest()
+        {
+#if true
+            if (!this.Request.IsAjaxRequest()) throw new Exception();
 
-        //            var fileName = await testAnalyzableService.Analyze(this.HttpContext);
-        //            return new JsonResult()
-        //            {
-        //                Data = new { FileName = fileName }
-        //            };
-        //#elif true
-        //            if (!this.Request.IsAjaxRequest()) throw new Exception();
+            var fileName = await testAnalyzableService.Analyze(this.HttpContext);
+            return new JsonResult()
+            {
+                Data = new { FileName = fileName }
+            };
+#elif true
+                    if (!this.Request.IsAjaxRequest()) throw new Exception();
 
-        //            var fileName = await ExecuteAnalyze();
-        //            return new JsonResult()
-        //            {
-        //                Data = new { FileName = fileName }
-        //            };
-        //#endif
-        //        }
+                    var fileName = await ExecuteAnalyze();
+                    return new JsonResult()
+                    {
+                        Data = new { FileName = fileName }
+                    };
+#endif
+        }
         private Task<string> ExecuteAnalyze()
         {
             //System.Diagnostics.Debug.WriteLine("Name:" + this.HttpContext.User.Identity.Name);
             return Task.Run(() =>
             {
-#if true
+#if false
                 // InteropExcel
                 var resultDir = this.Server.MapPath("/Common/Result");
                 var tempDir = this.Server.MapPath("/Common/Template");
@@ -296,24 +296,24 @@ namespace Prototype.Controllers
             });
         }
 
-        /// <summary>
-        /// キャンセル要求。
-        /// </summary>
-        [HttpPost]
-        public JsonResult Cancel()
-        {
-            Debug.WriteLine("ThreadId:" + Thread.CurrentThread.ManagedThreadId);
-            Debug.WriteLine("SessionId:" + this.HttpContext.Session.SessionID);
-            Debug.WriteLine("SessionCount:" + this.HttpContext.Session.Count);
-            Debug.WriteLine("CancelBefore:" + this.HttpContext.Session["CancelToken"]);
-            var tokenSource = this.HttpContext.Session["CancelToken"] as CancellationTokenSource;
-            if (tokenSource != null)
-            {
-                tokenSource.Cancel();
-            }
-            Debug.WriteLine("CancelAfter:" + this.HttpContext.Session["CancelToken"]);
+        ///// <summary>
+        ///// キャンセル要求。
+        ///// </summary>
+        //[HttpPost]
+        //public JsonResult Cancel()
+        //{
+        //    Debug.WriteLine("ThreadId:" + Thread.CurrentThread.ManagedThreadId);
+        //    Debug.WriteLine("SessionId:" + this.HttpContext.Session.SessionID);
+        //    Debug.WriteLine("SessionCount:" + this.HttpContext.Session.Count);
+        //    Debug.WriteLine("CancelBefore:" + this.HttpContext.Session["CancelToken"]);
+        //    var tokenSource = this.HttpContext.Session["CancelToken"] as CancellationTokenSource;
+        //    if (tokenSource != null)
+        //    {
+        //        tokenSource.Cancel();
+        //    }
+        //    Debug.WriteLine("CancelAfter:" + this.HttpContext.Session["CancelToken"]);
 
-            return new JsonResult();
-        }
+        //    return new JsonResult();
+        //}
     }
 }

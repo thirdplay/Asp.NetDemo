@@ -4,6 +4,7 @@ using OfficeOpenXml;
 using Prototype.Constants;
 using Prototype.DIAnnotations;
 using Prototype.Entities;
+using Prototype.Interop;
 using Prototype.Models;
 using Prototype.Repositories;
 using System;
@@ -15,6 +16,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace Prototype.Services
@@ -47,19 +49,33 @@ namespace Prototype.Services
 
         public Task<string> Analyze(HttpContextBase httpContext)
         {
-            // セッションに既にキャンセルトークンがある場合、処理を中断する
-            Debug.WriteLine("ThreadId:" + Thread.CurrentThread.ManagedThreadId);
-            Debug.WriteLine("SessionId:" + httpContext.Session.SessionID);
-            Debug.WriteLine("CancelToken:" + httpContext.Session["CancelToken"]);
+            //// セッションに既にキャンセルトークンがある場合、処理を中断する
+            //Debug.WriteLine("ThreadId:" + Thread.CurrentThread.ManagedThreadId);
+            //Debug.WriteLine("SessionId:" + httpContext.Session.SessionID);
+            //Debug.WriteLine("CancelToken:" + httpContext.Session["CancelToken"]);
 
-            // セッションにキャンセルトークンを登録する
-            var tokenSource = new CancellationTokenSource();
-            httpContext.Session["CancelToken"] =  tokenSource;
-            Debug.WriteLine("CancelToken:" + httpContext.Session["CancelToken"]);
+            //// セッションにキャンセルトークンを登録する
+            //var tokenSource = new CancellationTokenSource();
+            //httpContext.Session["CancelToken"] =  tokenSource;
+            //Debug.WriteLine("CancelToken:" + httpContext.Session["CancelToken"]);
 
-            var token = tokenSource.Token;
+            //var token = tokenSource.Token;
             return Task.Run(() =>
             {
+                // InteropExcel
+                var resultDir = HostingEnvironment.MapPath("/Common/Result");
+                var tempDir = HostingEnvironment.MapPath("/Common/Template");
+                using (var excel = new InteropExcel(Path.Combine(tempDir, "prototype.xlsm")))
+                {
+                    excel.Run("ThisWorkbook.TestMacro4", "a1", "a2");
+
+                    // 出力
+                    var fileName = "prototype_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsm";
+                    excel.SaveAs(Path.Combine(resultDir, fileName));
+
+                    return fileName;
+                }
+#if false
                 try
                 {
                     Debug.WriteLine("ThreadId:" + Thread.CurrentThread.ManagedThreadId);
@@ -97,7 +113,8 @@ namespace Prototype.Services
                 {
                     //httpContext.Session.Remove("CancelToken");
                 }
-            }, token);
+#endif
+            });
         }
 
         //private string AnalyzeAction<TViewModel>(HttpContext httpContext, TViewModel viewModel, CancellationToken token)
@@ -121,7 +138,7 @@ namespace Prototype.Services
         //protected abstract void AnalyzeData<TData>(TData data);
         //protected abstract string CreateResult<TData>(TData data);
 
-        #region IDispose members
+#region IDispose members
 
         /// <summary>
         /// このインスタンスによって使用されているリソースを全て破棄します。
@@ -131,6 +148,6 @@ namespace Prototype.Services
             //this.Logger.Debug("AnalyzableServiceBase:Dispose");
         }
 
-        #endregion
+#endregion
     }
 }
