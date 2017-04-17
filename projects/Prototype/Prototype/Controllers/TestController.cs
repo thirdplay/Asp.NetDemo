@@ -61,18 +61,6 @@ namespace Prototype.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public JsonResult AjaxTest()
-        //{
-        //    Debug.WriteLine("AjaxTest:Start");
-        //    Thread.Sleep(1000 * 10);
-        //    Debug.WriteLine("AjaxTest:End");
-        //    return new JsonResult()
-        //    {
-        //        Data = new { FileName = "" }
-        //    };
-        //}
-
         /// <summary>
         /// Excelを作成します。
         /// </summary>
