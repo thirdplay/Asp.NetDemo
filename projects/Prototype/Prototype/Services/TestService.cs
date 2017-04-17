@@ -29,9 +29,14 @@ namespace Prototype.Services
     public class TestService : ITestService, IDisposable
     {
         /// <summary>
-        /// サービスロケーター。
+        /// サービスロケーター
         /// </summary>
         private readonly IServiceLocator serviceLocator;
+
+        /// <summary>
+        /// テスト用リポジトリ
+        /// </summary>
+        private ITestRepository testRepository;
 
         /// <summary>
         /// テストコンポーネント
@@ -46,10 +51,20 @@ namespace Prototype.Services
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public TestService(IServiceLocator serviceLocator)
+        public TestService(IServiceLocator serviceLocator, ITestRepository testRepository)
         {
             this.serviceLocator = serviceLocator;
+            this.testRepository = testRepository;
             this.logger.Debug($"TestService:Constructor");
+        }
+
+        /// <summary>
+        /// テーブル件数を取得します。
+        /// </summary>
+        /// <returns>テーブル件数</returns>
+        public int GetTableCount()
+        {
+            return testRepository.CountTable();
         }
 
         #region IDispose members

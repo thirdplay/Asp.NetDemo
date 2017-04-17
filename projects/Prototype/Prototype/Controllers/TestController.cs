@@ -57,7 +57,7 @@ namespace Prototype.Controllers
             this.HttpContext.Session["UserId"] = "TestUser";
             this.logger.Debug("TestController:Index");
             this.logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
-            //this.testService.TestClob01();
+            this.logger.Debug("TableCount:" + this.testService.GetTableCount());
             return View();
         }
 
