@@ -15,7 +15,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Prototype.Controllers
 {
-    public class TestController : Controller
+    public class TestController : ControllerBase
     {
         /// <summary>
         /// テストサービス。

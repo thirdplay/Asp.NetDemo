@@ -6,7 +6,7 @@ namespace Prototype.Controllers
     /// <summary>
     /// エラー画面を制御するコントローラー。
     /// </summary>
-    public class ErrorController : Controller
+    public class ErrorController : ControllerBase
     {
         /// <summary>
         ///

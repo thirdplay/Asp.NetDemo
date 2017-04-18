@@ -1,0 +1,35 @@
+﻿@model LoginViewModel
+@{
+    ViewBag.Title = "ログイン画面";
+}
+<h2>@ViewBag.Title</h2>
+@using (@Html.BeginForm())
+{
+    <hr />
+    @Html.AntiForgeryToken()
+    @Html.MessageArea()
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserId, new { @class = "col-xs-2 control-label" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(model => model.UserId, new { @class="form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <button class="btn btn-default" onclick="javascript:clickLogin();">
+                <span class="glyphicon glyphicon-log-in"> ログイン</span>
+            </button>
+        </div>
+    </div>
+}
+@section scripts
+{
+    <script>
+        /**
+         * ログインボタンのクリック処理.
+         */
+        function clickLogin() {
+            alert('Login!');
+        }
+    </script>
+}

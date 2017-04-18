@@ -11,7 +11,7 @@ namespace Prototype.Controllers
     /// <summary>
     /// Excelへのアクセスを制御コントローラー。
     /// </summary>
-    public class ExcelController : Controller
+    public class ExcelController : ControllerBase
     {
 #if false
         /// <summary>

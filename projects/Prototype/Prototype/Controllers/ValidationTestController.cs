@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace Prototype.Controllers
 {
     /// <summary>
-    /// 入力検証テストコントローラ。
+    /// 入力検証テストコントローラー。
     /// </summary>
     public class ValidationTestController : ControllerBase
     {
