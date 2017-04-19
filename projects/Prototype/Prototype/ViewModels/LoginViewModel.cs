@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using Prototype.Validations;
+using System.ComponentModel;
 
 namespace Prototype.ViewModels
 {
@@ -14,7 +11,8 @@ namespace Prototype.ViewModels
         /// <summary>
         /// ユーザID
         /// </summary>
-        [Display(Name = "ユーザID")]
+        [Required]
+        [DisplayName("ユーザID")]
         public string UserId { get; set; }
     }
 }

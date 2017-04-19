@@ -3,20 +3,27 @@
     ViewBag.Title = "ログイン画面";
 }
 <h2>@ViewBag.Title</h2>
-@using (@Html.BeginForm())
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnBegin = "onBegin",
+        OnSuccess = "onSuccess"
+    };
+}
+@using (@Ajax.BeginForm("Login", "Login", ajaxOptions))
 {
     <hr />
     @Html.AntiForgeryToken()
     @Html.MessageArea()
     <div class="form-group">
-        @Html.LabelFor(m => m.UserId, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(model => model.UserId, new { @class="form-control" })
-        </div>
+        @Html.LabelFor(m => m.UserId, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.UserId, new { @class="form-control" })
+        @Html.ValidationFieldFor(m => m.UserId)
     </div>
     <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10">
-            <button class="btn btn-default" onclick="javascript:clickLogin();">
+        <div>
+            <button class="btn btn-default">
                 <span class="glyphicon glyphicon-log-in"> ログイン</span>
             </button>
         </div>
@@ -25,11 +32,22 @@
 @section scripts
 {
     <script>
+        function onBegin(xhr) {
+            PROTOTYPE.common.hideMessage();
+            PROTOTYPE.common.hideValidationErrors();
+        }
+
         /**
-         * ログインボタンのクリック処理.
+         * ログイン成功処理.
          */
-        function clickLogin() {
-            alert('Login!');
+        function onSuccess(data) {
+            if (data.Result) {
+                window.open('@Url.Action("Index", "Test")', 'test');
+                window.close();
+            } else {
+                PROTOTYPE.common.showMessage(data.Message);
+                PROTOTYPE.common.showValidationErrors(data.Errors);
+            }
         }
     </script>
 }
