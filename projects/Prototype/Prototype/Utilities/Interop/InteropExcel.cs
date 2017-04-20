@@ -1,4 +1,4 @@
-﻿using Prototype.Extensions;
+﻿using Prototype.Utilities.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Reactive.Disposables;
 using System.IO;
 
-namespace Prototype.Interop
+namespace Prototype.Utilities.Interop
 {
     /// <summary>
     /// Interop.Excelアプリケーションを操作する機能を提供します。

@@ -1,4 +1,4 @@
-﻿using Prototype.Validations;
+﻿using Prototype.Utilities.Validations;
 using DataAnnotationsModelValidatorProvider = System.Web.Mvc.DataAnnotationsModelValidatorProvider;
 
 namespace Prototype

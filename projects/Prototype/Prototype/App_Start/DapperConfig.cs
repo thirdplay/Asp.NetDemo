@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using Prototype.Extensions;
+using Prototype.Utilities.Extensions;
 using System.Linq;
 using System.Reflection;
 

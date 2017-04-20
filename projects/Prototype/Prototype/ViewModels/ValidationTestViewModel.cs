@@ -1,4 +1,4 @@
-﻿using Prototype.Validations;
+﻿using Prototype.Utilities.Validations;
 using System.ComponentModel;
 
 namespace Prototype.ViewModels

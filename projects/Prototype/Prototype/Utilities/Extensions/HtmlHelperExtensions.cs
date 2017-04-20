@@ -4,7 +4,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace Prototype.Extensions
+namespace Prototype.Utilities.Extensions
 {
     /// <summary>
     /// HTMLヘルパーの拡張機能を提供します。

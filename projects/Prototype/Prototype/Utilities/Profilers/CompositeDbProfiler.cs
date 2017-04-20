@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using System.Data.Common;
 
-namespace Prototype.Profilers
+namespace Prototype.Utilities.Profilers
 {
     /// <summary>
     /// DBプロファイラを複合するプロファイラ。

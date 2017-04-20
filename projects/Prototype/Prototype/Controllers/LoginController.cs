@@ -19,6 +19,7 @@ namespace Prototype.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);
             return View();
         }
 

@@ -190,10 +190,10 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\ValidationConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="DIAnnotations\RepositoryAttribute.cs" />
-    <Compile Include="DIAnnotations\ServiceAttribute.cs" />
-    <Compile Include="DIAnnotations\ComponentAttribute.cs" />
-    <Compile Include="Filters\GlobalHandleErrorAttribute.cs" />
+    <Compile Include="Utilities\Annotations\RepositoryAttribute.cs" />
+    <Compile Include="Utilities\Annotations\ServiceAttribute.cs" />
+    <Compile Include="Utilities\Annotations\ComponentAttribute.cs" />
+    <Compile Include="Utilities\Filters\GlobalHandleErrorAttribute.cs" />
     <Compile Include="Constants\Lifetime.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExcelController.cs" />
@@ -202,16 +202,16 @@
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entities\Clob01.cs" />
-    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
-    <Compile Include="Extensions\ModelStateDictionaryExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Utilities\Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Utilities\Extensions\ModelStateDictionaryExtensions.cs" />
+    <Compile Include="Utilities\Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interop\InteropExcel.cs" />
+    <Compile Include="Utilities\Interop\InteropExcel.cs" />
     <Compile Include="Models\TestComponent.cs" />
-    <Compile Include="Profilers\CompositeDbProfiler.cs" />
-    <Compile Include="Profilers\TraceDbProfiler.cs" />
+    <Compile Include="Utilities\Profilers\CompositeDbProfiler.cs" />
+    <Compile Include="Utilities\Profilers\TraceDbProfiler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\TestRepository.cs" />
     <Compile Include="Repositories\Clob01Repository.cs" />
@@ -224,12 +224,12 @@
     <Compile Include="Services\AnalyzableServiceBase.cs" />
     <Compile Include="Services\TestAnalyzableService.cs" />
     <Compile Include="Services\TestService.cs" />
-    <Compile Include="Validations\MaxLengthAttribute.cs" />
-    <Compile Include="Validations\MaxByteAttribute.cs" />
-    <Compile Include="Validations\MinByteAttribute.cs" />
-    <Compile Include="Validations\MinLengthAttribute.cs" />
-    <Compile Include="Validations\AlphabetAttribute.cs" />
-    <Compile Include="Validations\RequiredAttribute.cs" />
+    <Compile Include="Utilities\Validations\MaxLengthAttribute.cs" />
+    <Compile Include="Utilities\Validations\MaxByteAttribute.cs" />
+    <Compile Include="Utilities\Validations\MinByteAttribute.cs" />
+    <Compile Include="Utilities\Validations\MinLengthAttribute.cs" />
+    <Compile Include="Utilities\Validations\AlphabetAttribute.cs" />
+    <Compile Include="Utilities\Validations\RequiredAttribute.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ValidationTestViewModel.cs" />
   </ItemGroup>
@@ -392,7 +392,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Factories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

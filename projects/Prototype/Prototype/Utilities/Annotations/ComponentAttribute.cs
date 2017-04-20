@@ -1,7 +1,7 @@
 ﻿using Prototype.Constants;
 using System;
 
-namespace Prototype.DIAnnotations
+namespace Prototype.Utilities.Annotations
 {
     /// <summary>
     /// DIコンテナによって依存性を注入するコンポーネントに使用される属性を表します。

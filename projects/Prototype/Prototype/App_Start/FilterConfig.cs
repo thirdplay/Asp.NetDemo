@@ -1,4 +1,4 @@
-﻿using Prototype.Filters;
+﻿using Prototype.Utilities.Filters;
 using System.Web.Mvc;
 
 namespace Prototype

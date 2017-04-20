@@ -2,9 +2,9 @@
 using Microsoft.Practices.ServiceLocation;
 using OfficeOpenXml;
 using Prototype.Constants;
-using Prototype.DIAnnotations;
+using Prototype.Utilities.Annotations;
 using Prototype.Entities;
-using Prototype.Interop;
+using Prototype.Utilities.Interop;
 using Prototype.Models;
 using Prototype.Repositories;
 using System;

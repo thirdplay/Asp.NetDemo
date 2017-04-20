@@ -1,4 +1,4 @@
-﻿using Prototype.Extensions;
+﻿using Prototype.Utilities.Extensions;
 using Prototype.Resources;
 using System.Web.Mvc;
 
@@ -7,6 +7,7 @@ namespace Prototype.Controllers
     /// <summary>
     /// コントローラーの基底クラス。
     /// </summary>
+    [Authorize]
     public abstract class ControllerBase : Controller
     {
         /// <summary>

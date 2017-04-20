@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 
-namespace Prototype.Profilers
+namespace Prototype.Utilities.Profilers
 {
     /// <summary>
     /// トレースDBプロファイラ。
