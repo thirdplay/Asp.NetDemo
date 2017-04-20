@@ -50,6 +50,8 @@ namespace Prototype.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult Save(ValidationTestViewModel model)
         {
+            //ボタンのPOST有無で振り分け
+            //this.Request.Form["Save"]
             if (!this.ModelState.IsValid)
             {
                 return GetErrorResult();
