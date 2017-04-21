@@ -19,6 +19,9 @@ namespace Prototype
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MinByteAttribute), typeof(MinByteAttributeAdapter));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MaxByteAttribute), typeof(MaxByteAttributeAdapter));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AlphabetAttribute), typeof(AlphabetAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AlphaNumberAttribute), typeof(AlphaNumberAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AlphaNumberSymbolAttribute), typeof(AlphaNumberSymbolAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(NumberAttribute), typeof(NumberAttributeAdapter));
         }
     }
 }

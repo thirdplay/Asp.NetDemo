@@ -139,18 +139,21 @@
     <value>{0}は半角英数で入力してください。</value>
   </data>
   <data name="MS008" xml:space="preserve">
-    <value>{0}はyyyy/MM/dd形式の正しい日付で入力してください。</value>
+    <value>{0}は半角英数記号で入力してください。</value>
   </data>
   <data name="MS009" xml:space="preserve">
-    <value>{0}は数値形式で入力してください。</value>
+    <value>{0}はyyyy/MM/dd形式の正しい日付で入力してください。</value>
   </data>
   <data name="MS010" xml:space="preserve">
-    <value>{0}は{1}以下で入力してください。</value>
+    <value>{0}は数値形式で入力してください。</value>
   </data>
   <data name="MS011" xml:space="preserve">
-    <value>{0}は{1}以上で入力してください。</value>
+    <value>{0}は{1}以下で入力してください。</value>
   </data>
   <data name="MS012" xml:space="preserve">
+    <value>{0}は{1}以上で入力してください。</value>
+  </data>
+  <data name="MS013" xml:space="preserve">
     <value>入力に誤りがあります。</value>
   </data>
 </root>

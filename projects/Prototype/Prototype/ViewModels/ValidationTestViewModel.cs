@@ -51,6 +51,20 @@ namespace Prototype.ViewModels
         public string AlphabetItem { get; set; }
 
         /// <summary>
+        /// 半角英数項目
+        /// </summary>
+        [AlphaNumber]
+        [DisplayName("半角英数項目")]
+        public string AlphaNumberItem { get; set; }
+
+        /// <summary>
+        /// 半角英数記号項目
+        /// </summary>
+        [AlphaNumberSymbol]
+        [DisplayName("半角英数記号項目")]
+        public string AlphaNumberSymbolItem { get; set; }
+
+        /// <summary>
         /// ラジオ項目1
         /// </summary>
         [DisplayName("ラジオ項目1")]

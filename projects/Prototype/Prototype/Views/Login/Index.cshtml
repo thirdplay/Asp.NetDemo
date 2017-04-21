@@ -42,7 +42,8 @@
          */
         function onSuccess(data) {
             if (data.Result) {
-                window.open('@Url.Action("Index", "Test")');
+                location.href = '@Url.Action("Index", "Test")';
+                //window.open('@Url.Action("Index", "Test")');
                 //window.open('about:blank', '_self').close();
             } else {
                 PROTOTYPE.common.showMessage(data.Message);

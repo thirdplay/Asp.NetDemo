@@ -224,6 +224,9 @@
     <Compile Include="Services\AnalyzableServiceBase.cs" />
     <Compile Include="Services\TestAnalyzableService.cs" />
     <Compile Include="Services\TestService.cs" />
+    <Compile Include="Utilities\Validations\NumberAttribute.cs" />
+    <Compile Include="Utilities\Validations\AlphaNumberSymbolAttribute.cs" />
+    <Compile Include="Utilities\Validations\AlphaNumberAttribute.cs" />
     <Compile Include="Utilities\Validations\MaxLengthAttribute.cs" />
     <Compile Include="Utilities\Validations\MaxByteAttribute.cs" />
     <Compile Include="Utilities\Validations\MinByteAttribute.cs" />

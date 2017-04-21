@@ -17,7 +17,7 @@ namespace Prototype.Controllers
         /// <returns>JSON結果</returns>
         protected JsonResult GetErrorResult(string message = null)
         {
-            message = message ?? Messages.MS012;
+            message = message ?? Messages.MS013;
             return new JsonResult()
             {
                 Data = new

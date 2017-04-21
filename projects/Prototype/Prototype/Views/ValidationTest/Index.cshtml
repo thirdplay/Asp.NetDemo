@@ -61,6 +61,20 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.AlphaNumberItem, new { @class = "col-xs-2 control-label" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(m => m.AlphaNumberItem, new { @class = "form-control" })
+            @Html.ValidationFieldFor(m => m.AlphaNumberItem)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.AlphaNumberSymbolItem, new { @class = "col-xs-2 control-label" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(m => m.AlphaNumberSymbolItem, new { @class = "form-control" })
+            @Html.ValidationFieldFor(m => m.AlphaNumberItem)
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.RadioItem1, new { @class = "col-xs-2 control-label" })
         <div class="col-xs-10">
             @Html.Label("", @Prototype.Resources.Messages.MS001)

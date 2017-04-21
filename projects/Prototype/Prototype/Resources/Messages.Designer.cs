@@ -124,7 +124,7 @@ namespace Prototype.Resources {
         }
         
         /// <summary>
-        ///   {0}はyyyy/MM/dd形式の正しい日付で入力してください。 に類似しているローカライズされた文字列を検索します。
+        ///   {0}は半角英数記号で入力してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string MS008 {
             get {
@@ -133,7 +133,7 @@ namespace Prototype.Resources {
         }
         
         /// <summary>
-        ///   {0}は数値形式で入力してください。 に類似しているローカライズされた文字列を検索します。
+        ///   {0}はyyyy/MM/dd形式の正しい日付で入力してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string MS009 {
             get {
@@ -142,7 +142,7 @@ namespace Prototype.Resources {
         }
         
         /// <summary>
-        ///   {0}は{1}以下で入力してください。 に類似しているローカライズされた文字列を検索します。
+        ///   {0}は数値形式で入力してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string MS010 {
             get {
@@ -151,7 +151,7 @@ namespace Prototype.Resources {
         }
         
         /// <summary>
-        ///   {0}は{1}以上で入力してください。 に類似しているローカライズされた文字列を検索します。
+        ///   {0}は{1}以下で入力してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string MS011 {
             get {
@@ -160,11 +160,20 @@ namespace Prototype.Resources {
         }
         
         /// <summary>
-        ///   入力に誤りがあります。 に類似しているローカライズされた文字列を検索します。
+        ///   {0}は{1}以上で入力してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string MS012 {
             get {
                 return ResourceManager.GetString("MS012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   入力に誤りがあります。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MS013 {
+            get {
+                return ResourceManager.GetString("MS013", resourceCulture);
             }
         }
     }
