@@ -31,13 +31,16 @@ namespace Prototype.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);
             var model = new ValidationTestViewModel()
             {
                 MinLengthItem = "A",
                 MaxLengthItem = "AAAAA",
                 MinByteItem = "あ",
                 MaxByteItem = "い",
-                AlphabetItem = "あ"
+                AlphabetItem = "1",
+                AlphaNumberItem = "@",
+                AlphaNumberSymbolItem = "あ"
             };
             return View(model);
         }

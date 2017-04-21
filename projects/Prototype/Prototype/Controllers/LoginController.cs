@@ -50,16 +50,14 @@ namespace Prototype.Controllers
         /// ログアウト。
         /// </summary>
         /// <returns>アクション結果</returns>
+        [HttpGet]
         public ActionResult Logout()
         {
             // ログアウト処理
             FormsAuthentication.SignOut();
             this.HttpContext.Session.RemoveAll();
 
-            return new JsonResult()
-            {
-                Data = new { Result = true }
-            };
+            return RedirectToAction("Index");
         }
     }
 }

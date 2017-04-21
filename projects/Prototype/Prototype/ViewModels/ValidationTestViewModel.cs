@@ -1,12 +1,14 @@
 ﻿using Prototype.Utilities.Validations;
 using System.ComponentModel;
+using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
+using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace Prototype.ViewModels
 {
     /// <summary>
     /// 入力検証画面のViewModel
     /// </summary>
-    public class ValidationTestViewModel
+    public class ValidationTestViewModel : ViewModelBase
     {
         /// <summary>
         /// 必須項目
@@ -70,7 +72,7 @@ namespace Prototype.ViewModels
         [DisplayName("ラジオ項目1")]
         public string RadioItem1 { get; set; }
         [DisplayName("ラジオ項目2")]
-        public string RadioItem2{ get; set; }
+        public string RadioItem2 { get; set; }
         [DisplayName("ラジオ項目3")]
         public string RadioItem3 { get; set; }
     }

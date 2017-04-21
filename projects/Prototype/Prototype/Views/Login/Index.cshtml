@@ -42,9 +42,9 @@
          */
         function onSuccess(data) {
             if (data.Result) {
-                location.href = '@Url.Action("Index", "Test")';
-                //window.open('@Url.Action("Index", "Test")');
-                //window.open('about:blank', '_self').close();
+                var win = window.open('about:blank', 'prototype', 'menubar=no,location=no,resizable=yes,scrollbars=yes,status=yes');
+                win.location.href = '@Url.Action("Index", "Test")';
+                window.open('about:blank', '_self').close();
             } else {
                 PROTOTYPE.common.showMessage(data.Message);
                 PROTOTYPE.common.showValidationErrors(data.Errors);
