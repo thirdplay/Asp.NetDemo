@@ -20,6 +20,8 @@ namespace Prototype.Controllers
         public ActionResult Index()
         {
             System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);
+            System.Diagnostics.Debug.WriteLine("UrlReferrer:" + this.HttpContext.Request.UrlReferrer);
+            System.Diagnostics.Debug.WriteLine("ReturnUrl:" + this.HttpContext.Request.Params.Get("ReturnUrl"));
             return View();
         }
 

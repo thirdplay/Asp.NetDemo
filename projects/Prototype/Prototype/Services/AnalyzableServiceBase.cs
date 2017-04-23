@@ -138,7 +138,7 @@ namespace Prototype.Services
         //protected abstract void AnalyzeData<TData>(TData data);
         //protected abstract string CreateResult<TData>(TData data);
 
-#region IDispose members
+        #region IDispose members
 
         /// <summary>
         /// このインスタンスによって使用されているリソースを全て破棄します。
@@ -148,6 +148,6 @@ namespace Prototype.Services
             //this.Logger.Debug("AnalyzableServiceBase:Dispose");
         }
 
-#endregion
+        #endregion
     }
 }

@@ -2,6 +2,7 @@
 using Prototype.Services;
 using Prototype.Utilities.Annotations;
 using Prototype.ViewModels;
+using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 
@@ -43,6 +44,11 @@ namespace Prototype.Controllers
                 AlphaNumberItem = "@",
                 AlphaNumberSymbolItem = "あ"
             };
+            //this.ViewBag.CategoryId = Enumerable.Range(1, 5).Select(p => new SelectListItem
+            //{
+            //    Text = "項目" + p,
+            //    Value = p.ToString()
+            //});
             return View(model);
         }
 
@@ -56,8 +62,6 @@ namespace Prototype.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(ValidationTestViewModel model)
         {
-            //ボタンのPOST有無で振り分け
-            //this.Request.Form["Save"]
             if (!this.ModelState.IsValid)
             {
                 return GetErrorResult();

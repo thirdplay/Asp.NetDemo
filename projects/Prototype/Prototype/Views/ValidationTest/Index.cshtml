@@ -77,10 +77,10 @@
     <div class="form-group">
         @Html.LabelFor(m => m.RadioItem1, new { @class = "col-xs-2 control-label" })
         <div class="col-xs-10">
-            @Html.Label("", @Prototype.Resources.Messages.MS001)
-            @Html.RadioButton("RadioItem1", "1")
-            @Html.RadioButton("RadioItem1", "2")
-            @Html.RadioButton("RadioItem1", "3")
+            @*@Html.Label("", @Prototype.Resources.Messages.MS001)*@
+            @Html.RadioButtonFor(m => m.RadioItem1, "1", new { @id = "RadioItem-1" })
+            @Html.RadioButtonFor(m => m.RadioItem1, "2", new { @id = "RadioItem-2" })
+            @Html.RadioButtonFor(m => m.RadioItem1, "3", new { @id = "RadioItem-3" })
         </div>
     </div>
     <div class="form-group">

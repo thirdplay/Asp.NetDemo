@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Web.Mvc;
@@ -49,5 +51,26 @@ namespace Prototype.Utilities.Extensions
 
             return MvcHtmlString.Create(result.ToString());
         }
+
+        // TODO:必要に応じて復活させる
+#if false
+        /// <summary>
+        /// セレクトボックスの選択中の項目のテキストについて、HTML マークアップを返します。
+        /// </summary>
+        /// <typeparam name="TModel">モデルの型</typeparam>
+        /// <typeparam name="TProperty">プロパティの型</typeparam>
+        /// <param name="htmlHelper">このメソッドによって拡張される HTML ヘルパー インスタンス</param>
+        /// <param name="expression">表示するプロパティを格納しているオブジェクトを識別する式</param>
+        /// <returns>セレクトボックス要素。</returns>
+        public static MvcHtmlString DisplaySelectFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
+        {
+            var name = ExpressionHelper.GetExpressionText(expression);
+            var metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+            var value = metadata.Model.ToString();
+            var selectList = (IEnumerable<SelectListItem>)htmlHelper.ViewData.Eval(name);
+
+            return MvcHtmlString.Create(selectList.First(p => p.Value == value).Text);
+        }
+#endif
     }
 }

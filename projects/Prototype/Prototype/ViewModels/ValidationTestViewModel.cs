@@ -75,5 +75,11 @@ namespace Prototype.ViewModels
         public string RadioItem2 { get; set; }
         [DisplayName("ラジオ項目3")]
         public string RadioItem3 { get; set; }
+
+        /// <summary>
+        /// カテゴリID
+        /// </summary>
+        //[DisplayName("カテゴリID")]
+        //public string CategoryId { get; set; }
     }
 }
