@@ -13,7 +13,7 @@
         OnFailure = "onFailure"
     };
 }
-@using (Ajax.BeginForm("Save", "ValidationTest", ajaxOptions, new { @class = "form-horizontal" }))
+@using (Ajax.BeginForm("Execute", "ValidationTest", ajaxOptions, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
     <hr />

@@ -189,6 +189,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\ValidationConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Utilities\Annotations\ButtonName.cs" />
     <Compile Include="Utilities\Annotations\RepositoryAttribute.cs" />
     <Compile Include="Utilities\Annotations\ServiceAttribute.cs" />
     <Compile Include="Utilities\Annotations\ComponentAttribute.cs" />

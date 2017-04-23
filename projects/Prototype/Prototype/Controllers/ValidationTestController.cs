@@ -1,5 +1,6 @@
 ﻿using log4net;
 using Prototype.Services;
+using Prototype.Utilities.Annotations;
 using Prototype.ViewModels;
 using System.Reflection;
 using System.Web.Mvc;
@@ -48,10 +49,12 @@ namespace Prototype.Controllers
         /// <summary>
         /// 入力検証：保存
         /// </summary>
-        /// <returns>JSON結果</returns>
+        /// <returns>アクション結果</returns>
         [HttpPost]
+        [ButtonName("Save")]
+        [ActionName("Execute")]
         [ValidateAntiForgeryToken]
-        public JsonResult Save(ValidationTestViewModel model)
+        public ActionResult Save(ValidationTestViewModel model)
         {
             //ボタンのPOST有無で振り分け
             //this.Request.Form["Save"]
@@ -62,6 +65,22 @@ namespace Prototype.Controllers
 
             // TODO:保存処理
 
+            return new JsonResult()
+            {
+                Data = new { Result = true }
+            };
+        }
+
+        /// <summary>
+        /// 入力検証：保存
+        /// </summary>
+        /// <returns>アクション結果</returns>
+        [HttpPost]
+        [ButtonName("Cancel")]
+        [ActionName("Execute")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Cancel(ValidationTestViewModel model)
+        {
             return new JsonResult()
             {
                 Data = new { Result = true }

@@ -16,7 +16,7 @@ namespace Prototype.ViewModels
         /// </summary>
         /// <param name="validationContext">検証コンテキスト</param>
         /// <returns>検証の失敗の情報を保持するコレクション</returns>
-        public virtual IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(System.ComponentModel.DataAnnotations.ValidationContext validationContext)
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             return Enumerable.Empty<ValidationResult>();
         }
