@@ -67,6 +67,13 @@ namespace Prototype.ViewModels
         public string AlphaNumberSymbolItem { get; set; }
 
         /// <summary>
+        /// 数値項目
+        /// </summary>
+        [Number]
+        [DisplayName("数値項目")]
+        public string NumberItem { get; set; }
+
+        /// <summary>
         /// ラジオ項目1
         /// </summary>
         [DisplayName("ラジオ項目1")]

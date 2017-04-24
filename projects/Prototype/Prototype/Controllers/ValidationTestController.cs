@@ -42,7 +42,8 @@ namespace Prototype.Controllers
                 MaxByteItem = "い",
                 AlphabetItem = "1",
                 AlphaNumberItem = "@",
-                AlphaNumberSymbolItem = "あ"
+                AlphaNumberSymbolItem = "あ",
+                NumberItem = "-1"
             };
             //this.ViewBag.CategoryId = Enumerable.Range(1, 5).Select(p => new SelectListItem
             //{
