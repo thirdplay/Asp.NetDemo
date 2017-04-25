@@ -55,7 +55,6 @@ namespace Prototype.Controllers
                 process.WaitForExit();
             }
 #endif
-            //this.HttpContext.Session["UserId"] = "TestUser";
             this.logger.Debug("TestController:Index");
             this.logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             this.logger.Debug("TableCount:" + this.testService.GetTableCount());
