@@ -85,6 +85,7 @@ namespace Prototype.Controllers
                     };
 #endif
         }
+
         private Task<string> ExecuteAnalyze()
         {
             //System.Diagnostics.Debug.WriteLine("Name:" + this.HttpContext.User.Identity.Name);
@@ -225,7 +226,7 @@ namespace Prototype.Controllers
                     worksheet.Cells[7, 4].Formula = "B7 * C7";
                     worksheet.Cells[8, 4].Formula = "B8 * C8";
 
-                    // 印刷設定            
+                    // 印刷設定
                     worksheet.PrinterSettings.Orientation = eOrientation.Landscape;
                     worksheet.PrinterSettings.FitToPage = true;
                     worksheet.PrinterSettings.FitToWidth = 1;
@@ -283,25 +284,5 @@ namespace Prototype.Controllers
 #endif
             });
         }
-
-        ///// <summary>
-        ///// キャンセル要求。
-        ///// </summary>
-        //[HttpPost]
-        //public JsonResult Cancel()
-        //{
-        //    Debug.WriteLine("ThreadId:" + Thread.CurrentThread.ManagedThreadId);
-        //    Debug.WriteLine("SessionId:" + this.HttpContext.Session.SessionID);
-        //    Debug.WriteLine("SessionCount:" + this.HttpContext.Session.Count);
-        //    Debug.WriteLine("CancelBefore:" + this.HttpContext.Session["CancelToken"]);
-        //    var tokenSource = this.HttpContext.Session["CancelToken"] as CancellationTokenSource;
-        //    if (tokenSource != null)
-        //    {
-        //        tokenSource.Cancel();
-        //    }
-        //    Debug.WriteLine("CancelAfter:" + this.HttpContext.Session["CancelToken"]);
-
-        //    return new JsonResult();
-        //}
     }
 }
