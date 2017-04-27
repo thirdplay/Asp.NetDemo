@@ -1,22 +1,15 @@
-﻿    <div class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("アプリケーション名", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("テスト", "Index", "Test")</li>
-                    <li>@Html.ActionLink("入力検証テスト", "Index", "ValidationTest")</li>
-                    <li>@Html.ActionLink("ログアウト", "Logout", "Login")</li>
-                    @*<li>@Html.ActionLink("ホーム", "Index", "Home")</li>
-                    <li>@Html.ActionLink("詳細", "About", "Home")</li>
-                    <li>@Html.ActionLink("連絡先", "Contact", "Home")</li>*@
-                </ul>
-            </div>
+﻿<div class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            @Html.ActionLink("アプリケーション名", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("テスト", "Index", "Test")</li>
+            <li>@Html.ActionLink("入力検証テスト", "Index", "ValidationTest")</li>
+            <li>
+                <a href="@Url.Action("Logout", "Login")"><span class="glyphicon glyphicon-log-out"> ログアウト</span></a>
+                @*@Html.ActionLink("ログアウト", "Logout", "Login")*@
+            </li>
+        </ul>
     </div>
+</div>
