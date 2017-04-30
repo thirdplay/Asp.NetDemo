@@ -42,9 +42,18 @@ namespace Prototype.Repositories
         /// <returns>件数</returns>
         public int CountTable()
         {
+            var where = new string[] { @"TABLE_NAME = :TABLE_NAME1", @"TABLE_NAME = :TABLE_NAME2" };
+            DynamicParameters p = new DynamicParameters();
+            p.Add("TABLE_NAME1", "TEST");
+            p.Add("TABLE_NAME2", "M_USER");
             return this.Connection.Query<int>(
-                "select count(*) from USER_TABLES"
+                @"select count(*) from USER_TABLES where " + string.Join(" OR ", where),
+                p
             ).FirstOrDefault();
+            //return this.Connection.Query<int>(
+            //    "select count(*) from USER_TABLES where TABLE_NAME = :Names",
+            //    new { Names = new string[] { "Test", "M_USER" } }
+            //).FirstOrDefault();
         }
     }
 }
