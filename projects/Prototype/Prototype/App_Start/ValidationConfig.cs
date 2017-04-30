@@ -1,5 +1,9 @@
-﻿using Prototype.Utilities.Validations;
-using DataAnnotationsModelValidatorProvider = System.Web.Mvc.DataAnnotationsModelValidatorProvider;
+﻿using Prototype.Resources;
+using Prototype.Mvc.Validations;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using ValidationAttribute = System.ComponentModel.DataAnnotations.ValidationAttribute;
 
 namespace Prototype
 {
@@ -13,15 +17,47 @@ namespace Prototype
         /// </summary>
         public static void RegisterAdapter()
         {
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(RequiredAttribute), typeof(RequiredAttributeAdapter));
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MinLengthAttribute), typeof(MinLengthAttributeAdapter));
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MaxLengthAttribute), typeof(MaxLengthAttributeAdapter));
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MinByteAttribute), typeof(MinByteAttributeAdapter));
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(MaxByteAttribute), typeof(MaxByteAttributeAdapter));
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AlphabetAttribute), typeof(AlphabetAttributeAdapter));
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AlphaNumberAttribute), typeof(AlphaNumberAttributeAdapter));
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AlphaNumberSymbolAttribute), typeof(AlphaNumberSymbolAttributeAdapter));
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(NumberAttribute), typeof(NumberAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterDefaultAdapter(typeof(ValidationAttributeAdapter));
+        }
+    }
+
+    /// <summary>
+    /// 入力検証属性のアダプタを提供します。
+    /// </summary>
+    public class ValidationAttributeAdapter : DataAnnotationsModelValidator
+    {
+        /// <summary>
+        /// 入力検証とメッセージコードの組み合わせを表す。
+        /// </summary>
+        private static readonly Dictionary<Type, string> validations = new Dictionary<Type, string>()
+        {
+            {typeof(RequiredAttribute), "MS001"},
+            {typeof(MinLengthAttribute), "MS002"},
+            {typeof(MaxLengthAttribute), "MS003"},
+            {typeof(MinByteAttribute), "MS004"},
+            {typeof(MaxByteAttribute), "MS005"},
+            {typeof(AlphabetAttribute), "MS006"},
+            {typeof(AlphaNumberAttribute), "MS007"},
+            {typeof(AlphaNumberSymbolAttribute), "MS008"},
+            {typeof(NumberAttribute), "MS010"},
+        };
+
+        /// <summary>
+        /// コンストラクタ。
+        /// </summary>
+        /// <param name="metadata">モデルのメタデータ</param>
+        /// <param name="context">コントローラーのコンテキスト</param>
+        /// <param name="attribute">対象の入力検証属性</param>
+        public ValidationAttributeAdapter(ModelMetadata metadata, ControllerContext context, ValidationAttribute attribute)
+            : base(metadata, context, attribute)
+        {
+            var type = attribute.GetType();
+            if (validations.ContainsKey(type))
+            {
+                attribute.ErrorMessageResourceType = typeof(Messages);
+                attribute.ErrorMessageResourceName = validations[type];
+                attribute.ErrorMessage = null;
+            }
         }
     }
 }

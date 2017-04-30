@@ -13,9 +13,6 @@ namespace Prototype
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
-
             bundles.Add(new ScriptBundle("~/bundles/microsoftajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js",
                         "~/Scripts/MicrosoftAjax.js",
@@ -23,16 +20,15 @@ namespace Prototype
 
             // 開発と学習には、Modernizr の開発バージョンを使用します。次に、実稼働の準備が
             // できたら、http://modernizr.com にあるビルド ツールを使用して、必要なテストのみを選択します。
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+            //            "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/non-responsive.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/non-responsive.css",
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/prototype").Include(
