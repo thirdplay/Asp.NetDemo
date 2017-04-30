@@ -1,6 +1,6 @@
 ﻿using log4net;
 using Prototype.Services;
-using Prototype.Utilities.Annotations;
+using Prototype.Mvc.Annotations;
 using Prototype.ViewModels;
 using System.Linq;
 using System.Reflection;

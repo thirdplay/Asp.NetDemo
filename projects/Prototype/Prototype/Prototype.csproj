@@ -191,6 +191,7 @@
     <Compile Include="Mvc\Annotations\RepositoryAttribute.cs" />
     <Compile Include="Mvc\Annotations\ServiceAttribute.cs" />
     <Compile Include="Mvc\Annotations\ComponentAttribute.cs" />
+    <Compile Include="Mvc\DapperExtensions.cs" />
     <Compile Include="Mvc\Filters\GlobalHandleErrorAttribute.cs" />
     <Compile Include="Constants\Lifetime.cs" />
     <Compile Include="Controllers\ErrorController.cs" />

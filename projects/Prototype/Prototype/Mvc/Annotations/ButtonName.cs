@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Web.Mvc;
 
-namespace Prototype.Utilities.Annotations
+namespace Prototype.Mvc.Annotations
 {
     /// <summary>
     /// アクション メソッドの選択に影響する属性を表します。

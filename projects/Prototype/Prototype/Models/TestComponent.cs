@@ -1,6 +1,6 @@
 ﻿using log4net;
 using Prototype.Constants;
-using Prototype.Utilities.Annotations;
+using Prototype.Mvc.Annotations;
 using System;
 using System.Reflection;
 

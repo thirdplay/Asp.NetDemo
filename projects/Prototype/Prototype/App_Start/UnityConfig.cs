@@ -2,8 +2,8 @@ using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Oracle.ManagedDataAccess.Client;
 using Prototype.Constants;
-using Prototype.Utilities.Annotations;
-using Prototype.Utilities.Profilers;
+using Prototype.Mvc.Annotations;
+using Prototype.Mvc.Profilers;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
 using System;
@@ -50,7 +50,7 @@ namespace Prototype
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
 
-            // DbConnection 
+            // DbConnection
             container.RegisterType<DbConnection>(
                 new PerRequestLifetimeManager(),
                 new InjectionFactory(_ =>

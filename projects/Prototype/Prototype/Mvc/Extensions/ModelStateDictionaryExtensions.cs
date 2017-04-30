@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Prototype.Utilities.Extensions
+namespace Prototype.Mvc.Extensions
 {
     /// <summary>
     /// モデルバインディング状態の拡張機能を提供します。

@@ -2,7 +2,7 @@
 using Microsoft.Practices.ServiceLocation;
 using OfficeOpenXml;
 using Prototype.Constants;
-using Prototype.Utilities.Annotations;
+using Prototype.Mvc.Annotations;
 using Prototype.Entities;
 using Prototype.Models;
 using Prototype.Repositories;
@@ -77,6 +77,6 @@ namespace Prototype.Services
             this.logger.Debug("TestService:Dispose");
         }
 
-        #endregion
+        #endregion IDispose members
     }
 }

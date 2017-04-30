@@ -1,4 +1,4 @@
-﻿using Prototype.Utilities.Extensions;
+﻿using Prototype.Mvc.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Reactive.Disposables;
 using System.IO;
 
-namespace Prototype.Utilities.Interop
+namespace Prototype.Mvc.Interop
 {
     /// <summary>
     /// Interop.Excelアプリケーションを操作する機能を提供します。
@@ -48,7 +48,7 @@ namespace Prototype.Utilities.Interop
         /// </summary>
         private Excel.Sheets sheets;
 
-        #endregion
+        #endregion Fields
 
         /// <summary>
         /// 複数のIDisposableオブジェクトをまとめたコレクション
@@ -80,10 +80,10 @@ namespace Prototype.Utilities.Interop
         /// <example>
         /// // ワークブックのマクロ呼び出し
         /// Run("This.Workbook.TestMacro");
-        /// 
+        ///
         /// // シートのマクロ呼び出し
         /// Run("Sheet1.TestMacro");
-        /// 
+        ///
         /// // 標準モジュールのマクロ呼び出し
         /// Run("TestMacro");
         /// </example>

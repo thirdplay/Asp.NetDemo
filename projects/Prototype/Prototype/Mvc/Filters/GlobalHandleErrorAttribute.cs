@@ -4,7 +4,7 @@ using System.Net;
 using System.Reflection;
 using System.Web.Mvc;
 
-namespace Prototype.Utilities.Filters
+namespace Prototype.Mvc.Filters
 {
     /// <summary>
     /// 全てのアクションメソッドがスローした例外の処理に使用される属性を表します。

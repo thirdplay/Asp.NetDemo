@@ -5,7 +5,7 @@ using System.Web;
 using Microsoft.Practices.ServiceLocation;
 using Prototype.Entities;
 using Dapper;
-using Prototype.Utilities.Annotations;
+using Prototype.Mvc.Annotations;
 
 namespace Prototype.Repositories
 {

@@ -1,7 +1,7 @@
 ﻿using Prototype.Constants;
 using System;
 
-namespace Prototype.Utilities.Annotations
+namespace Prototype.Mvc.Annotations
 {
     /// <summary>
     /// DIコンテナによって依存性を注入するサービスに使用される属性を表します。

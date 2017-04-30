@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Prototype.Utilities.Extensions
+namespace Prototype.Mvc.Extensions
 {
     /// <summary>
     /// 文字列の拡張機能を提供します。

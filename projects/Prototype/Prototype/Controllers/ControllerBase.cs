@@ -1,4 +1,4 @@
-﻿using Prototype.Utilities.Extensions;
+﻿using Prototype.Mvc.Extensions;
 using Prototype.Resources;
 using System.Web.Mvc;
 

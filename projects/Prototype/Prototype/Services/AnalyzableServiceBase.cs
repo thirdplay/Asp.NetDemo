@@ -2,9 +2,9 @@
 using Microsoft.Practices.ServiceLocation;
 using OfficeOpenXml;
 using Prototype.Constants;
-using Prototype.Utilities.Annotations;
+using Prototype.Mvc.Annotations;
 using Prototype.Entities;
-using Prototype.Utilities.Interop;
+using Prototype.Mvc.Interop;
 using Prototype.Models;
 using Prototype.Repositories;
 using System;
@@ -148,6 +148,6 @@ namespace Prototype.Services
             //this.Logger.Debug("AnalyzableServiceBase:Dispose");
         }
 
-        #endregion
+        #endregion IDispose members
     }
 }

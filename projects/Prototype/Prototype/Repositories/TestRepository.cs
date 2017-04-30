@@ -5,7 +5,8 @@ using System.Web;
 using Microsoft.Practices.ServiceLocation;
 using Prototype.Entities;
 using Dapper;
-using Prototype.Utilities.Annotations;
+using Prototype.Mvc.Annotations;
+using Prototype.Mvc;
 
 namespace Prototype.Repositories
 {
@@ -42,14 +43,18 @@ namespace Prototype.Repositories
         /// <returns>件数</returns>
         public int CountTable()
         {
-            var where = new string[] { @"TABLE_NAME = :TABLE_NAME1", @"TABLE_NAME = :TABLE_NAME2" };
-            DynamicParameters p = new DynamicParameters();
-            p.Add("TABLE_NAME1", "TEST");
-            p.Add("TABLE_NAME2", "M_USER");
+            var list = new string[] { "TEST", "M_USER" }.ToList();
+            var parameters = new DynamicParameters();
             return this.Connection.Query<int>(
-                @"select count(*) from USER_TABLES where " + string.Join(" OR ", where),
-                p
+                @"select count(*) from USER_TABLES where " +
+                list.CreateDynamicCondition("TableName", x => @"TABLE_NAME = :" + x, "OR", ref parameters),
+                parameters
             ).FirstOrDefault();
+            //return this.Connection.Query<int>(
+            //    @"select count(*) from USER_TABLES where " +
+            //    string.Join(" OR ", list.Select((x, i) => @"TABLE_NAME = :TABLE_NAME" + i)),
+            //    p
+            //).FirstOrDefault();
             //return this.Connection.Query<int>(
             //    "select count(*) from USER_TABLES where TABLE_NAME = :Names",
             //    new { Names = new string[] { "Test", "M_USER" } }
