@@ -30,7 +30,9 @@ namespace Prototype.Mvc.Annotations
         /// <returns>アクション メソッドの選択が、指定されたコントローラー コンテキストで有効である場合は true。それ以外の場合は false</returns>
         public override bool IsValidForRequest(ControllerContext controllerContext, MethodInfo methodInfo)
         {
-            return controllerContext.Controller.ValueProvider.GetValue(this.ButtonName) != null;
+            var valueProvider = controllerContext.Controller.ValueProvider;
+            var value = valueProvider.GetValue("Button")?.AttemptedValue;
+            return value == this.ButtonName;
         }
     }
 }

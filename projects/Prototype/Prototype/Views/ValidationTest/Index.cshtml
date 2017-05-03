@@ -92,28 +92,41 @@
     </div>
     <div class="form-group">
         <div class="col-xs-offset-2 col-xs-10">
-            <button class="btn btn-default" name="Save"><span class="glyphicon glyphicon-saved"> 登録</span></button>
-            <button class="btn btn-default" name="Cancel"><span class="glyphicon glyphicon-saved"> キャンセル</span></button>
+            <button class="btn btn-default" name="Button" value="Save"><span class="glyphicon glyphicon-saved"> 登録</span></button>
+            <button class="btn btn-default" name="Button" value="Cancel"><span class="glyphicon glyphicon-saved"> キャンセル</span></button>
         </div>
     </div>
 }
 @section scripts {
-<script>
-    function onBegin(xhr) {
-        PROTOTYPE.common.hideMessage();
-        PROTOTYPE.common.hideValidationErrors();
-    }
-    function onSuccess(data, status, xhr) {
-        if (data.Result) {
-            alert('Success!!' + arguments.length);
-        } else {
-            PROTOTYPE.common.showMessage(data.Message);
-            PROTOTYPE.common.showValidationErrors(data.Errors);
+    <script>
+        function deserialize(data) {
+            var result = {};
+            if (data) {
+                var params = data.split('&');
+                for (var i = 0; i < params.length; i++) {
+                    var keyValue = params[i].split('=');
+                    result[keyValue[0]] = keyValue[1];
+                }
+            }
+            return result;
         }
-    }
-    //OnComplete – xhr, status
-    function onFailure(xhr, status, error) {
-        alert('Failure!!:' + arguments.length); //通信エラー
-    }
-</script>
+        function onBegin(xhr, settings) {
+            var params = deserialize(settings.data);
+            console.log(params.Button);
+            PROTOTYPE.common.hideMessage();
+            PROTOTYPE.common.hideValidationErrors();
+        }
+        function onSuccess(data, status, xhr) {
+            if (data.Result) {
+                alert('Success!!' + arguments.length);
+            } else {
+                PROTOTYPE.common.showMessage(data.Message);
+                PROTOTYPE.common.showValidationErrors(data.Errors);
+            }
+        }
+        //OnComplete – xhr, status
+        function onFailure(xhr, status, error) {
+            alert('Failure!!:' + arguments.length); //通信エラー
+        }
+    </script>
 }
