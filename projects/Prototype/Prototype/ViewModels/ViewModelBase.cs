@@ -9,8 +9,14 @@ namespace Prototype.ViewModels
     /// <summary>
     /// ViewModelの基底クラス。
     /// </summary>
+    [Serializable]
     public class ViewModelBase : IValidatableObject
     {
+        /// <summary>
+        /// ボタン。
+        /// </summary>
+        public string Button { get; set; }
+
         /// <summary>
         /// 指定したオブジェクトが有効かどうかを判断します。
         /// </summary>

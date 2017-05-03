@@ -1,4 +1,5 @@
 ﻿using Prototype.Mvc.Validations;
+using System;
 using System.ComponentModel;
 using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
@@ -86,9 +87,16 @@ namespace Prototype.ViewModels
         public string RadioItem3 { get; set; }
 
         /// <summary>
-        /// カテゴリID
+        /// 選択状態
         /// </summary>
-        //[DisplayName("カテゴリID")]
-        //public string CategoryId { get; set; }
+        public SelectType SelectType { get; set; }
+    }
+
+    public enum SelectType
+    {
+        Process,
+        Hinmei,
+        Hasei,
+        Rhinmei,
     }
 }

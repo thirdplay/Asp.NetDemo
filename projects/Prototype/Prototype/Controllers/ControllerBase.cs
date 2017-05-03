@@ -11,6 +11,18 @@ namespace Prototype.Controllers
     public abstract class ControllerBase : Controller
     {
         /// <summary>
+        ///アクション メソッドの呼び出し前に呼び出されます
+        /// </summary>
+        /// <param name="filterContext">現在の要求およびアクションに関する情報</param>
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (HttpContext.Request.IsAjaxRequest() && !ModelState.IsValid)
+            {
+                filterContext.Result = GetErrorResult();
+            }
+        }
+
+        /// <summary>
         /// エラー時のJSON結果を取得します。
         /// </summary>
         /// <param name="message">エラーメッセージ</param>

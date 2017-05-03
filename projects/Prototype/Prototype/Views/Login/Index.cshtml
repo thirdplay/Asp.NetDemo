@@ -8,7 +8,8 @@
     {
         HttpMethod = "POST",
         OnBegin = "onBegin",
-        OnSuccess = "onSuccess"
+        OnSuccess = "onSuccess",
+        OnFailure = "onFailure"
     };
 }
 @using (@Ajax.BeginForm("Login", "Login", ajaxOptions))
@@ -18,7 +19,7 @@
     @Html.MessageArea()
     <div class="form-group">
         @Html.LabelFor(m => m.UserId, new { @class = "control-label" })
-        @Html.TextBoxFor(m => m.UserId, new { @class="form-control" })
+        @Html.TextBoxFor(m => m.UserId, new { @class = "form-control" })
         @Html.ValidationFieldFor(m => m.UserId)
     </div>
     <div class="form-group">
@@ -40,7 +41,8 @@
         /**
          * ログイン成功処理.
          */
-        function onSuccess(data) {
+        function onSuccess(data, textStatus, jqXHR) {
+            alert('onSuccess');
             if (data.Result) {
                 var win = window.open('about:blank', 'prototype', 'menubar=no,location=no,resizable=yes,scrollbars=yes,status=yes');
                 win.location.href = '@Url.Action("Index", "Test")';
@@ -49,6 +51,12 @@
                 PROTOTYPE.common.showMessage(data.Message);
                 PROTOTYPE.common.showValidationErrors(data.Errors);
             }
+        }
+
+        function onFailure(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         }
     </script>
 }

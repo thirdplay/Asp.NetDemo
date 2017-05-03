@@ -125,8 +125,12 @@
             }
         }
         //OnComplete – xhr, status
-        function onFailure(xhr, status, error) {
-            alert('Failure!!:' + arguments.length); //通信エラー
+        function onFailure(jqXHR, textStatus, errorThrown) {
+            if (jqXHR.status == 500) {
+                document.head.innerHTML = "";
+                document.body.innerHTML = jqXHR.responseText;
+                $('html,body').scrollTop(0);
+            }
         }
     </script>
 }

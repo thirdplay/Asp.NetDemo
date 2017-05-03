@@ -33,18 +33,27 @@ namespace Prototype.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);
-            var model = new ValidationTestViewModel()
+            ValidationTestViewModel model;
+            if (this.HttpContext.Session["ValidationTest.ViewModel"] != null)
             {
-                MinLengthItem = "A",
-                MaxLengthItem = "AAAAA",
-                MinByteItem = "あ",
-                MaxByteItem = "い",
-                AlphabetItem = "1",
-                AlphaNumberItem = "@",
-                AlphaNumberSymbolItem = "あ",
-                NumberItem = "-1"
-            };
+                model = this.HttpContext.Session["ValidationTest.ViewModel"] as ValidationTestViewModel;
+            }
+            else
+            {
+                model = new ValidationTestViewModel()
+                {
+                    MinLengthItem = "A",
+                    MaxLengthItem = "AAAAA",
+                    MinByteItem = "あ",
+                    MaxByteItem = "い",
+                    AlphabetItem = "1",
+                    AlphaNumberItem = "@",
+                    AlphaNumberSymbolItem = "あ",
+                    NumberItem = "-1",
+                    SelectType = SelectType.Hinmei
+                };
+            }
+            System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);
             //this.ViewBag.CategoryId = Enumerable.Range(1, 5).Select(p => new SelectListItem
             //{
             //    Text = "項目" + p,
@@ -63,10 +72,7 @@ namespace Prototype.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(ValidationTestViewModel model)
         {
-            if (!this.ModelState.IsValid)
-            {
-                return GetErrorResult();
-            }
+            this.HttpContext.Session["ValidationTest.ViewModel"] = model;
 
             // TODO:保存処理
 

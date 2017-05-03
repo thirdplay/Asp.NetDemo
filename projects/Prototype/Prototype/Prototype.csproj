@@ -186,6 +186,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\ValidationConfig.cs" />
+    <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Mvc\Annotations\ButtonName.cs" />
     <Compile Include="Mvc\Annotations\RepositoryAttribute.cs" />

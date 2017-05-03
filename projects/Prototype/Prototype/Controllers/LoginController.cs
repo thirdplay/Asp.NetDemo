@@ -1,6 +1,8 @@
-﻿using Prototype.ViewModels;
+﻿using Prototype.Constants;
+using Prototype.ViewModels;
 using System;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -17,12 +19,17 @@ namespace Prototype.Controllers
         /// </summary>
         /// <returns>アクション結果</returns>
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(LoginViewModel model)
         {
-            System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);
-            System.Diagnostics.Debug.WriteLine("UrlReferrer:" + this.HttpContext.Request.UrlReferrer);
-            System.Diagnostics.Debug.WriteLine("ReturnUrl:" + this.HttpContext.Request.Params.Get("ReturnUrl"));
-            return View();
+            //#if DEBUG
+            //            var hostName = System.Net.Dns.GetHostEntry(Request.ServerVariables["REMOTE_ADDR"]).HostName;
+            //            model.UserId = "a" + Regex.Replace(hostName, @"[^0-9]", "").Substring(3, 7);
+            //#endif
+            //System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);
+            //System.Diagnostics.Debug.WriteLine("UrlReferrer:" + this.HttpContext.Request.UrlReferrer);
+            //System.Diagnostics.Debug.WriteLine("ReturnUrl:" + this.HttpContext.Request.Params.Get("ReturnUrl"));
+
+            return View(model);
         }
 
         /// <summary>
@@ -33,14 +40,9 @@ namespace Prototype.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            if (!this.ModelState.IsValid)
-            {
-                return GetErrorResult();
-            }
-
             // ログイン処理
             FormsAuthentication.SetAuthCookie(model.UserId, false);
-            this.HttpContext.Session["UserId"] = model.UserId;
+            this.HttpContext.Session[SessionKey.UserId] = model.UserId;
 
             return new JsonResult()
             {
