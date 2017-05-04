@@ -5,9 +5,16 @@ using System.Web.Optimization;
 
 namespace Prototype
 {
+    /// <summary>
+    /// バンドル設定クラス。
+    /// </summary>
     public class BundleConfig
     {
-        // バンドルの詳細については、http://go.microsoft.com/fwlink/?LinkId=301862  を参照してください
+        /// <summary>
+        /// バンドルを登録します。
+        /// </summary>
+        /// <param name="bundles">バンドルコレクション</param>
+        /// <remarks>バンドルの詳細については、http://go.microsoft.com/fwlink/?LinkId=301862  を参照してください。</remarks>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

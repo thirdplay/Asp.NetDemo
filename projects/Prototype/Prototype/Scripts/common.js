@@ -6,7 +6,7 @@ var PROTOTYPE = PROTOTYPE || {
 // 共通モジュール
 PROTOTYPE.common = (function () {
     'use strict';
-    
+
     var escapeMap = {
         '&': '&amp;',
         "'": '&#x27;',

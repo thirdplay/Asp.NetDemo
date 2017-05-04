@@ -26,6 +26,11 @@ namespace Prototype.Services
     /// </summary>
     public interface IAnalyzableServiceBase
     {
+        /// <summary>
+        /// 解析処理。
+        /// </summary>
+        /// <param name="httpContext">HTTPコンテキスト</param>
+        /// <returns>解析結果のファイル名</returns>
         Task<string> Analyze(HttpContextBase httpContext);
     }
 
@@ -35,11 +40,6 @@ namespace Prototype.Services
     public abstract class AnalyzableServiceBase : IAnalyzableServiceBase, IDisposable
     {
         /// <summary>
-        /// ログインターフェース。
-        /// </summary>
-        //protected virtual ILog Logger { get; } = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-        /// <summary>
         /// コンストラクタ。
         /// </summary>
         public AnalyzableServiceBase()
@@ -47,6 +47,11 @@ namespace Prototype.Services
             //this.Logger.Debug($"AnalyzableServiceBase:Constructor");
         }
 
+        /// <summary>
+        /// 解析処理。
+        /// </summary>
+        /// <param name="httpContext">HTTPコンテキスト</param>
+        /// <returns>解析結果のファイル名</returns>
         public Task<string> Analyze(HttpContextBase httpContext)
         {
             //// セッションに既にキャンセルトークンがある場合、処理を中断する

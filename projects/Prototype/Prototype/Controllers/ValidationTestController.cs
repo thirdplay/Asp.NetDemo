@@ -5,6 +5,7 @@ using Prototype.ViewModels;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
+using Prototype.Constants;
 
 namespace Prototype.Controllers
 {
@@ -22,7 +23,7 @@ namespace Prototype.Controllers
         /// コンストラクタ。
         /// </summary>
         /// <param name="testService">テストサービス</param>
-        public ValidationTestController(TestService testService, System.Data.Common.DbConnection connection)
+        public ValidationTestController(TestService testService)
         {
         }
 
@@ -49,11 +50,10 @@ namespace Prototype.Controllers
                     AlphabetItem = "1",
                     AlphaNumberItem = "@",
                     AlphaNumberSymbolItem = "あ",
-                    NumberItem = "-1",
-                    SelectType = SelectType.Hinmei
+                    NumberItem = "-1"
                 };
             }
-            System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);
+            System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session[SessionKey.UserId]);
             //this.ViewBag.CategoryId = Enumerable.Range(1, 5).Select(p => new SelectListItem
             //{
             //    Text = "項目" + p,

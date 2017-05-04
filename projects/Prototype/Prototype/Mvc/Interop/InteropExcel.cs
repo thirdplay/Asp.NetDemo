@@ -77,6 +77,7 @@ namespace Prototype.Mvc.Interop
         /// マクロの実行、または関数の呼び出しを行います。
         /// </summary>
         /// <param name="macroName">実行するマクロ名</param>
+        /// <param name="args">マクロの引数</param>
         /// <example>
         /// // ワークブックのマクロ呼び出し
         /// Run("This.Workbook.TestMacro");
@@ -90,7 +91,6 @@ namespace Prototype.Mvc.Interop
         public void Run(string macroName, params object[] args)
         {
             var macro = $"{this.fileName}!{macroName}";
-
             switch (args.Length)
             {
                 case 0: this.application.Run(macro); break;

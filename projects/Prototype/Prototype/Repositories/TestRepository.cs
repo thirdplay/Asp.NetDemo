@@ -7,6 +7,7 @@ using Prototype.Entities;
 using Dapper;
 using Prototype.Mvc.Annotations;
 using Prototype.Mvc;
+using Prototype.Mvc.Extensions;
 
 namespace Prototype.Repositories
 {

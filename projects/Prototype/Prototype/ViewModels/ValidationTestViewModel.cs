@@ -80,23 +80,16 @@ namespace Prototype.ViewModels
         [DisplayName("ラジオ項目1")]
         public string RadioItem1 { get; set; }
 
+        /// <summary>
+        /// ラジオ項目2
+        /// </summary>
         [DisplayName("ラジオ項目2")]
         public string RadioItem2 { get; set; }
 
+        /// <summary>
+        /// ラジオ項目3
+        /// </summary>
         [DisplayName("ラジオ項目3")]
         public string RadioItem3 { get; set; }
-
-        /// <summary>
-        /// 選択状態
-        /// </summary>
-        public SelectType SelectType { get; set; }
-    }
-
-    public enum SelectType
-    {
-        Process,
-        Hinmei,
-        Hasei,
-        Rhinmei,
     }
 }

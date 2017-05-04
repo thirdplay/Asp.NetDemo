@@ -10,6 +10,9 @@ namespace Prototype.Constants
     /// </summary>
     public class SessionKey
     {
-        public static readonly string UserId = "UserId";
+        /// <summary>
+        /// ユーザID
+        /// </summary>
+        public const string UserId = "UserId";
     }
 }

@@ -17,7 +17,7 @@ namespace Prototype.Mvc.Validations
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="@byte">許容される最小byte数</param>
+        /// <param name="byte">許容される最小byte数</param>
         public MinByteAttribute(int @byte) : base()
         {
             this.Byte = @byte;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Prototype.Mvc
+namespace Prototype.Mvc.Extensions
 {
     /// <summary>
     /// Dapperの拡張機能を提供します。

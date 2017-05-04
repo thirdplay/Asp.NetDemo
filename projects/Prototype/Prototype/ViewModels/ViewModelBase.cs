@@ -13,7 +13,7 @@ namespace Prototype.ViewModels
     public class ViewModelBase : IValidatableObject
     {
         /// <summary>
-        /// ボタン。
+        /// ボタン
         /// </summary>
         public string Button { get; set; }
 

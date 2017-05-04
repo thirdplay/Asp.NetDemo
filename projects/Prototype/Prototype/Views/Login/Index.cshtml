@@ -42,7 +42,6 @@
          * ログイン成功処理.
          */
         function onSuccess(data, textStatus, jqXHR) {
-            alert('onSuccess');
             if (data.Result) {
                 var win = window.open('about:blank', 'prototype', 'menubar=no,location=no,resizable=yes,scrollbars=yes,status=yes');
                 win.location.href = '@Url.Action("Index", "Test")';

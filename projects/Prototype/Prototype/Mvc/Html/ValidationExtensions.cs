@@ -17,7 +17,6 @@ namespace Prototype.Mvc.Html
         /// メッセージ領域のHTMLマークアップを返します。
         /// </summary>
         /// <param name="htmlHelper">このメソッドによって拡張される HTML ヘルパー インスタンス</param>
-        /// <param name="id">メッセージ領域のID</param>
         /// <returns>メッセージ領域を表す div 要素</returns>
         public static MvcHtmlString MessageArea(this HtmlHelper htmlHelper)
         {

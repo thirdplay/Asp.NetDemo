@@ -5,6 +5,7 @@ using StackExchange.Profiling.Data;
 using System;
 using System.Data;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -20,9 +21,11 @@ namespace Prototype.Mvc.Profilers
         private string parameters;
 
         /// <summary>
-        /// ログインターフェース。
+        /// ロガー
         /// </summary>
-        private readonly ITraceLog logger = TraceLogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly ILog logger = LogManager.GetLogger(@"SqlLogger");
+
+        //private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// SQL文のカテゴリ。
@@ -44,7 +47,9 @@ namespace Prototype.Mvc.Profilers
         /// <param name="reader">取得結果セットを読み込むインターフェイス</param>
         public void ExecuteFinish(IDbCommand profiledDbCommand, SqlExecuteType executeType, System.Data.Common.DbDataReader reader)
         {
-            this.commandText = profiledDbCommand.CommandText;
+            this.commandText = string.Join(" ", profiledDbCommand.CommandText
+                .Split('\n')
+                .Select(x => x.Trim()));
             var sb = new StringBuilder();
             foreach (OracleParameter param in profiledDbCommand.Parameters)
             {
@@ -55,8 +60,8 @@ namespace Prototype.Mvc.Profilers
             if (executeType != SqlExecuteType.Reader)
             {
                 stopwatch.Stop();
-                logger.Trace($"SqlExecute:{commandText}");
-                logger.Trace($"SqlParameters:{parameters}");
+                logger.Debug($"SqlExecute:{commandText}");
+                logger.Debug($"SqlParameters:{parameters}");
             }
         }
 
@@ -78,8 +83,8 @@ namespace Prototype.Mvc.Profilers
         /// <param name="exception">発生した例外</param>
         public void OnError(IDbCommand profiledDbCommand, SqlExecuteType sqlExecuteType, Exception exception)
         {
-            logger.Trace($"SqlError:{profiledDbCommand.CommandText}");
-            logger.Trace(exception);
+            logger.Debug($"SqlError:{profiledDbCommand.CommandText}");
+            logger.Debug(exception);
         }
 
         /// <summary>
@@ -89,8 +94,8 @@ namespace Prototype.Mvc.Profilers
         public void ReaderFinish(IDataReader reader)
         {
             stopwatch.Stop();
-            logger.Trace($"SqlExecute:{commandText}");
-            logger.Trace($"SqlParameters:{parameters}");
+            logger.Debug($"SqlExecute:{commandText}");
+            logger.Debug($"SqlParameters:{parameters}");
         }
 
         #endregion IDbProfiler members

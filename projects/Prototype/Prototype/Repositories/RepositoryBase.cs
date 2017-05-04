@@ -16,7 +16,7 @@ namespace Prototype.Repositories
     public abstract class RepositoryBase
     {
         /// <summary>
-        /// サービスロケーター。
+        /// サービスロケーター
         /// </summary>
         private readonly IServiceLocator serviceLocator;
 

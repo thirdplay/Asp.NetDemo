@@ -35,7 +35,7 @@ namespace Prototype.Mvc.Profilers
         /// コマンドが完了された時に呼ばれます。
         /// </summary>
         /// <param name="profiledDbCommand">SQLステートメントを表すインターフェイス</param>
-        /// <param name="sqlExecuteType">SQL文のカテゴリ</param>
+        /// <param name="executeType">SQL文のカテゴリ</param>
         /// <param name="reader">取得結果セットを読み込むインターフェイス</param>
         public void ExecuteFinish(IDbCommand profiledDbCommand, SqlExecuteType executeType, DbDataReader reader)
         {
@@ -52,7 +52,7 @@ namespace Prototype.Mvc.Profilers
         /// コマンドが開始された時に呼ばれます。
         /// </summary>
         /// <param name="profiledDbCommand">SQLステートメントを表すインターフェイス</param>
-        /// <param name="sqlExecuteType">SQL文のカテゴリ</param>
+        /// <param name="executeType">SQL文のカテゴリ</param>
         public void ExecuteStart(IDbCommand profiledDbCommand, SqlExecuteType executeType)
         {
             foreach (var item in this.profilers)
@@ -68,7 +68,7 @@ namespace Prototype.Mvc.Profilers
         /// エラー発生時に呼ばれます。
         /// </summary>
         /// <param name="profiledDbCommand">SQLステートメントを表すインターフェイス</param>
-        /// <param name="sqlExecuteType">SQL文のカテゴリ</param>
+        /// <param name="executeType">SQL文のカテゴリ</param>
         /// <param name="exception">発生した例外</param>
         public void OnError(IDbCommand profiledDbCommand, SqlExecuteType executeType, Exception exception)
         {

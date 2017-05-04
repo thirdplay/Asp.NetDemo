@@ -17,7 +17,7 @@ namespace Prototype.Mvc.Validations
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="@byte">許容される最大byte数</param>
+        /// <param name="byte">許容される最大byte数</param>
         public MaxByteAttribute(int @byte) : base()
         {
             this.Byte = @byte;

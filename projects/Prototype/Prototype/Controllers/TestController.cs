@@ -15,6 +15,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Prototype.Controllers
 {
+    /// <summary>
+    /// テストコントローラー。
+    /// </summary>
     public class TestController : ControllerBase
     {
         /// <summary>
@@ -33,12 +36,17 @@ namespace Prototype.Controllers
         /// コンストラクタ。
         /// </summary>
         /// <param name="testService">テストサービス</param>
+        /// <param name="testAnalyzableService">テスト解析サービス</param>
         public TestController(TestService testService, ITestAnalyzableService testAnalyzableService)
         {
             this.testService = testService;
             this.testAnalyzableService = testAnalyzableService;
         }
 
+        /// <summary>
+        /// 初期表示。
+        /// </summary>
+        /// <returns>アクション結果</returns>
         public ActionResult Index()
         {
             System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);

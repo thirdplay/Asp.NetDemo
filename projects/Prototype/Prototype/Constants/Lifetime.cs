@@ -12,22 +12,22 @@ namespace Prototype.Constants
     public enum Lifetime
     {
         /// <summary>
-        /// 常に同じインスタンス。（シングルトン）
+        /// 常に同じインスタンス（シングルトン）
         /// </summary>
         Singleton,
 
         /// <summary>
-        /// スレッド毎に生成。
+        /// スレッド毎に生成
         /// </summary>
         Thread,
 
         /// <summary>
-        /// リクエスト毎に生成。
+        /// リクエスト毎に生成
         /// </summary>
         Request,
 
         /// <summary>
-        /// 常に生成。
+        /// 常に生成
         /// </summary>
         Resolve,
     }
@@ -48,10 +48,13 @@ namespace Prototype.Constants
             {
                 case Lifetime.Singleton:
                     return new ContainerControlledLifetimeManager();
+
                 case Lifetime.Thread:
                     return new PerThreadLifetimeManager();
+
                 case Lifetime.Request:
                     return new PerRequestLifetimeManager();
+
                 case Lifetime.Resolve:
                     return new PerResolveLifetimeManager();
             }
