@@ -1,6 +1,4 @@
-﻿//#define LOG4NET
-
-using log4net;
+﻿using log4net;
 using Prototype.Constants;
 using Prototype.ViewModels;
 using System;
@@ -45,7 +43,7 @@ namespace Prototype.Controllers
                 Logger.Info("fib(25) = " + fib(25));
             }
             int tEndTimeMillis = System.Environment.TickCount;
-            Debug.WriteLine("time: " + (tEndTimeMillis - tStartTimeMillis) + "ms");
+            Logger.Info("time: " + (tEndTimeMillis - tStartTimeMillis) + "ms");
 
             return View(model);
         }

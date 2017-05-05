@@ -1,6 +1,4 @@
-﻿//#define LOG4NET
-
-using System.IO;
+﻿using System.IO;
 using System.Web.Hosting;
 
 namespace Prototype

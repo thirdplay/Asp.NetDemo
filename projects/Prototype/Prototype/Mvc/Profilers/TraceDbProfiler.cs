@@ -22,10 +22,11 @@ namespace Prototype.Mvc.Profilers
         /// <summary>
         /// ロガー
         /// </summary>
-        //protected readonly ILog Logger = LogManager.GetLogger(@"SqlLogger");
+#if LOG4NET
+        protected readonly ILog Logger = LogManager.GetLogger(@"SqlLogger");
+#else
         protected readonly NLog.Logger Logger = NLog.LogManager.GetLogger("SqlLogger");
-
-        //private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+#endif
 
         /// <summary>
         /// SQL文のカテゴリ。
