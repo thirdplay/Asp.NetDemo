@@ -1,5 +1,4 @@
-﻿using log4net;
-using Prototype.Services;
+﻿using Prototype.Services;
 using System;
 using System.Reflection;
 using System.Web.Mvc;

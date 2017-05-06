@@ -1,5 +1,4 @@
-﻿using log4net;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using OfficeOpenXml;
 using Prototype.Constants;
 using Prototype.Mvc.Annotations;

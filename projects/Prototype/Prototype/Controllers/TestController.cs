@@ -1,4 +1,4 @@
-﻿using log4net;
+﻿using NLog;
 using OfficeOpenXml;
 using Prototype.Mvc.Interop;
 using Prototype.Services;
@@ -28,9 +28,9 @@ namespace Prototype.Controllers
         private readonly ITestAnalyzableService testAnalyzableService;
 
         /// <summary>
-        /// ログインターフェース。
+        /// ログインターフェース
         /// </summary>
-        private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// コンストラクタ。
@@ -63,9 +63,9 @@ namespace Prototype.Controllers
                 process.WaitForExit();
             }
 #endif
-            this.logger.Debug("TestController:Index");
-            this.logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
-            this.logger.Debug("TableCount:" + this.testService.GetTableCount());
+            logger.Debug("TestController:Index");
+            logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
+            logger.Debug("TableCount:" + this.testService.GetTableCount());
             return View();
         }
 

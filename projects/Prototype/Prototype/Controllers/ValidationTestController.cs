@@ -1,11 +1,11 @@
-﻿using log4net;
-using Prototype.Services;
+﻿using Prototype.Services;
 using Prototype.Mvc.Annotations;
 using Prototype.ViewModels;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using Prototype.Constants;
+using NLog;
 
 namespace Prototype.Controllers
 {
@@ -15,9 +15,9 @@ namespace Prototype.Controllers
     public class ValidationTestController : ControllerBase
     {
         /// <summary>
-        /// ログインターフェース。
+        /// ロギングインターフェース
         /// </summary>
-        private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// コンストラクタ。

@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using NLog;
+using NLog.Config;
+using System.IO;
 using System.Web.Hosting;
 
 namespace Prototype
@@ -17,8 +19,25 @@ namespace Prototype
             log4net.GlobalContext.Properties["outputDir"] = HostingEnvironment.MapPath("/Common/Logs");
             log4net.Config.XmlConfigurator.Configure(new FileInfo(HostingEnvironment.MapPath("~/log4net.config")));
 #else
-            NLog.GlobalDiagnosticsContext.Set("outputdir", HostingEnvironment.MapPath("/Common/Logs"));
-            NLog.LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration(HostingEnvironment.MapPath("~/nlog.config"));
+            GlobalDiagnosticsContext.Set("outputdir", HostingEnvironment.MapPath("/Common/Logs"));
+            LogManager.Configuration.Reload();
+            //NLog.LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration(HostingEnvironment.MapPath("~/nlog.config"));
+#if DEBUG
+            //Logger.Trace("LoggingRules.Count:" + LogManager.Configuration.LoggingRules.Count);
+            //NLog.LogManager.Configuration.AddRuleForAllLevels("debugger");
+            //var rule = new LoggingRule("*", NLog.LogManager.Configuration.FindTargetByName("debugger"));
+            //NLog.LogManager.Configuration.LoggingRules.Insert(0, rule);
+
+            //NLog.LogManager.Configuration.LoggingRules.RemoveAt(0);
+            //LogManager.Configuration.RemoveTarget("debugger");
+
+            //var rule = NLog.LogManager.Configuration.LoggingRules[0];
+            //rule.EnableLoggingForLevels(LogLevel.Trace, LogLevel.Fatal);
+
+            //.AddRuleForAllLevels(@"debugger");
+            //<logger name="*" minlevel="Trace" writeTo="debugger" />
+#endif
+
 #endif
         }
     }

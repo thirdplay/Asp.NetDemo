@@ -1,5 +1,4 @@
-﻿using log4net;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using OfficeOpenXml;
 using Prototype.Constants;
 using Prototype.Mvc.Annotations;
@@ -12,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using NLog;
 
 namespace Prototype.Services
 {
@@ -44,9 +44,9 @@ namespace Prototype.Services
         public ITestComponent TestComponent => this.serviceLocator.GetInstance<ITestComponent>();
 
         /// <summary>
-        /// ログインターフェース。
+        /// NLogロガー
         /// </summary>
-        private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// コンストラクタ。
@@ -55,7 +55,7 @@ namespace Prototype.Services
         {
             this.serviceLocator = serviceLocator;
             this.testRepository = testRepository;
-            this.logger.Debug($"TestService:Constructor");
+            logger.Debug($"TestService:Constructor");
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Prototype.Services
         /// </summary>
         public void Dispose()
         {
-            this.logger.Debug("TestService:Dispose");
+            logger.Debug("TestService:Dispose");
         }
 
         #endregion IDispose members

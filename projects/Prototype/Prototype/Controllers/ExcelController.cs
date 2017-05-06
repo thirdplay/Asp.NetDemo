@@ -1,5 +1,4 @@
-﻿using log4net;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
 using Prototype.Services;
 using System;
 using System.IO;

@@ -1,4 +1,4 @@
-﻿using log4net;
+﻿using NLog;
 using System;
 using System.Net;
 using System.Reflection;
@@ -11,14 +11,14 @@ using System.Web.Routing;
 namespace Prototype
 {
     /// <summary>
-    /// ASP.NET アプリケーションクラスド
+    /// ASP.NET アプリケーションクラス。
     /// </summary>
     public class MvcApplication : HttpApplication
     {
         /// <summary>
-        /// ロガー
+        /// ロギングインターフェース
         /// </summary>
-        private ILog Logger { get; } = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// アプリケーション開始処理。
@@ -63,7 +63,7 @@ namespace Prototype
 
                     // CustomErrorが無効な場合は、Controller内でおきた例外が二重にログ出力されてしまうことに注意。
                     // CustomErrorが有効な場合は、Controller外でおきた例外のみここでログ出力される。
-                    Logger.Error(ex);
+                    logger.Error(ex);
                 }
             }
         }

@@ -1,5 +1,4 @@
-﻿using log4net;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using OfficeOpenXml;
 using Prototype.Constants;
 using Prototype.Mvc.Annotations;
@@ -13,6 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
+using NLog;
 
 namespace Prototype.Services
 {
@@ -32,14 +32,14 @@ namespace Prototype.Services
         /// <summary>
         /// ログインターフェース。
         /// </summary>
-        protected ILog Logger { get; } = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// コンストラクタ。
         /// </summary>
         public TestAnalyzableService()
         {
-            this.Logger.Debug($"TestAnalyzableService:Constructor");
+            logger.Debug($"TestAnalyzableService:Constructor");
         }
     }
 }

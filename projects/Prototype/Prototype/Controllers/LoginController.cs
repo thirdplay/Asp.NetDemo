@@ -1,4 +1,4 @@
-﻿using log4net;
+﻿using NLog;
 using Prototype.Constants;
 using Prototype.ViewModels;
 using System;
@@ -16,11 +16,7 @@ namespace Prototype.Controllers
     [AllowAnonymous]
     public class LoginController : ControllerBase
     {
-#if LOG4NET
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-#else
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-#endif
+        private static readonly Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// 初期表示アクション。
@@ -37,13 +33,14 @@ namespace Prototype.Controllers
             //System.Diagnostics.Debug.WriteLine("UrlReferrer:" + this.HttpContext.Request.UrlReferrer);
             //System.Diagnostics.Debug.WriteLine("ReturnUrl:" + this.HttpContext.Request.Params.Get("ReturnUrl"));
 
-            int tStartTimeMillis = System.Environment.TickCount;
-            using (new Tracer("Trace"))
-            {
-                Logger.Info("fib(25) = " + fib(25));
-            }
-            int tEndTimeMillis = System.Environment.TickCount;
-            Logger.Info("time: " + (tEndTimeMillis - tStartTimeMillis) + "ms");
+            //int tStartTimeMillis = System.Environment.TickCount;
+            //using (new Tracer("Trace"))
+            //{
+            //    Logger.Info("fib(25) = " + fib(25));
+            //}
+            //int tEndTimeMillis = System.Environment.TickCount;
+            //Logger.Info("time: " + (tEndTimeMillis - tStartTimeMillis) + "ms");
+            logger.Info("Test!!");
 
             return View(model);
         }

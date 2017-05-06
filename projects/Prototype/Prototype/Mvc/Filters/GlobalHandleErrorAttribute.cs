@@ -1,5 +1,6 @@
-﻿using log4net;
+﻿using NLog;
 using System;
+using System.Diagnostics;
 using System.Net;
 using System.Reflection;
 using System.Web.Mvc;
@@ -14,7 +15,7 @@ namespace Prototype.Mvc.Filters
         /// <summary>
         /// ログインターフェース。
         /// </summary>
-        private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// 例外が発生したときに呼び出されます。
@@ -28,8 +29,7 @@ namespace Prototype.Mvc.Filters
             }
 
             // 例外発生時は常にログを取っておく
-            //LogUtil.LogControllerError(filterContext);
-            this.logger.Error(filterContext.Exception.ToString());
+            logger.Error(filterContext.Exception.ToString());
 
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {

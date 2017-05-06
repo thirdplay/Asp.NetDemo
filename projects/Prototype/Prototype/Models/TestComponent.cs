@@ -1,4 +1,4 @@
-﻿using log4net;
+﻿using NLog;
 using Prototype.Constants;
 using Prototype.Mvc.Annotations;
 using System;
@@ -24,9 +24,9 @@ namespace Prototype.Models
     public class TestComponent : ITestComponent, IDisposable
     {
         /// <summary>
-        /// ログインターフェース
+        /// ロギングインターフェース
         /// </summary>
-        private readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// ID
@@ -39,7 +39,7 @@ namespace Prototype.Models
         public TestComponent()
         {
             this.Id = DateTime.Now.Ticks.ToString();
-            this.logger.Debug($"TestComponent:Constructor({this.Id})");
+            logger.Debug($"TestComponent:Constructor({this.Id})");
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Prototype.Models
         /// </summary>
         public void Dispose()
         {
-            this.logger.Debug($"TestComponent:Dispose({this.Id})");
+            logger.Debug($"TestComponent:Dispose({this.Id})");
         }
     }
 }
