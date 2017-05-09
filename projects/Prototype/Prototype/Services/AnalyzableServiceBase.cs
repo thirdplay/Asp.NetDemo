@@ -53,17 +53,6 @@ namespace Prototype.Services
         /// <returns>解析結果のファイル名</returns>
         public Task<string> Analyze(HttpContextBase httpContext)
         {
-            //// セッションに既にキャンセルトークンがある場合、処理を中断する
-            //Debug.WriteLine("ThreadId:" + Thread.CurrentThread.ManagedThreadId);
-            //Debug.WriteLine("SessionId:" + httpContext.Session.SessionID);
-            //Debug.WriteLine("CancelToken:" + httpContext.Session["CancelToken"]);
-
-            //// セッションにキャンセルトークンを登録する
-            //var tokenSource = new CancellationTokenSource();
-            //httpContext.Session["CancelToken"] =  tokenSource;
-            //Debug.WriteLine("CancelToken:" + httpContext.Session["CancelToken"]);
-
-            //var token = tokenSource.Token;
             return Task.Run(() =>
             {
                 // InteropExcel
