@@ -58,11 +58,11 @@ namespace Prototype.Mvc.Interop
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        /// <param name="fileName">ファイル名</param>
-        public InteropExcel(string fileName)
+        /// <param name="filePath">Excelファイルのパス</param>
+        public InteropExcel(string filePath)
         {
-            this.filePath = fileName;
-            this.fileName = Path.GetFileName(fileName);
+            this.filePath = filePath;
+            this.fileName = Path.GetFileName(filePath);
 
             this.application = new Excel.Application()
             {

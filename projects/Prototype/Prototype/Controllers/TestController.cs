@@ -49,7 +49,6 @@ namespace Prototype.Controllers
         /// <returns>アクション結果</returns>
         public ActionResult Index()
         {
-            System.Diagnostics.Debug.WriteLine("UserId:" + this.HttpContext.Session["UserId"]);
 #if false
             System.Diagnostics.Debug.WriteLine("UserName:" + System.Security.Principal.WindowsIdentity.GetCurrent().Name);
             var identity = System.Security.Principal.WindowsIdentity.GetCurrent();
@@ -63,7 +62,6 @@ namespace Prototype.Controllers
                 process.WaitForExit();
             }
 #endif
-            logger.Debug("TestController:Index");
             logger.Debug("TestController:Id=" + this.testService.TestComponent.Id);
             logger.Debug("TableCount:" + this.testService.GetTableCount());
             return View();

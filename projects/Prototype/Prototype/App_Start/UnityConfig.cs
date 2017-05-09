@@ -9,6 +9,7 @@ using StackExchange.Profiling.Data;
 using System;
 using System.Configuration;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 

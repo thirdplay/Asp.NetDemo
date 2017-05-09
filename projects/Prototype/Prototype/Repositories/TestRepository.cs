@@ -44,7 +44,7 @@ namespace Prototype.Repositories
         /// <returns>件数</returns>
         public int CountTable()
         {
-            var list = new string[] { "TEST", "M_USER" }.ToList();
+            var list = new string[] { "TEST", "M_USER" };
             var parameters = new DynamicParameters();
             return this.Connection.Query<int>(
                 @"select count(*) from USER_TABLES where " +

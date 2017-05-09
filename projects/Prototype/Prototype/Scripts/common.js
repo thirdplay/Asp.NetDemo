@@ -29,8 +29,8 @@ PROTOTYPE.common = (function () {
     /**
      * 文字列をHTMLエスケープして返却します。
      *
-     * @param {String} str エスケープ対象の文字列
-     * @returns {String} エスケープ後の文字列
+     * @param {string} str エスケープ対象の文字列
+     * @returns {string} エスケープ後の文字列
      */
     var escapeHtml = function (str) {
         str = (str === null || str === undefined) ? '' : '' + str;
@@ -42,7 +42,7 @@ PROTOTYPE.common = (function () {
     /**
      * バリデーションエラーを表示します。
      *
-     * @param {Array} errors バリデーションエラー情報を格納する配列
+     * @param {array} errors バリデーションエラー情報を格納する配列
      */
     var showValidationErrors = function (errors) {
         var modelStateErrors = errors;
@@ -68,7 +68,7 @@ PROTOTYPE.common = (function () {
     /**
      * メッセージ領域にメッセージを表示します。
      *
-     * @param {String} message 表示するメッセージ
+     * @param {string} message 表示するメッセージ
      */
     var showMessage = function (message) {
         if ($('#messageArea').length > 0) {
