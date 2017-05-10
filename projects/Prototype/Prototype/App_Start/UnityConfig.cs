@@ -2,6 +2,7 @@ using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Oracle.ManagedDataAccess.Client;
 using Prototype.Constants;
+using Prototype.Mvc;
 using Prototype.Mvc.Annotations;
 using Prototype.Mvc.Profilers;
 using StackExchange.Profiling;
@@ -56,8 +57,8 @@ namespace Prototype
                 new PerRequestLifetimeManager(),
                 new InjectionFactory(_ =>
                 {
-                    return CreateConnection(
-                        ConfigurationManager.ConnectionStrings["Prototype"].ConnectionString);
+                    return new ProfiledDbConnection(new OracleConnection(AppEnvironment.ConnectionString),
+                        new CompositeDbProfiler(MiniProfiler.Current, new TraceDbProfiler()));
                 })
             );
 
@@ -82,17 +83,6 @@ namespace Prototype
                 var attr = type.GetCustomAttribute(typeof(ComponentAttribute)) as ComponentAttribute;
                 container.RegisterType(type, attr.TargetType, attr.Lifetime.CreateLifetimeManager());
             }
-        }
-
-        /// <summary>
-        /// 新しいOracleデータベースへの接続を作成します。
-        /// </summary>
-        /// <param name="connectionString">接続文字列</param>
-        /// <returns>接続インスタンス</returns>
-        private static DbConnection CreateConnection(string connectionString)
-        {
-            return new ProfiledDbConnection(new OracleConnection(connectionString),
-                new CompositeDbProfiler(MiniProfiler.Current, new TraceDbProfiler()));
         }
     }
 }
