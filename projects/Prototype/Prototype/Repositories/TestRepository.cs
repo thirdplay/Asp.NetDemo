@@ -11,55 +11,56 @@ using Prototype.Mvc.Extensions;
 
 namespace Prototype.Repositories
 {
-    /// <summary>
-    /// テスト用のリポジトリインターフェース。
-    /// </summary>
-    [Repository(typeof(TestRepository))]
-    public interface ITestRepository
-    {
-        /// <summary>
-        /// テーブルの件数を取得します。
-        /// </summary>
-        /// <returns>件数</returns>
-        int CountTable();
-    }
+	/// <summary>
+	/// テスト用のリポジトリインターフェース。
+	/// </summary>
+	[Repository(typeof(TestRepository))]
+	public interface ITestRepository
+	{
+		/// <summary>
+		/// テーブルの件数を取得します。
+		/// </summary>
+		/// <returns>件数</returns>
+		int CountTable();
+	}
 
-    /// <summary>
-    /// テスト用のリポジトリ。
-    /// </summary>
-    public class TestRepository : RepositoryBase, ITestRepository
-    {
-        /// <summary>
-        /// コンストラクタ。
-        /// </summary>
-        /// <param name="serviceLocator">サービスロケーター</param>
-        public TestRepository(IServiceLocator serviceLocator)
-            : base(serviceLocator)
-        {
-        }
+	/// <summary>
+	/// テスト用のリポジトリ。
+	/// </summary>
+	public class TestRepository : RepositoryBase, ITestRepository
+	{
+		/// <summary>
+		/// コンストラクタ。
+		/// </summary>
+		/// <param name="serviceLocator">サービスロケーター</param>
+		public TestRepository(IServiceLocator serviceLocator)
+			: base(serviceLocator)
+		{
+		}
 
-        /// <summary>
-        /// テーブルの件数を取得します。
-        /// </summary>
-        /// <returns>件数</returns>
-        public int CountTable()
-        {
-            var list = new string[] { "TEST", "M_USER" };
-            var parameters = new DynamicParameters();
-            return this.Connection.Query<int>(
-                @"select count(*) from USER_TABLES where " +
-                list.CreateDynamicCondition("TableName", x => @"TABLE_NAME = :" + x, "OR", ref parameters),
-                parameters
-            ).FirstOrDefault();
-            //return this.Connection.Query<int>(
-            //    @"select count(*) from USER_TABLES where " +
-            //    string.Join(" OR ", list.Select((x, i) => @"TABLE_NAME = :TABLE_NAME" + i)),
-            //    p
-            //).FirstOrDefault();
-            //return this.Connection.Query<int>(
-            //    "select count(*) from USER_TABLES where TABLE_NAME = :Names",
-            //    new { Names = new string[] { "Test", "M_USER" } }
-            //).FirstOrDefault();
-        }
-    }
+		/// <summary>
+		/// テーブルの件数を取得します。
+		/// </summary>
+		/// <returns>件数</returns>
+		public int CountTable()
+		{
+			var list = new string[] { "TEST", "M_USER" };
+			var sql = @"
+select
+	count(*)
+from
+	USER_TABLES
+/**where**/";
+			var builder = new SqlBuilder();
+			var template = builder.AddTemplate(sql);
+
+			for (var i = 0; i < list.Length; i++)
+			{
+				var name = $"TableName{i}";
+				builder.OrWhere($"TABLE_NAME = :{name}", name, list[i]);
+			}
+
+			return this.Connection.Query<int>(template.RawSql, template.Parameters).FirstOrDefault();
+		}
+	}
 }

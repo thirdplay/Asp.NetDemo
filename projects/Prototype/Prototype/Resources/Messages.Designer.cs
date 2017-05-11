@@ -176,5 +176,23 @@ namespace Prototype.Resources {
                 return ResourceManager.GetString("MS013", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///    に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MS014 {
+            get {
+                return ResourceManager.GetString("MS014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   システムエラーが発生しました。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MS015 {
+            get {
+                return ResourceManager.GetString("MS015", resourceCulture);
+            }
+        }
     }
 }

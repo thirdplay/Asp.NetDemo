@@ -4,37 +4,37 @@ using System.Text;
 namespace Prototype.Mvc.Validations
 {
 	/// <summary>
-	/// プロパティで許容される最小byte数を指定します。
+	/// プロパティで許容される最大値を指定します。
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Property)]
-	public class MinByteAttribute : ValidationAttributeBase
+	public class MaxValueAttribute : ValidationAttributeBase
 	{
 		/// <summary>
-		/// 許容される最小byte数を取得します。
+		/// 許容される最大値を取得します。
 		/// </summary>
-		public int Byte { get; private set; }
+		public int Value { get; private set; }
 
 		/// <summary>
 		/// コンストラクタ
 		/// </summary>
-		/// <param name="byte">許容される最小byte数</param>
-		public MinByteAttribute(int @byte) : base()
+		/// <param name="value">許容される最大値</param>
+		public MaxValueAttribute(int value) : base()
 		{
-			this.Byte = @byte;
+			this.Value = value;
 		}
 
 		/// <summary>
 		/// 指定したエラーメッセージに書式を適用します
 		/// </summary>
 		/// <param name="name">書式設定された文字列に含まれる名前</param>
-		/// <returns>許容される最小byte数を説明する文字列</returns>
+		/// <returns>許容される最大値を説明する文字列</returns>
 		public override string FormatErrorMessage(string name)
 		{
-			return string.Format(this.ErrorMessageString, name, this.Byte);
+			return string.Format(this.ErrorMessageString, name, this.Value);
 		}
 
 		/// <summary>
-		/// プロパティが最小byte数未満でないことを確認します。
+		/// プロパティが最大値を超過していないことを確認します。
 		/// </summary>
 		/// <param name="value">検証するプロパティの値</param>
 		/// <returns>検証が成功した場合はtrue。それ以外の場合はfalse。</returns>
@@ -47,8 +47,14 @@ namespace Prototype.Mvc.Validations
 				return true;
 			}
 
-			var @byte = Encoding.UTF8.GetByteCount(str);
-			if (@byte >= this.Byte)
+			// 数値形式への変換
+			decimal result;
+			if (!decimal.TryParse(str, out result))
+			{
+				return true;
+			}
+
+			if (result <= this.Value)
 			{
 				return true;
 			}

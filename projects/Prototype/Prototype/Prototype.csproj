@@ -54,6 +54,9 @@
       <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Dapper.SqlBuilder, Version=1.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.SqlBuilder.1.50.0\lib\net45\Dapper.SqlBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
       <Private>True</Private>
@@ -99,6 +102,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net46\System.Reactive.Core.dll</HintPath>
@@ -185,12 +189,15 @@
     <Compile Include="App_Start\ValidationConfig.cs" />
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Mvc\Ajax\AjaxExtensions.cs" />
     <Compile Include="Mvc\Annotations\ButtonName.cs" />
     <Compile Include="Mvc\Annotations\RepositoryAttribute.cs" />
     <Compile Include="Mvc\Annotations\ServiceAttribute.cs" />
     <Compile Include="Mvc\Annotations\ComponentAttribute.cs" />
     <Compile Include="Mvc\AppEnvironment.cs" />
     <Compile Include="Mvc\Extensions\DapperExtensions.cs" />
+    <Compile Include="Mvc\Extensions\ModelStateExtensions.cs" />
+    <Compile Include="Mvc\Extensions\ObjectExtensions.cs" />
     <Compile Include="Mvc\Filters\GlobalHandleErrorAttribute.cs" />
     <Compile Include="Constants\Lifetime.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -200,11 +207,15 @@
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entities\Clob01.cs" />
-    <Compile Include="Mvc\Extensions\ModelStateDictionaryExtensions.cs" />
     <Compile Include="Mvc\Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mvc\Filters\ViewModelFromSessionAttribute.cs" />
+    <Compile Include="Mvc\Filters\ViewModelToSessionAttribute.cs" />
+    <Compile Include="Mvc\Html\DateExtensions.cs" />
+    <Compile Include="Mvc\Html\LabelExtensions.cs" />
+    <Compile Include="Mvc\Html\RadioExtensions.cs" />
     <Compile Include="Mvc\Html\ValidationExtensions.cs" />
     <Compile Include="Mvc\Interop\InteropExcel.cs" />
     <Compile Include="Models\TestComponent.cs" />
@@ -213,12 +224,19 @@
     <Compile Include="Mvc\Validations\AlphabetAttribute.cs" />
     <Compile Include="Mvc\Validations\AlphaNumberAttribute.cs" />
     <Compile Include="Mvc\Validations\AlphaNumberSymbolAttribute.cs" />
+    <Compile Include="Mvc\Validations\ConditionalAttribute.cs" />
+    <Compile Include="Mvc\Validations\DateAttribute.cs" />
     <Compile Include="Mvc\Validations\MaxByteAttribute.cs" />
     <Compile Include="Mvc\Validations\MaxLengthAttribute.cs" />
+    <Compile Include="Mvc\Validations\MaxValueAttribute.cs" />
     <Compile Include="Mvc\Validations\MinByteAttribute.cs" />
     <Compile Include="Mvc\Validations\MinLengthAttribute.cs" />
+    <Compile Include="Mvc\Validations\MinValueAttribute.cs" />
     <Compile Include="Mvc\Validations\NumberAttribute.cs" />
+    <Compile Include="Mvc\Validations\RegularExpressionAttribute.cs" />
     <Compile Include="Mvc\Validations\RequiredAttribute.cs" />
+    <Compile Include="Mvc\Validations\ValidationAttributeNase.cs" />
+    <Compile Include="Mvc\Validations\ValidationContextExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\TestRepository.cs" />
     <Compile Include="Repositories\Clob01Repository.cs" />
