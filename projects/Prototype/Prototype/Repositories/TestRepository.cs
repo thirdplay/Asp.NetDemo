@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Dapper;
 using Microsoft.Practices.ServiceLocation;
-using Prototype.Entities;
-using Dapper;
 using Prototype.Mvc.Annotations;
-using Prototype.Mvc;
 using Prototype.Mvc.Extensions;
+using System.Linq;
 
 namespace Prototype.Repositories
 {
