@@ -7,6 +7,7 @@ using System.Web;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Reactive.Disposables;
 using System.IO;
+using Microsoft.Ajax.Utilities;
 
 namespace Prototype.Mvc.Interop
 {
@@ -89,6 +90,7 @@ namespace Prototype.Mvc.Interop
 		public void Run(string macroName, params object[] args)
 		{
 			var macro = $"{this.fileName}!{macroName}";
+			var method = this.application.GetType().GetMethod("Run");
 
 			switch (args.Length)
 			{
