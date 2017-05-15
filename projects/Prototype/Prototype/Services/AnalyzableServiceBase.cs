@@ -59,66 +59,33 @@ namespace Prototype.Services
 			return Task.Run(() =>
 			{
 #if true
-				try
+				logger.Trace(">>解析開始");
+				for (var j = 0; j < 30; j++)
 				{
-					logger.Trace(">>解析開始");
-					for (var j = 0; j < 30; j++)
+					for (var i = 0; i < 60; i++)
 					{
-						for (var i = 0; i < 60; i++)
-						{
-							Thread.Sleep(1000);
-						}
-						logger.Trace($"{(j + 1)}分経過");
+						Thread.Sleep(1000);
 					}
-					logger.Trace(">>解析終了");
-
-					// InteropExcel
-					var resultDir = HostingEnvironment.MapPath("/Common/Result");
-					var tempDir = HostingEnvironment.MapPath("/Common/Template");
-					using (var excel = new InteropExcel(Path.Combine(tempDir, "prototype.xlsm")))
-					{
-						excel.Run("ThisWorkbook.TestMacro4", "a1", "a2");
-
-						// 出力
-						var fileName = "prototype_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsm";
-						excel.SaveAs(Path.Combine(resultDir, fileName));
-
-						return fileName;
-					}
+					logger.Trace($"{(j + 1)}分経過");
 				}
-				catch
+				logger.Trace(">>解析終了");
+
+				// InteropExcel
+				var resultDir = HostingEnvironment.MapPath("/Common/Result");
+				var tempDir = HostingEnvironment.MapPath("/Common/Template");
+				using (var excel = new InteropExcel(Path.Combine(tempDir, "prototype.xlsm")))
 				{
-					Debug.WriteLine("Cancel!!");
-					return "";
-				}
-				finally
-				{
-					//httpContext.Session.Remove("CancelToken");
+					excel.Run("ThisWorkbook.TestMacro4", "a1", "a2");
+
+					// 出力
+					var fileName = "prototype_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsm";
+					excel.SaveAs(Path.Combine(resultDir, fileName));
+
+					return fileName;
 				}
 #endif
 			});
 		}
-
-		//private string AnalyzeAction<TViewModel>(HttpContext httpContext, TViewModel viewModel, CancellationToken token)
-		//{
-		//    // キャンセル判定
-		//    if (token.IsCancellationRequested) return "";
-
-		//    // データ取得
-		//    //var data = GetData(httpContext, viewModel);
-
-		//    // データ解析
-		//    //AnalyzeData(data);
-
-		//    // 解析結果の作成
-		//    //return CreateResult(data);
-
-		//    return "";
-		//}
-
-		//protected abstract TResult GetData<TViewModel, TResult>(HttpContext httpContext, TViewModel viewModel);
-		//protected abstract void AnalyzeData<TData>(TData data);
-		//protected abstract string CreateResult<TData>(TData data);
 
 		#region IDispose members
 
