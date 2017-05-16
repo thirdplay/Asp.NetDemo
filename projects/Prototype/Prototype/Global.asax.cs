@@ -1,5 +1,6 @@
 ﻿using NLog;
 using System;
+using System.Diagnostics;
 using System.Net;
 using System.Reflection;
 using System.Web;
@@ -42,6 +43,11 @@ namespace Prototype
 
 			// CSRFトークンのクッキー名を変更
 			AntiForgeryConfig.CookieName = "token";
+
+			if (Debugger.IsAttached == true)
+			{
+				// デバッガ実行中のみタイムアウトを1分に変更する
+			}
 		}
 
 		/// <summary>

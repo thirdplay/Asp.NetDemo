@@ -42,10 +42,16 @@ namespace Prototype.Services
 		private Logger logger = LogManager.GetCurrentClassLogger();
 
 		/// <summary>
+		/// テストサービス。
+		/// </summary>
+		private readonly ITestService testService;
+
+		/// <summary>
 		/// コンストラクタ。
 		/// </summary>
-		public AnalyzableServiceBase()
+		public AnalyzableServiceBase(ITestService testService)
 		{
+			this.testService = testService;
 			//this.Logger.Debug($"AnalyzableServiceBase:Constructor");
 		}
 
@@ -59,8 +65,10 @@ namespace Prototype.Services
 			return Task.Run(() =>
 			{
 #if true
+				//logger.Debug("TableCount:" + this.testService.GetTableCount());
+
 				logger.Trace(">>解析開始");
-				for (var j = 0; j < 30; j++)
+				for (var j = 0; j < 1; j++)
 				{
 					for (var i = 0; i < 60; i++)
 					{
@@ -69,6 +77,8 @@ namespace Prototype.Services
 					logger.Trace($"{(j + 1)}分経過");
 				}
 				logger.Trace(">>解析終了");
+
+				//logger.Debug("TableCount:" + this.testService.GetTableCount());
 
 				// InteropExcel
 				var resultDir = HostingEnvironment.MapPath("/Common/Result");

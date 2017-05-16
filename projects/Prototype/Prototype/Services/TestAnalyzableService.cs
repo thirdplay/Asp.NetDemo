@@ -16,30 +16,31 @@ using NLog;
 
 namespace Prototype.Services
 {
-    /// <summary>
-    /// テスト解析サービスのインターフェース。
-    /// </summary>
-    [Service(typeof(TestAnalyzableService))]
-    public interface ITestAnalyzableService : IAnalyzableServiceBase
-    {
-    }
+	/// <summary>
+	/// テスト解析サービスのインターフェース。
+	/// </summary>
+	[Service(typeof(TestAnalyzableService))]
+	public interface ITestAnalyzableService : IAnalyzableServiceBase
+	{
+	}
 
-    /// <summary>
-    /// テスト解析サービス。
-    /// </summary>
-    public class TestAnalyzableService : AnalyzableServiceBase, ITestAnalyzableService
-    {
-        /// <summary>
-        /// ログインターフェース。
-        /// </summary>
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+	/// <summary>
+	/// テスト解析サービス。
+	/// </summary>
+	public class TestAnalyzableService : AnalyzableServiceBase, ITestAnalyzableService
+	{
+		/// <summary>
+		/// ログインターフェース。
+		/// </summary>
+		private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        /// <summary>
-        /// コンストラクタ。
-        /// </summary>
-        public TestAnalyzableService()
-        {
-            logger.Debug($"TestAnalyzableService:Constructor");
-        }
-    }
+		/// <summary>
+		/// コンストラクタ。
+		/// </summary>
+		public TestAnalyzableService(ITestService testService)
+			: base(testService)
+		{
+			logger.Debug($"TestAnalyzableService:Constructor");
+		}
+	}
 }
