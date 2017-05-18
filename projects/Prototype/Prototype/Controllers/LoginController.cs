@@ -37,18 +37,6 @@ namespace Prototype.Controllers
 			return View(model);
 		}
 
-		private static long fib(long n)
-		{
-			using (new Tracer("Trace"))
-			{
-				if (n <= 1)
-				{
-					return 1;
-				}
-				return fib(n - 2) + fib(n - 1);
-			}
-		}
-
 		/// <summary>
 		/// ログイン。
 		/// </summary>
@@ -79,68 +67,6 @@ namespace Prototype.Controllers
 			this.HttpContext.Session.RemoveAll();
 
 			return RedirectToAction("Index");
-		}
-	}
-
-	internal class Tracer : IDisposable
-	{
-#if LOG4NET
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-#else
-		private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-#endif
-		private Stopwatch mStopwatch;
-		private long mStartTicks;
-
-		public Tracer(string aCategory)
-		{
-			if (Logger.IsInfoEnabled)
-			{
-				if (Trace.CorrelationManager.ActivityId.Equals(Guid.Empty))
-				{
-					Trace.CorrelationManager.ActivityId = Guid.NewGuid();
-				}
-				Trace.CorrelationManager.StartLogicalOperation(aCategory);
-				mStopwatch = Stopwatch.StartNew();
-				mStartTicks = Stopwatch.GetTimestamp();
-				Logger.Info("Start " + aCategory + ": Activity '" + Trace.CorrelationManager.ActivityId + "' in method '" + GetExecutingMethodName() + "' at " + mStopwatch.ElapsedTicks + " ticks");
-			}
-		}
-
-		public void Dispose()
-		{
-			if (Logger.IsInfoEnabled)
-			{
-				try
-				{
-					long tEndTicks = Stopwatch.GetTimestamp();
-					long tElapsedMillis = mStopwatch.ElapsedMilliseconds;
-					Logger.Info("End " + Trace.CorrelationManager.LogicalOperationStack.Peek() + ": Activity '" + Trace.CorrelationManager.ActivityId + "' in method '" + GetExecutingMethodName() + "' at " + tEndTicks + " ticks (elapsed time: " + tElapsedMillis + " ms)");
-				}
-				finally
-				{
-					Trace.CorrelationManager.StopLogicalOperation();
-				}
-			}
-			GC.SuppressFinalize(this);
-		}
-
-		private string GetExecutingMethodName()
-		{
-			string tResult = "Unknown";
-			StackTrace tStackTrace = new StackTrace(false);
-
-			for (int i = 0; i < tStackTrace.FrameCount; i++)
-			{
-				MethodBase tMethod = tStackTrace.GetFrame(i).GetMethod();
-				if (tMethod.DeclaringType != GetType())
-				{
-					tResult = string.Concat(tMethod.DeclaringType.FullName, ".", tMethod.Name);
-					break;
-				}
-			}
-
-			return tResult;
 		}
 	}
 }
