@@ -25,15 +25,6 @@ namespace Prototype.Controllers
 		[HttpGet]
 		public ActionResult Index(LoginViewModel model)
 		{
-			//int tStartTimeMillis = System.Environment.TickCount;
-			//using (new Tracer("Trace"))
-			//{
-			//    Logger.Info("fib(25) = " + fib(25));
-			//}
-			//int tEndTimeMillis = System.Environment.TickCount;
-			//Logger.Info("time: " + (tEndTimeMillis - tStartTimeMillis) + "ms");
-			logger.Info("Test!!");
-
 			return View(model);
 		}
 
