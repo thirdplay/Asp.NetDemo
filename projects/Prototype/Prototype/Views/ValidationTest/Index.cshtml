@@ -1,136 +1,135 @@
 ﻿@model ValidationTestViewModel
 @{
-    ViewBag.Title = "入力検証テスト";
+	ViewBag.Title = "入力検証テスト";
 }
 <h2>@ViewBag.Title.</h2>
 @{
-    // TODO:WebViewPageの拡張で共通のAjaxOptionsを生成するようにする。
-    var ajaxOptions = new AjaxOptions
-    {
-        HttpMethod = "POST",
-        OnBegin = "onBegin",
-        OnSuccess = "onSuccess",
-        OnFailure = "onFailure"
-    };
+	var ajaxOptions = new AjaxOptions
+	{
+		HttpMethod = "POST",
+		OnBegin = "onBegin",
+		OnSuccess = "onSuccess",
+		OnFailure = "onFailure"
+	};
 }
 @using (Ajax.BeginForm("Execute", "ValidationTest", ajaxOptions, new { @class = "form-horizontal" }))
 {
-    @Html.AntiForgeryToken()
-    <hr />
-    @Html.MessageArea()
-    <div class="form-group">
-        @Html.LabelFor(m => m.RequiredItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.RequiredItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.RequiredItem)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.MinLengthItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.MinLengthItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.MinLengthItem)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.MaxLengthItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.MaxLengthItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.MaxLengthItem)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.MinByteItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.MinByteItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.MinByteItem)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.MaxByteItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.MaxByteItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.MaxByteItem)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.AlphabetItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.AlphabetItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.AlphabetItem)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.AlphaNumberItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.AlphaNumberItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.AlphaNumberItem)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.AlphaNumberSymbolItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.AlphaNumberSymbolItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.AlphaNumberItem)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.NumberItem, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @Html.TextBoxFor(m => m.NumberItem, new { @class = "form-control" })
-            @Html.ValidationFieldFor(m => m.NumberItem)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.RadioItem1, new { @class = "col-xs-2 control-label" })
-        <div class="col-xs-10">
-            @*@Html.Label("", @Prototype.Resources.Messages.MS001)*@
-            @Html.RadioButtonFor(m => m.RadioItem1, "1", new { @id = "RadioItem-1" })
-            @Html.RadioButtonFor(m => m.RadioItem1, "2", new { @id = "RadioItem-2" })
-            @Html.RadioButtonFor(m => m.RadioItem1, "3", new { @id = "RadioItem-3" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10">
-            <button class="btn btn-default" name="Button" value="Save"><span class="glyphicon glyphicon-saved"> 登録</span></button>
-            <button class="btn btn-default" name="Button" value="Cancel"><span class="glyphicon glyphicon-saved"> キャンセル</span></button>
-        </div>
-    </div>
+	@Html.AntiForgeryToken()
+	<hr />
+	@Html.MessageArea()
+	<div class="form-group">
+		@Html.LabelFor(m => m.RequiredItem, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@Html.TextBoxFor(m => m.RequiredItem, new { @class = "form-control" })
+			@Html.ValidationFieldFor(m => m.RequiredItem)
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.MinLengthItem, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@Html.TextBoxFor(m => m.MinLengthItem, new { @class = "form-control" })
+			@Html.ValidationFieldFor(m => m.MinLengthItem)
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.MaxLengthItem, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@Html.TextBoxFor(m => m.MaxLengthItem, new { @class = "form-control" })
+			@Html.ValidationFieldFor(m => m.MaxLengthItem)
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.MinByteItem, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@Html.TextBoxFor(m => m.MinByteItem, new { @class = "form-control" })
+			@Html.ValidationFieldFor(m => m.MinByteItem)
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.MaxByteItem, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@Html.TextBoxFor(m => m.MaxByteItem, new { @class = "form-control" })
+			@Html.ValidationFieldFor(m => m.MaxByteItem)
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.AlphabetItem, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@Html.TextBoxFor(m => m.AlphabetItem, new { @class = "form-control" })
+			@Html.ValidationFieldFor(m => m.AlphabetItem)
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.AlphaNumberItem, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@Html.TextBoxFor(m => m.AlphaNumberItem, new { @class = "form-control" })
+			@Html.ValidationFieldFor(m => m.AlphaNumberItem)
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.AlphaNumberSymbolItem, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@Html.TextBoxFor(m => m.AlphaNumberSymbolItem, new { @class = "form-control" })
+			@Html.ValidationFieldFor(m => m.AlphaNumberItem)
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.NumberItem, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@Html.TextBoxFor(m => m.NumberItem, new { @class = "form-control" })
+			@Html.ValidationFieldFor(m => m.NumberItem)
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.RadioItem1, new { @class = "col-xs-2 control-label" })
+		<div class="col-xs-10">
+			@*@Html.Label("", @Prototype.Resources.Messages.MS001)*@
+			@Html.RadioButtonFor(m => m.RadioItem1, "1", new { @id = "RadioItem-1" })
+			@Html.RadioButtonFor(m => m.RadioItem1, "2", new { @id = "RadioItem-2" })
+			@Html.RadioButtonFor(m => m.RadioItem1, "3", new { @id = "RadioItem-3" })
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-xs-offset-2 col-xs-10">
+			<button class="btn btn-default" name="Button" value="Save"><span class="glyphicon glyphicon-saved"> 登録</span></button>
+			<button class="btn btn-default" name="Button" value="Cancel"><span class="glyphicon glyphicon-saved"> キャンセル</span></button>
+		</div>
+	</div>
 }
 @section scripts {
-    <script>
-        function deserialize(data) {
-            var result = {};
-            if (data) {
-                var params = data.split('&');
-                for (var i = 0; i < params.length; i++) {
-                    var keyValue = params[i].split('=');
-                    result[keyValue[0]] = keyValue[1];
-                }
-            }
-            return result;
-        }
-        function onBegin(xhr, settings) {
-            var params = deserialize(settings.data);
-            console.log(params.Button);
-            PROTOTYPE.common.hideMessage();
-            PROTOTYPE.common.hideValidationErrors();
-        }
-        function onSuccess(data, status, xhr) {
-            if (data.Result) {
-                alert('Success!!' + arguments.length);
-            } else {
-                PROTOTYPE.common.showMessage(data.Message);
-                PROTOTYPE.common.showValidationErrors(data.Errors);
-            }
-        }
-        //OnComplete – xhr, status
-        function onFailure(jqXHR, textStatus, errorThrown) {
-            if (jqXHR.status == 500) {
-                document.head.innerHTML = "";
-                document.body.innerHTML = jqXHR.responseText;
-                $('html,body').scrollTop(0);
-            }
-        }
-    </script>
+	<script>
+		function deserialize(data) {
+			var result = {};
+			if (data) {
+				var params = data.split('&');
+				for (var i = 0; i < params.length; i++) {
+					var keyValue = params[i].split('=');
+					result[keyValue[0]] = keyValue[1];
+				}
+			}
+			return result;
+		}
+		function onBegin(xhr, settings) {
+			var params = deserialize(settings.data);
+			console.log(params.Button);
+			PROTOTYPE.common.hideMessage();
+			PROTOTYPE.common.hideValidationErrors();
+		}
+		function onSuccess(data, status, xhr) {
+			if (data.Result) {
+				alert('Success!!' + arguments.length);
+			} else {
+				PROTOTYPE.common.showMessage(data.Message);
+				PROTOTYPE.common.showValidationErrors(data.Errors);
+			}
+		}
+		//OnComplete – xhr, status
+		function onFailure(jqXHR, textStatus, errorThrown) {
+			if (jqXHR.status == 500) {
+				document.head.innerHTML = "";
+				document.body.innerHTML = jqXHR.responseText;
+				$('html,body').scrollTop(0);
+			}
+		}
+	</script>
 }
