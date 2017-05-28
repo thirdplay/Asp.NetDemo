@@ -1,6 +1,6 @@
 ﻿using NLog;
 using Prototype.Constants;
-using Prototype.Mvc.Annotations;
+using Prototype.Mvc.DI;
 using System;
 using System.Reflection;
 

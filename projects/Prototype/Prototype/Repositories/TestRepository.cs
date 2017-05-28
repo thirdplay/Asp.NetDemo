@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Practices.ServiceLocation;
-using Prototype.Mvc.Annotations;
+using Prototype.Mvc.DI;
 using Prototype.Mvc.Extensions;
 using System.Linq;
 

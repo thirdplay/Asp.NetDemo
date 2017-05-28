@@ -1,7 +1,7 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using OfficeOpenXml;
 using Prototype.Constants;
-using Prototype.Mvc.Annotations;
+using Prototype.Mvc.DI;
 using Prototype.Entities;
 using Prototype.Mvc.Interop;
 using Prototype.Models;

@@ -191,9 +191,9 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Mvc\Ajax\AjaxExtensions.cs" />
     <Compile Include="Mvc\Annotations\ButtonName.cs" />
-    <Compile Include="Mvc\Annotations\RepositoryAttribute.cs" />
-    <Compile Include="Mvc\Annotations\ServiceAttribute.cs" />
-    <Compile Include="Mvc\Annotations\ComponentAttribute.cs" />
+    <Compile Include="Mvc\DI\RepositoryAttribute.cs" />
+    <Compile Include="Mvc\DI\ServiceAttribute.cs" />
+    <Compile Include="Mvc\DI\ComponentAttribute.cs" />
     <Compile Include="Mvc\AppEnvironment.cs" />
     <Compile Include="Mvc\Extensions\DapperExtensions.cs" />
     <Compile Include="Mvc\Extensions\ModelStateExtensions.cs" />

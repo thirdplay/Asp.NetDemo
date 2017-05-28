@@ -3,7 +3,7 @@ using Microsoft.Practices.Unity;
 using Oracle.ManagedDataAccess.Client;
 using Prototype.Constants;
 using Prototype.Mvc;
-using Prototype.Mvc.Annotations;
+using Prototype.Mvc.DI;
 using Prototype.Mvc.Profilers;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
