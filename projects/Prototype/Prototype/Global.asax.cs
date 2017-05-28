@@ -15,7 +15,7 @@ namespace Prototype
 	public class MvcApplication : HttpApplication
 	{
 		/// <summary>
-		/// ロギングインターフェース
+		/// ロガー
 		/// </summary>
 		private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
