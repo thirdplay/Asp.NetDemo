@@ -101,6 +101,7 @@ namespace Prototype.Mvc.Interop
 				case 4: this.application.Run(macro, args[0], args[1], args[2], args[3]); break;
 				case 5: this.application.Run(macro, args[0], args[1], args[2], args[3], args[4]); break;
 				case 6: this.application.Run(macro, args[0], args[1], args[2], args[3], args[4], args[5]); break;
+				case 7: this.application.Run(macro, args[0], args[1], args[2], args[3], args[4], args[5], args[6]); break;
 			}
 		}
 
