@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Web;
-using Excel = Microsoft.Office.Interop.Excel;
-using System.Reactive.Disposables;
 using System.IO;
-using Microsoft.Ajax.Utilities;
+using System.Reactive.Disposables;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Prototype.Mvc.Interop
 {
@@ -78,14 +73,8 @@ namespace Prototype.Mvc.Interop
 		/// <param name="macroName">実行するマクロ名</param>
 		/// <param name="args">実行引数</param>
 		/// <example>
-		/// // ワークブックのマクロ呼び出し
-		/// Run("This.Workbook.TestMacro");
-		///
-		/// // シートのマクロ呼び出し
-		/// Run("Sheet1.TestMacro");
-		///
-		/// // 標準モジュールのマクロ呼び出し
-		/// Run("TestMacro");
+		/// Run("This.Workbook.TestMacro"); // ワークブックのマクロ呼び出し Run("Sheet1.TestMacro");// シートのマクロ呼び出し
+		/// Run("TestMacro");// 標準モジュールのマクロ呼び出し
 		/// </example>
 		public void Run(string macroName, params object[] args)
 		{
@@ -103,7 +92,6 @@ namespace Prototype.Mvc.Interop
 				case 6: this.application.Run(macro, args[0], args[1], args[2], args[3], args[4], args[5]); break;
 				case 7: this.application.Run(macro, args[0], args[1], args[2], args[3], args[4], args[5], args[6]); break;
 				case 8: this.application.Run(macro, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); break;
-				case 9: this.application.Run(macro, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); break;
 			}
 		}
 
