@@ -14,7 +14,7 @@ namespace Prototype
 		/// バンドルを登録します。
 		/// </summary>
 		/// <param name="bundles">バンドルコレクション</param>
-		/// <remarks>バンドルの詳細については、http://go.microsoft.com/fwlink/?LinkId=301862  を参照してください。</remarks>
+		/// <remarks>バンドルの詳細については、http://go.microsoft.com/fwlink/?LinkId=301862 を参照してください。</remarks>
 		public static void RegisterBundles(BundleCollection bundles)
 		{
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
