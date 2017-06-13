@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using Prototype.Mvc.Extensions;
 using System.Linq;
 using System.Reflection;
