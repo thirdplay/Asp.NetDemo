@@ -1,4 +1,4 @@
-using Microsoft.Practices.ServiceLocation;
+ï»¿using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Oracle.ManagedDataAccess.Client;
 using Prototype.Constants;
@@ -62,18 +62,18 @@ namespace Prototype
                 })
             );
 
-            // ƒRƒ“ƒ|[ƒlƒ“ƒg‘®«‚ÌŒ^‚ğ“o˜^
+            // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå±æ€§ã®å‹ã‚’ç™»éŒ²
             RegisterTypesOfComponent(container);
 
-            // ServiceLocator‚Ìì¬A“o˜^
+            // ServiceLocatorã®ä½œæˆã€ç™»éŒ²
             IServiceLocator serviceLocator = new UnityServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => serviceLocator);
         }
 
         /// <summary>
-        /// UnityƒRƒ“ƒeƒi‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‘®«‚ÌŒ^‚ğ“o˜^‚µ‚Ü‚·B
+        /// Unityã‚³ãƒ³ãƒ†ãƒŠã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå±æ€§ã®å‹ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
         /// </summary>
-        /// <param name="container">UnityƒRƒ“ƒeƒi</param>
+        /// <param name="container">Unityã‚³ãƒ³ãƒ†ãƒŠ</param>
         private static void RegisterTypesOfComponent(IUnityContainer container)
         {
             var types = Assembly.GetExecutingAssembly().GetTypes()
